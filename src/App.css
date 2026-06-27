@@ -1540,9 +1540,125 @@
   padding-bottom: 1.5rem !important;
 }
 
+/* Comprehensive Responsive Overrides & Optimizations */
+
+@media (max-width: 991px) {
+  /* Hero card spacing adjustments */
+  .hero-container-grid {
+    padding-top: 6rem;
+    gap: 3rem;
+  }
+}
+
 @media (max-width: 768px) {
+  /* Global section spacing */
   .valeurs-section, .benefits-section {
     padding-top: 2rem !important;
-    padding-bottom: 1rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  /* Typography scale down for small viewports */
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  /* About section images height proportion */
+  .about-image-wrapper {
+    height: 180px !important;
+    margin-top: 1.5rem !important;
+  }
+
+  /* Valeur Card mobile sizing */
+  .valeur-card {
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* Services tabs triggers responsive styling */
+  .services-tabs {
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .services-tab-trigger {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .service-card {
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* Horizontal Methodology Timeline degradation to Vertical Timeline */
+  .methodology-timeline-track {
+    flex-direction: column !important;
+    overflow-x: visible !important;
+    gap: 2rem !important;
+    padding-bottom: 0 !important;
+  }
+
+  .methodology-timeline-line {
+    left: 39px !important;
+    top: 0 !important;
+    width: 2px !important;
+    height: 100% !important;
+    background: linear-gradient(180deg, var(--color-accent) 0%, rgba(200, 169, 90, 0.1) 100%) !important;
+  }
+
+  .timeline-step {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+    min-width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+
+  .timeline-step-node {
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+    box-shadow: 0 0 0 6px var(--color-primary) !important;
+  }
+
+  .timeline-step-card {
+    flex-grow: 1 !important;
+    padding: 1.5rem !important;
+  }
+
+  /* Benefit Card paddings */
+  .benefit-card {
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* FAQ Accordion triggers */
+  .faq-trigger {
+    padding: 1.2rem 1.5rem !important;
+    font-size: 1.05rem !important;
+  }
+
+  .faq-content-inner {
+    padding: 0 1.5rem 1.5rem 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Hero title extra small phone */
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  /* CSS Grid column layout bugfix for stats cards */
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .stats-grid .stat-card {
+    grid-column: span 1 !important;
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* Contact Form wrapper mobile padding */
+  .contact-form-wrapper {
+    padding: 2rem 1.25rem !important;
   }
 }
