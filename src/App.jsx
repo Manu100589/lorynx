@@ -237,31 +237,40 @@ export default function App() {
       return;
     }
 
-    // Hero content entrance
-    gsap.from('.hero-title-reveal', {
-      y: 100,
+    // Premium Framed Hero entrance sequence
+    gsap.from('.hero-portrait-img', {
+      y: 150,
       opacity: 0,
-      duration: 1.2,
-      stagger: 0.2,
+      duration: 1.6,
       ease: 'power4.out',
       delay: 0.2
     });
-    
-    gsap.from('.hero-subtitle', {
+
+    gsap.from('.hero-bg-text-line-1, .hero-bg-text-line-2', {
+      y: 80,
       opacity: 0,
-      y: 30,
-      duration: 1,
-      ease: 'power3.out',
-      delay: 0.8
+      duration: 1.4,
+      stagger: 0.2,
+      ease: 'power4.out',
+      delay: 0.5
     });
 
-    gsap.from('.hero-actions .btn', {
+    gsap.from('.hero-badge-pill', {
+      x: -50,
       opacity: 0,
-      y: 20,
+      duration: 1.0,
       stagger: 0.15,
-      duration: 0.8,
       ease: 'power3.out',
-      delay: 1.1
+      delay: 0.9
+    });
+
+    gsap.from('.hero-right-desc > *', {
+      y: 30,
+      opacity: 0,
+      duration: 1.0,
+      stagger: 0.15,
+      ease: 'power3.out',
+      delay: 1.2
     });
 
     // Pinned Vision Text Highlight scroll reveal
@@ -754,66 +763,66 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
 
       {/* Hero Section */}
       <section className="hero">
-        <video 
-          className="hero-video-bg" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-        >
-          <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3ccee5dffd2e2e4e13554e207b1d9bf10&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="hero-overlay"></div>
-
-        <div className="container hero-container-grid">
-          <div className="hero-text-side">
-            <div className="title-reveal">
-              <h1 className="hero-title hero-title-reveal">
-                Nous faisons <span>avancer</span> votre entreprise
-              </h1>
+        <div className="hero-frame-container">
+          <div className="hero-inner-frame">
+            {/* Ambient Background Lights */}
+            <div className="hero-ambient-glow"></div>
+            <div className="hero-gold-glow"></div>
+            
+            {/* Big Backdrop Typography */}
+            <div className="hero-bg-text">
+              <div className="hero-bg-text-line-1">LORYNS</div>
+              <div className="hero-bg-text-line-2">STRATEGIC</div>
             </div>
-            <p className="hero-subtitle">
-              Accompagner les dirigeants, les entreprises et les investisseurs dans la création de valeur, la croissance durable et la performance stratégique de haut niveau.
-            </p>
-            <div className="hero-actions">
-              <div 
-                className="magnetic-wrap"
-                onMouseMove={(e) => handleMagneticMove(e, 0.25)}
-                onMouseLeave={handleMagneticLeave}
-              >
-                <a href="#services" className="btn btn-primary interactive">Découvrir nos services</a>
+
+            {/* Center Portrait */}
+            <div className="hero-portrait-container">
+              <img 
+                src="/founder.jpg" 
+                alt="Président Fondateur Loryns Strategic Consulting" 
+                className="hero-portrait-img" 
+              />
+            </div>
+
+            {/* Left Side Pill Badges */}
+            <div className="hero-left-badges">
+              <div className="hero-badge-pill interactive">
+                <span className="gold-dot">•</span> Gouvernance & Stratégie
               </div>
+              <div className="hero-badge-pill interactive">
+                <span className="gold-dot">•</span> Ingénierie Financière
+              </div>
+              <div className="hero-badge-pill interactive">
+                <span className="gold-dot">•</span> Transformation Digitale
+              </div>
+            </div>
+
+            {/* Right Side Description & Action */}
+            <div className="hero-right-desc">
+              <div className="hero-desc-tag">Cabinet Conseil Agréé</div>
+              <h2 className="hero-desc-title">Nous faisons avancer votre entreprise</h2>
+              <p className="hero-desc-text">
+                Accompagner les dirigeants, les entreprises et les investisseurs dans la création de valeur durable et la performance stratégique.
+              </p>
               
-              <div 
-                className="magnetic-wrap"
-                onMouseMove={(e) => handleMagneticMove(e, 0.25)}
-                onMouseLeave={handleMagneticLeave}
-              >
-                <a href="#contact" className="btn btn-secondary interactive">Prendre rendez-vous</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-image-side">
-            <div className="founder-card-wrapper interactive">
-              <div className="founder-card-glow"></div>
-              <div className="founder-card">
-                <img src="/founder.jpg" alt="Président Fondateur Loryns Strategic Consulting" className="founder-img" />
-                <div className="founder-badge">
-                  <Sparkles size={16} className="text-gold" />
-                  <span>Cabinet Conseil Agréé</span>
+              <div className="hero-desc-actions">
+                <div 
+                  className="magnetic-wrap"
+                  onMouseMove={(e) => handleMagneticMove(e, 0.25)}
+                  onMouseLeave={handleMagneticLeave}
+                >
+                  <a href="#services" className="btn btn-primary interactive">Découvrir nos services</a>
                 </div>
               </div>
-              <div className="founder-card-border"></div>
             </div>
+
+            {/* Scroll Mouse Indicator */}
+            <a href="#about" className="hero-scroll-indicator-custom interactive">
+              <span>Faire défiler</span>
+              <div className="hero-scroll-mouse-custom"></div>
+            </a>
           </div>
         </div>
-
-        <a href="#about" className="hero-scroll-indicator interactive">
-          <span>Défiler</span>
-          <div className="hero-scroll-mouse"></div>
-        </a>
       </section>
 
       {/* Section "Pourquoi Loryns ?" */}
