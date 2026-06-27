@@ -299,15 +299,17 @@ export default function App() {
     mm.add('(min-width: 769px)', () => {
       const track = document.querySelector('.methodology-timeline-track');
       if (track) {
+        const getScrollDistance = () => track.scrollWidth - window.innerWidth + 160;
         gsap.to(track, {
-          x: () => -(track.scrollWidth - window.innerWidth + 120),
+          x: () => -getScrollDistance(),
           ease: 'none',
           scrollTrigger: {
             trigger: '.methodology-pinned-section',
             start: 'top top',
-            end: 'bottom bottom',
-            scrub: 1,
+            end: () => `+=${getScrollDistance()}`,
+            scrub: 1.2,
             pin: true,
+            invalidateOnRefresh: true,
           }
         });
       }
@@ -896,7 +898,7 @@ export default function App() {
       {/* Pinned Methodology Section */}
       <div className="methodology-pinned-section" id="methodology">
         <section className="methodology-section" style={{ padding: 0 }}>
-          <div className="container" style={{ position: 'relative', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div className="container" style={{ position: 'relative', height: '100vh', minHeight: '680px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div className="section-header" style={{ marginBottom: '2rem' }}>
               <div className="section-tag" style={{ color: '#C8A95A' }}>Processus</div>
               <h2 className="section-title">Notre Méthodologie</h2>
