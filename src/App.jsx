@@ -304,12 +304,8 @@ export default function App() {
     const mm = gsap.matchMedia();
     mm.add('(min-width: 769px)', () => {
       const track = document.querySelector('.methodology-timeline-track');
-      const scrollContainer = document.querySelector('.methodology-scroll-container');
-      if (track && scrollContainer) {
-        const getScrollDistance = () => {
-          const containerWidth = scrollContainer.getBoundingClientRect().width;
-          return Math.max(0, track.scrollWidth - containerWidth);
-        };
+      if (track) {
+        const getScrollDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
         gsap.to(track, {
           x: () => -getScrollDistance(),
           ease: 'none',
@@ -908,13 +904,16 @@ export default function App() {
       {/* Pinned Methodology Section */}
       <div className="methodology-pinned-section" id="methodology">
         <section className="methodology-section" style={{ padding: 0 }}>
-          <div className="container" style={{ position: 'relative', height: '100vh', minHeight: '680px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div className="section-header" style={{ marginBottom: '2rem' }}>
-              <div className="section-tag" style={{ color: '#C8A95A' }}>Processus</div>
-              <h2 className="section-title">Notre Méthodologie</h2>
-              <p style={{ color: 'rgba(255, 255, 255, 0.6)', marginTop: '1rem' }}>
-                Un processus rigoureux en 5 étapes pour garantir la réussite et le suivi continu de nos interventions.
-              </p>
+          <div className="methodology-viewport-wrapper" style={{ position: 'relative', height: '100vh', minHeight: '680px', display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100vw', overflow: 'hidden' }}>
+            
+            <div className="container">
+              <div className="section-header" style={{ marginBottom: '2rem' }}>
+                <div className="section-tag" style={{ color: '#C8A95A' }}>Processus</div>
+                <h2 className="section-title">Notre Méthodologie</h2>
+                <p style={{ color: 'rgba(255, 255, 255, 0.6)', marginTop: '1rem' }}>
+                  Un processus rigoureux en 5 étapes pour garantir la réussite et le suivi continu de nos interventions.
+                </p>
+              </div>
             </div>
 
             <div className="methodology-scroll-container">

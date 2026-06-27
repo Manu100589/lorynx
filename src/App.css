@@ -853,6 +853,8 @@
   overflow-x: hidden; /* Prevent horizontal manual scrollbars on desktop */
   gap: 4rem; /* Generous premium gap between cards */
   scrollbar-width: none; /* Firefox */
+  padding-left: max(4rem, calc((100vw - 1200px) / 2 + 4rem));
+  padding-right: max(4rem, calc((100vw - 1200px) / 2 + 4rem));
 }
 
 .methodology-timeline-track::-webkit-scrollbar {
@@ -1605,6 +1607,8 @@
     overflow-x: visible !important;
     gap: 2rem !important;
     padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .methodology-timeline-line {
