@@ -844,17 +844,18 @@
   margin-top: 5rem;
   position: relative;
   width: 100%;
+  overflow: hidden; /* Clip horizontal overflow relative to screen viewport */
 }
 
 .methodology-timeline-track {
   display: flex;
   position: relative;
   padding-bottom: 3rem;
-  overflow-x: hidden; /* Prevent horizontal manual scrollbars on desktop */
-  gap: 4rem; /* Generous premium gap between cards */
+  width: max-content; /* Expand track width to fit all steps plus paddings */
+  gap: 4rem; /* Generous gap between cards */
   scrollbar-width: none; /* Firefox */
-  padding-left: max(4rem, calc((100vw - 1200px) / 2 + 4rem));
-  padding-right: max(4rem, calc((100vw - 1200px) / 2 + 4rem));
+  padding-left: max(4rem, calc((100vw - 1400px) / 2 + 4rem)); /* Align with 1400px container */
+  padding-right: max(4rem, calc((100vw - 1400px) / 2 + 4rem));
 }
 
 .methodology-timeline-track::-webkit-scrollbar {
@@ -1609,6 +1610,7 @@
     padding-bottom: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    width: 100% !important;
   }
 
   .methodology-timeline-line {
