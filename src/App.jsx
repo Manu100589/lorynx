@@ -106,6 +106,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showRendezVousModal, setShowRendezVousModal] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [processedFounderSrc, setProcessedFounderSrc] = useState(null);
   
   // Custom cursor states
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -156,6 +157,40 @@ export default function App() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Process the founder's portrait to key out the white background smoothly
+  useEffect(() => {
+    const img = new Image();
+    img.src = '/founder.png';
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        // Calculate average brightness
+        const brightness = (r + g + b) / 3;
+        
+        // If the pixel is very bright (near-white), make it transparent or semi-transparent
+        if (brightness > 240) {
+          const factor = Math.max(0, (255 - brightness) / (255 - 240)); // 0 to 1
+          data[i + 3] = Math.floor(data[i + 3] * factor);
+        }
+      }
+      
+      ctx.putImageData(imageData, 0, 0);
+      setProcessedFounderSrc(canvas.toDataURL());
+    };
   }, []);
 
   // Custom Cursor Mouse Tracker
@@ -238,6 +273,16 @@ export default function App() {
     }
 
     // Premium Typographical Hero entrance sequence
+    if (processedFounderSrc) {
+      gsap.from('.hero-portrait-img', {
+        y: 100,
+        opacity: 0,
+        duration: 1.6,
+        ease: 'power4.out',
+        delay: 0.4
+      });
+    }
+
     gsap.from('.hero-bg-text-line-1, .hero-bg-text-line-2', {
       y: 80,
       opacity: 0,
@@ -343,7 +388,7 @@ export default function App() {
     // Force ScrollTrigger to calculate all scroll positions after elements render
     ScrollTrigger.refresh();
 
-  }, { scope: containerRef, dependencies: [loading] });
+  }, { scope: containerRef, dependencies: [loading, processedFounderSrc] });
 
   // Custom magnetic button tracking (standard GSAP effect)
   const handleMagneticMove = (e, strength = 0.3) => {
@@ -766,6 +811,16 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               <div className="hero-bg-text-line-2">STRATEGIC</div>
             </div>
 
+            {/* Center Portrait */}
+            {processedFounderSrc && (
+              <div className="hero-portrait-container">
+                <img 
+                  src={processedFounderSrc} 
+                  alt="Président Fondateur Loryns" 
+                  className="hero-portrait-img" 
+                />
+              </div>
+            )}
             {/* Left Side Pill Badges */}
             <div className="hero-left-badges">
               <div className="hero-badge-pill interactive">
