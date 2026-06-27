@@ -225,6 +225,7 @@
 }
 
 .hero-frame-container {
+  position: relative;
   padding: 1.5rem;
   width: 100%;
   height: 100%;
@@ -2180,15 +2181,15 @@
 /* Bottom Center Action Button */
 .hero-center-actions-bottom {
   position: absolute;
-  bottom: 3.5rem;
+  bottom: 0.35rem; /* Centered inside the 1.5rem bottom frame margin */
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 10;
 }
 
 @media (max-width: 768px) {
   .hero-center-actions-bottom {
-    bottom: 2rem;
+    bottom: 0.15rem; /* Aligned with 0.75rem margin on mobile screens */
   }
 }
 

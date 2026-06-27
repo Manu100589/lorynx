@@ -779,22 +779,22 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               </div>
             </div>
 
-            {/* Bottom Center Action Button */}
-            <div className="hero-center-actions-bottom">
-              <div 
-                className="magnetic-wrap"
-                onMouseMove={(e) => handleMagneticMove(e, 0.25)}
-                onMouseLeave={handleMagneticLeave}
-              >
-                <a href="#services" className="btn btn-primary interactive">Découvrir nos services</a>
-              </div>
-            </div>
-
             {/* Scroll Mouse Indicator */}
             <a href="#about" className="hero-scroll-indicator-custom interactive">
               <span>Faire défiler</span>
               <div className="hero-scroll-mouse-custom"></div>
             </a>
+          </div>
+
+          {/* Bottom Center Action Button (placed in the bottom frame margin) */}
+          <div className="hero-center-actions-bottom">
+            <div 
+              className="magnetic-wrap"
+              onMouseMove={(e) => handleMagneticMove(e, 0.25)}
+              onMouseLeave={handleMagneticLeave}
+            >
+              <a href="#services" className="btn btn-primary interactive">Découvrir nos services</a>
+            </div>
           </div>
         </div>
       </section>
