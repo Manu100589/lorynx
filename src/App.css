@@ -2006,3 +2006,81 @@
   margin-right: auto;
   line-height: 1.6;
 }
+
+/* Modal Backdrop & Reader Layout Refinements */
+.modal-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(7, 26, 53, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 2rem !important;
+  z-index: 10000 !important;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  z-index: 10;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Responsive Scaling Overrides for Hero and Timeline */
+@media (max-width: 991px) {
+  .hero-portrait-wrapper {
+    height: 380px !important;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-portrait-wrapper {
+    height: 290px !important;
+    max-width: 290px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Aligns mobile vertical timeline center line precisely with nodes */
+  .methodology-timeline-line {
+    left: 20px !important;
+    width: 2px !important;
+  }
+}
