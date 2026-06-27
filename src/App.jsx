@@ -797,14 +797,8 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               </div>
             </div>
 
-            {/* Right Side Description & Action */}
+            {/* Right Side Action */}
             <div className="hero-right-desc">
-              <div className="hero-desc-tag">Cabinet Conseil Agréé</div>
-              <h2 className="hero-desc-title">Nous faisons avancer votre entreprise</h2>
-              <p className="hero-desc-text">
-                Accompagner les dirigeants, les entreprises et les investisseurs dans la création de valeur durable et la performance stratégique.
-              </p>
-              
               <div className="hero-desc-actions">
                 <div 
                   className="magnetic-wrap"
