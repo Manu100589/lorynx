@@ -322,26 +322,23 @@ export default function App() {
       }
     });
 
-    // Horizontal scroll timeline on desktop
-    const mm = gsap.matchMedia();
-    mm.add('(min-width: 769px)', () => {
-      const track = document.querySelector('.methodology-timeline-track');
-      if (track) {
-        const getScrollDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
-        gsap.to(track, {
-          x: () => -getScrollDistance(),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.methodology-pinned-section',
-            start: 'top top',
-            end: () => `+=${getScrollDistance()}`,
-            scrub: 1.2,
-            pin: true,
-            invalidateOnRefresh: true,
-          }
-        });
-      }
-    });
+    // Horizontal scroll timeline on all screens
+    const track = document.querySelector('.methodology-timeline-track');
+    if (track) {
+      const getScrollDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      gsap.to(track, {
+        x: () => -getScrollDistance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.methodology-pinned-section',
+          start: 'top top',
+          end: () => `+=${getScrollDistance()}`,
+          scrub: 1.2,
+          pin: true,
+          invalidateOnRefresh: true,
+        }
+      });
+    }
 
     // Force ScrollTrigger to calculate all scroll positions after elements render
     ScrollTrigger.refresh();
@@ -1078,7 +1075,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       {/* Pinned Methodology Section */}
       <div className="methodology-pinned-section" id="methodology">
         <section className="methodology-section" style={{ padding: 0 }}>
-          <div className="methodology-viewport-wrapper" style={{ position: 'relative', height: '100vh', minHeight: '680px', display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100vw', overflow: 'hidden' }}>
+          <div className="methodology-viewport-wrapper" style={{ position: 'relative', height: '100vh', minHeight: '560px', display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100vw', overflow: 'hidden' }}>
             
             <div className="container">
               <div className="section-header" style={{ marginBottom: '2rem' }}>
