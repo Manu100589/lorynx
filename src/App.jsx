@@ -714,8 +714,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* Nos Valeurs */}
-      <section id="valeurs" className="valeurs-section">
+      {/* Nos Valeurs & Pourquoi collaborer (Fondations & Valeur ajoutée) */}
+      <section id="valeurs" className="valeurs-benefits-section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>Fondations</div>
@@ -756,6 +756,66 @@ export default function App() {
               </div>
               <h3>Croissance Durable</h3>
               <p>Construire l'avenir sur des bases saines. Nous accompagnons les dirigeants dans l'établissement de structures pérennes capables de résister aux crises macroéconomiques.</p>
+            </div>
+          </div>
+
+          <div className="valeurs-benefits-separator"></div>
+
+          <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>Valeur ajoutée</div>
+            <h2 className="section-title">Pourquoi collaborer avec nous ?</h2>
+            <p style={{ marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+              Ce que vous gagnerez à structurer votre croissance stratégique avec Loryns.
+            </p>
+          </div>
+
+          <div className="benefits-grid">
+            <div className="benefit-card">
+              <div className="benefit-icon">
+                <TrendingUp size={28} />
+              </div>
+              <h3>Augmentation du chiffre d'affaires</h3>
+              <p>Optimisation de vos offres, meilleure pénétration commerciale et structuration des réseaux d'intermédiation clés.</p>
+            </div>
+
+            <div className="benefit-card">
+              <div className="benefit-icon">
+                <Briefcase size={28} />
+              </div>
+              <h3>Optimisation des coûts</h3>
+              <p>Élimination des inefficacités opérationnelles, renégociation de contrats et réduction des gaspillages.</p>
+            </div>
+
+            <div className="benefit-card">
+              <div className="benefit-icon">
+                <Users size={28} />
+              </div>
+              <h3>Optimisation des ressources</h3>
+              <p>Alignement optimal de vos compétences internes, automatisation logicielle et gouvernance managériale claire.</p>
+            </div>
+
+            <div className="benefit-card">
+              <div className="benefit-icon">
+                <Clock size={28} />
+              </div>
+              <h3>Gain de temps stratégique</h3>
+              <p>Déléguez l'ingénierie financière et les audits complexes pour vous recentrer sur votre cœur de métier.</p>
+            </div>
+
+            <div className="benefit-card">
+              <div className="benefit-icon">
+                <Globe size={28} />
+              </div>
+              <h3>Positionnement sur le marché</h3>
+              <p>Alignement sur les normes internationales pour accéder à des marchés étrangers et accroître votre e-réputation.</p>
+            </div>
+
+            <div className="benefit-card">
+              <div className="benefit-icon">
+                <ShieldCheck size={28} />
+              </div>
+              <h3>Accompagnement durable</h3>
+              <p>Un partenariat fondé sur la confiance, le suivi continu et la formation continue de vos ressources clés.</p>
             </div>
           </div>
         </div>
@@ -895,68 +955,7 @@ export default function App() {
         </section>
       </div>
 
-      {/* Pourquoi travailler avec nous (Benefits) */}
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Valeur ajoutée</div>
-            <h2 className="section-title">Pourquoi collaborer avec nous ?</h2>
-            <p style={{ marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-              Ce que vous gagnerez à structurer votre croissance stratégique avec Loryns.
-            </p>
-          </div>
 
-          <div className="benefits-grid">
-            <div className="benefit-card">
-              <div className="benefit-icon">
-                <TrendingUp size={28} />
-              </div>
-              <h3>Augmentation du chiffre d'affaires</h3>
-              <p>Optimisation de vos offres, meilleure pénétration commerciale et structuration des réseaux d'intermédiation clés.</p>
-            </div>
-
-            <div className="benefit-card">
-              <div className="benefit-icon">
-                <Briefcase size={28} />
-              </div>
-              <h3>Optimisation des coûts</h3>
-              <p>Élimination des inefficacités opérationnelles, renégociation de contrats et réduction des gaspillages.</p>
-            </div>
-
-            <div className="benefit-card">
-              <div className="benefit-icon">
-                <Users size={28} />
-              </div>
-              <h3>Optimisation des ressources</h3>
-              <p>Alignement optimal de vos compétences internes, automatisation logicielle et gouvernance managériale claire.</p>
-            </div>
-
-            <div className="benefit-card">
-              <div className="benefit-icon">
-                <Clock size={28} />
-              </div>
-              <h3>Gain de temps stratégique</h3>
-              <p>Déléguez l'ingénierie financière et les audits complexes pour vous recentrer sur votre cœur de métier.</p>
-            </div>
-
-            <div className="benefit-card">
-              <div className="benefit-icon">
-                <Globe size={28} />
-              </div>
-              <h3>Positionnement sur le marché</h3>
-              <p>Alignement sur les normes internationales pour accéder à des marchés étrangers et accroître votre e-réputation.</p>
-            </div>
-
-            <div className="benefit-card">
-              <div className="benefit-icon">
-                <ShieldCheck size={28} />
-              </div>
-              <h3>Accompagnement durable</h3>
-              <p>Un partenariat fondé sur la confiance, le suivi continu et la formation continue de vos ressources clés.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Témoignages */}
       <section className="testimonials-section">
