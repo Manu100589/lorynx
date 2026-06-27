@@ -320,6 +320,7 @@
   max-height: 100%;
   object-fit: contain;
   filter: contrast(1.05) brightness(1.0);
+  opacity: 0; /* Starts hidden and fades in on scroll */
 }
 
 /* Left Side Pill Badges */

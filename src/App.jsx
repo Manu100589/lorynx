@@ -272,15 +272,22 @@ export default function App() {
       return;
     }
 
-    // Premium Typographical Hero entrance sequence
+    // Premium Typographical Hero portrait fade in on scroll
     if (processedFounderSrc) {
-      gsap.from('.hero-portrait-img', {
-        y: 100,
-        opacity: 0,
-        duration: 1.6,
-        ease: 'power4.out',
-        delay: 0.4
-      });
+      gsap.fromTo('.hero-portrait-img', 
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: '250px top',
+            scrub: 1.2,
+          }
+        }
+      );
     }
 
     gsap.from('.hero-bg-text-line-1, .hero-bg-text-line-2', {
