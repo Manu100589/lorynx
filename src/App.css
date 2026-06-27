@@ -850,8 +850,8 @@
   display: flex;
   position: relative;
   padding-bottom: 3rem;
-  overflow-x: auto;
-  gap: 3rem;
+  overflow-x: hidden; /* Prevent horizontal manual scrollbars on desktop */
+  gap: 4rem; /* Generous premium gap between cards */
   scrollbar-width: none; /* Firefox */
 }
 

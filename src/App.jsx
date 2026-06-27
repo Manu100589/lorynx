@@ -304,8 +304,12 @@ export default function App() {
     const mm = gsap.matchMedia();
     mm.add('(min-width: 769px)', () => {
       const track = document.querySelector('.methodology-timeline-track');
-      if (track) {
-        const getScrollDistance = () => track.scrollWidth - window.innerWidth + 160;
+      const scrollContainer = document.querySelector('.methodology-scroll-container');
+      if (track && scrollContainer) {
+        const getScrollDistance = () => {
+          const containerWidth = scrollContainer.getBoundingClientRect().width;
+          return Math.max(0, track.scrollWidth - containerWidth);
+        };
         gsap.to(track, {
           x: () => -getScrollDistance(),
           ease: 'none',
