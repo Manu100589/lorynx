@@ -105,6 +105,7 @@ export default function App() {
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showRendezVousModal, setShowRendezVousModal] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState(null);
   
   // Custom cursor states
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -398,6 +399,154 @@ export default function App() {
     }
   ];
 
+  const blogArticles = [
+    {
+      id: 1,
+      category: "Gouvernance",
+      date: "24 Juin 2026",
+      title: "Restructuration d'Entreprise au Cameroun : Comment éviter la faillite dans les 3 premières années",
+      excerpt: "Découvrez les facteurs clés de la mortalité précoce des PME à Douala et Yaoundé, et comment un audit de gouvernance rigoureux peut sauver votre structure.",
+      image: "/blog_restructuring.png",
+      keywords: "restructuration entreprise Cameroun, gouvernance stratégique, gestion de crise PME, Loryns Consulting",
+      content: `
+# Restructuration d'Entreprise au Cameroun : Comment éviter la faillite précoce
+
+En Afrique subsaharienne, et plus particulièrement au Cameroun, la dynamique entrepreneuriale est l'une des plus fortes au monde. Cependant, les statistiques révèlent une réalité plus sombre : **près de 80% des jeunes entreprises disparaissent avant leur 3e anniversaire**, et plus de 54% des PME déclarent faillite au cours de leur première décennie d'existence. 
+
+À Douala, poumon économique, des centaines d'entreprises ferment discrètement leurs portes chaque année. Pourquoi un tel taux d'échec ? Et surtout, comment y faire face grâce à la **restructuration stratégique** ?
+
+## 1. Les causes majeures de la mortalité des PME au Cameroun
+
+Nos diagnostics menés auprès de dizaines d'entreprises locales identifient trois faiblesses cardinales :
+* **Une gouvernance informelle** : Les décisions stratégiques reposent trop souvent sur une seule personne, sans conseil d'administration structuré ni processus de validation des risques.
+* **Le pilotage financier à vue** : L'absence de comptabilité analytique et de tableaux de bord financiers réguliers empêche d'anticiper les crises de trésorerie.
+* **L'inadaptation aux ruptures sectorielles** : Face à l'inflation et à la numérisation rapide, les business models traditionnels s'essoufflent sans réinventer leur offre.
+
+## 2. Qu'est-ce que la restructuration d'entreprise ?
+
+Contrairement aux idées reçues, restructurer n'est pas uniquement synonyme de réduction d'effectifs en situation désespérée. Il s'agit d'une **réingénierie opérationnelle et financière** destinée à relancer la rentabilité d'une structure en perte de vitesse.
+
+Chez *Loryns Strategic Consulting*, notre processus s'articule autour de trois leviers d'urgence :
+1. **Le Diagnostic Flash** : Un audit complet en 15 jours pour identifier les goulets d'étranglement financiers et opérationnels.
+2. **Le Management de Transition** : La mise à disposition d'un Directeur Général ou Financier intérimaire pour restructurer la comptabilité et stabiliser la trésorerie.
+3. **La rationalisation des charges** : La renégociation des contrats d'intermédiation et de distribution pour dégager de l'oxygène financier.
+
+## 3. L'importance cruciale de la gouvernance stratégique
+
+La restructuration réussie repose sur une transition de la gestion purement familiale vers une **gouvernance d'entreprise moderne et transparente**. En structurant vos comités de direction et en intégrant des conseillers externes qualifiés, vous rassurez non seulement vos partenaires commerciaux, mais vous ouvrez aussi la voie à de futurs financements institutionnels.
+
+*Ne laissez pas votre entreprise grossir les statistiques de faillite. Prenez les devants et sollicitez un diagnostic de gouvernance complet dès aujourd'hui.*
+      `
+    },
+    {
+      id: 2,
+      category: "Finance",
+      date: "18 Juin 2026",
+      title: "Levée de Fonds en Afrique Centrale : Stratégies clés pour séduire les bailleurs de fonds",
+      excerpt: "Comment structurer son dossier de financement et calibrer sa modélisation financière pour convaincre les banques et les fonds d'investissement régionaux.",
+      image: "/blog_funding.png",
+      keywords: "levée de fonds Afrique, financement PME Cameroun, ingénierie financière, BDEAC, banque Douala",
+      content: `
+# Levée de Fonds en Afrique Centrale : Comment convaincre les investisseurs ?
+
+L'accès au capital est le principal frein à l'expansion des PME et des projets d'infrastructure au Cameroun et dans toute la zone CEMAC. Pourtant, les liquidités existent : banques commerciales locales, institutions financières internationales (BAD, BDEAC, SFI) et fonds d'investissement privés cherchent activement des projets viables.
+
+Le défi réside dans la **calibration financière** et la présentation du projet. Voici comment optimiser votre ingénierie financière pour lever des fonds avec succès.
+
+## 1. Comprendre les attentes des investisseurs en zone CEMAC
+
+Qu'il s'agisse d'un crédit bancaire classique ou d'une entrée au capital par un fonds de capital-investissement (Private Equity), les bailleurs évaluent trois piliers fondamentaux :
+* **La qualité et la transparence des états financiers** : Les bilans audités et certifiés sont la condition sine qua non de toute étude de dossier.
+* **La solidité du business plan** : Une modélisation financière rigoureuse sur 5 ans intégrant différents scénarios de croissance (optimiste, réaliste, pessimiste).
+* **Le dispositif de réduction des risques** : Quelles sont les garanties réelles ? La structure juridique de l'entreprise est-elle conforme aux règles OHADA ?
+
+## 2. Les étapes pour structurer une levée de fonds réussie
+
+Pour maximiser vos chances d'obtenir un financement, nous conseillons une approche en quatre étapes méthodiques :
+1. **L'Évaluation de la capacité d'endettement** : Analyser le ratio d'endettement actuel et déterminer le besoin de financement réel (BFR ou investissement long terme).
+2. **La rédaction de l'Information Memorandum (InfoMemo)** : Un document de présentation synthétique et percutant décrivant le marché, le positionnement commercial et la gouvernance.
+3. **La modélisation financière avancée** : Construction de prévisions de flux de trésorerie (Cash Flow Statements) robustes avec calcul du TRI (Taux de Rendement Interne) et de la VAN (Valeur Actuelle Nette).
+4. **La négociation des Term Sheets** : Cadrer les conditions de remboursement, les covenants bancaires ou la gouvernance partagée en cas d'ouverture de capital.
+
+## 3. Le rôle de l'ingénierie financière de Loryns
+
+Un dirigeant de PME n'a pas toujours en interne les compétences d'un banquier d'affaires. C'est là que l'accompagnement de *Loryns Strategic Consulting* prend tout son sens. Nous structurons vos dossiers financiers pour parler le langage exact des banques et des fonds d'investissement, et nous vous introduisons directement auprès de réseaux d'intermédiation stratégiques en zone Afrique centrale.
+
+*Vous préparez un grand projet d'infrastructure ou d'expansion industrielle ? Contactez nos experts en ingénierie financière pour valider votre modèle de financement.*
+      `
+    },
+    {
+      id: 3,
+      category: "Digitalisation",
+      date: "10 Juin 2026",
+      title: "La Transformation Digitale : Le levier incontournable de performance pour les PME en 2026",
+      excerpt: "Au-delà de la communication, apprenez comment automatiser vos processus métier internes pour réduire les coûts et sécuriser vos opérations.",
+      image: "/blog_digital.png",
+      keywords: "transformation digitale PME, performance opérationnelle, digitalisation Douala, automatisation processus",
+      content: `
+# La Transformation Digitale : Levier de Performance Incontournable pour les PME
+
+Dans le paysage économique hyper-compétitif de 2026, la transformation digitale ne se résume plus à posséder une page Facebook ou un site web institutionnel. Elle représente la **colonne vertébrale opérationnelle** d'une entreprise moderne.
+
+Pour les PME camerounaises, automatiser ses processus internes est devenu un enjeu de survie et de compétitivité.
+
+## 1. La digitalisation opérationnelle : Définition et bénéfices
+
+Trop d'entreprises locales souffrent de lenteurs administratives dues au traitement manuel des informations : doubles saisies, pertes de factures, reporting commercial obsolète. La transformation digitale consiste à déployer des outils logiciels intégrés pour rationaliser ces tâches.
+
+Les gains pour une PME sont immédiats :
+* **Réduction drastique des coûts d'exploitation** : Moins de papier, moins d'erreurs humaines et réduction des heures de saisie à faible valeur ajoutée.
+* **Sécurisation des processus financiers** : Suivi en temps réel de la facturation et réduction du délai de recouvrement des créances.
+* **Décisions basées sur les données** : Des indicateurs de performance (KPI) mis à jour instantanément pour le comité de direction.
+
+## 2. Par où commencer sa transformation digitale ?
+
+Plutôt que d'acheter des logiciels coûteux qui ne seront pas adaptés à vos équipes, nous préconisons une démarche pragmatique :
+1. **La cartographie des processus métiers** : Identifier quelles étapes créent le plus de friction dans vos ventes, vos RH ou votre logistique.
+2. **Le choix de solutions agiles et cloud** : Privilégier des outils simples d'intégration (CRM, outils d'automatisation comme Zapier ou Make, ou ERP open-source).
+3. **La conduite du changement** : La clé de voûte de la réussite réside dans la formation de vos équipes. Un outil digital n'est utile que s'il est adopté à 100%.
+
+## 3. L'approche technologique intégrée de Loryns
+
+Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique traditionnel avec le génie logiciel. Nos ingénieurs conçoivent des passerelles d'automatisation personnalisées et déploient des solutions de reporting décisionnel pour rationaliser votre gestion managériale. Nous veillons à ce que chaque investissement technologique se traduise par une hausse immédiate de votre rentabilité opérationnelle.
+
+*Prêt à accélérer la performance digitale de votre entreprise ? Discutez avec un de nos consultants techniques pour concevoir votre plan de transition.*
+      `
+    }
+  ];
+
+  const renderArticleContent = (content) => {
+    return content.split('\n\n').map((block, idx) => {
+      const trimmed = block.trim();
+      if (!trimmed) return null;
+      if (trimmed.startsWith('# ')) {
+        return <h1 key={idx} className="blog-h1">{trimmed.replace('# ', '')}</h1>;
+      }
+      if (trimmed.startsWith('## ')) {
+        return <h2 key={idx} className="blog-h2">{trimmed.replace('## ', '')}</h2>;
+      }
+      if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+        const items = trimmed.split('\n').map((item) => item.replace(/^[\*\-]\s+/, ''));
+        return (
+          <ul key={idx} className="blog-ul">
+            {items.map((item, iIdx) => <li key={iIdx}>{item}</li>)}
+          </ul>
+        );
+      }
+      if (trimmed.match(/^\d+\.\s+/)) {
+        const items = trimmed.split('\n').map((item) => item.replace(/^\d+\.\s+/, ''));
+        return (
+          <ol key={idx} className="blog-ol">
+            {items.map((item, iIdx) => <li key={iIdx}>{item}</li>)}
+          </ol>
+        );
+      }
+      let htmlText = trimmed;
+      htmlText = htmlText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      return <p key={idx} className="blog-p" dangerouslySetInnerHTML={{ __html: htmlText }} />;
+    });
+  };
+
   const faqs = [
     {
       question: "Comment se déroule la première prise de contact ?",
@@ -578,6 +727,7 @@ export default function App() {
             <a href="#valeurs" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Valeurs</a>
             <a href="#services" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Nos Services</a>
             <a href="#methodology" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Méthodologie</a>
+            <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Insights</a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Contact</a>
             
             <div 
@@ -1045,6 +1195,43 @@ export default function App() {
         </div>
       </section>
 
+      {/* Blog Section */}
+      <section id="blog" className="blog-section">
+        <div className="container">
+          <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>Actualités & Insights</div>
+            <h2 className="section-title">Nos Analyses & Conseils</h2>
+            <p style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
+              Décryptages stratégiques et ingénierie d'affaires pour guider les PME et dirigeants d'Afrique centrale face aux enjeux de croissance.
+            </p>
+          </div>
+
+          <div className="blog-grid">
+            {blogArticles.map((article) => (
+              <div 
+                key={article.id} 
+                className="blog-card interactive" 
+                onClick={() => setSelectedArticle(article)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="blog-card-image">
+                  <img src={article.image} alt={article.title} />
+                  <div className="blog-card-category">{article.category}</div>
+                </div>
+                <div className="blog-card-content">
+                  <div className="blog-card-date">{article.date}</div>
+                  <h3>{article.title}</h3>
+                  <p>{article.excerpt}</p>
+                  <div className="blog-card-link">
+                    Lire l'article <ChevronRight size={16} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Accordion */}
       <section className="faq-section">
         <div className="container">
@@ -1394,6 +1581,52 @@ export default function App() {
             >
               Fermer
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Blog Article Full View Modal */}
+      {selectedArticle && (
+        <div className="modal-backdrop" onClick={() => setSelectedArticle(null)}>
+          <div className="blog-modal-card" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn interactive" onClick={() => setSelectedArticle(null)}>
+              <X size={24} />
+            </button>
+            <div className="blog-modal-header-image">
+              <img src={selectedArticle.image} alt={selectedArticle.title} />
+              <div className="blog-modal-category">{selectedArticle.category}</div>
+            </div>
+            <div className="blog-modal-content-wrapper">
+              <div className="blog-modal-meta">
+                <span className="blog-modal-date">{selectedArticle.date}</span>
+                <span className="blog-modal-separator">•</span>
+                <span className="blog-modal-readtime">Lecture : 5 min</span>
+              </div>
+              <h1 className="blog-modal-title">{selectedArticle.title}</h1>
+              
+              <div className="blog-modal-body">
+                {renderArticleContent(selectedArticle.content)}
+              </div>
+
+              {/* SEO Tags metadata display inside article for compliance */}
+              <div className="blog-modal-seo-tags">
+                <strong>Mots-clés SEO :</strong> <em>{selectedArticle.keywords}</em>
+              </div>
+
+              <div className="blog-modal-cta">
+                <h3>Besoin d'un accompagnement personnalisé ?</h3>
+                <p>Déterminez la viabilité de votre projet avec un expert lors d'un entretien diagnostic offert de 30 minutes.</p>
+                <button 
+                  className="btn btn-primary interactive"
+                  onClick={() => {
+                    setSelectedArticle(null);
+                    setShowRendezVousModal(true);
+                  }}
+                >
+                  Prendre rendez-vous <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
