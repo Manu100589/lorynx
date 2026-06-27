@@ -795,6 +795,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
             >
               <a href="#services" className="btn btn-primary interactive">Découvrir nos services</a>
             </div>
+            <span className="hero-brush-text">Consulting</span>
           </div>
         </div>
       </section>

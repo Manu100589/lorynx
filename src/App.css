@@ -2178,18 +2178,65 @@
   }
 }
 
-/* Bottom Center Action Button */
+/* Bottom Center Action Button & Brush Text */
 .hero-center-actions-bottom {
   position: absolute;
   bottom: 0.35rem; /* Centered inside the 1.5rem bottom frame margin */
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-brush-text {
+  font-family: 'Mr Dafoe', cursive;
+  font-size: 3.4rem;
+  color: var(--color-accent);
+  transform: rotate(-10deg) translateY(-10px);
+  margin-left: 1.5rem;
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 5px 15px rgba(200, 169, 90, 0.25);
+  opacity: 0.95;
+  animation: brushFadeIn 1.4s ease-out 1.2s both;
+}
+
+@keyframes brushFadeIn {
+  from {
+    opacity: 0;
+    transform: rotate(-15deg) translateY(10px) scale(0.9);
+  }
+  to {
+    opacity: 0.95;
+    transform: rotate(-10deg) translateY(-10px) scale(1);
+  }
 }
 
 @media (max-width: 768px) {
   .hero-center-actions-bottom {
     bottom: 0.15rem; /* Aligned with 0.75rem margin on mobile screens */
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .hero-brush-text {
+    font-size: 2.2rem;
+    margin-left: 0;
+    transform: rotate(-6deg) translateY(0);
+    animation: brushFadeInMobile 1.4s ease-out 1.2s both;
+  }
+}
+
+@keyframes brushFadeInMobile {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 0.95;
+    transform: rotate(-6deg) translateY(0) scale(1);
   }
 }
 
