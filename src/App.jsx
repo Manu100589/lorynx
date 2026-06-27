@@ -256,30 +256,36 @@ export default function App() {
       }
     });
 
-    // Stacking Valeurs cards fade-in reveal
-    gsap.from('.valeur-card', {
-      y: 50,
-      opacity: 0,
-      stagger: 0.15,
-      duration: 1,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.valeurs-grid',
-        start: 'top 80%',
-      }
+    // Staggered scroll reveal for Valeurs cards (revealing one by one as they scroll in)
+    gsap.utils.toArray('.valeur-card').forEach((card) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 40,
+        scale: 0.96,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 92%',
+          toggleActions: 'play none none none'
+        }
+      });
     });
 
-    // Benefits Section animation
-    gsap.from('.benefit-card', {
-      y: 40,
-      opacity: 0,
-      stagger: 0.1,
-      duration: 1.2,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.benefits-grid',
-        start: 'top 85%',
-      }
+    // Staggered scroll reveal for Benefits cards (features scrolling/revealing on scroll)
+    gsap.utils.toArray('.benefit-card').forEach((card) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 50,
+        scale: 0.96,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 92%',
+          toggleActions: 'play none none none'
+        }
+      });
     });
 
     // Scroll progress bar indicator

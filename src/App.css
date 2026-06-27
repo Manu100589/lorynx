@@ -1672,3 +1672,50 @@
     padding: 2rem 1.25rem !important;
   }
 }
+
+/* Premium UI/UX Refinement - Unified Glassmorphism Cards */
+.valeur-card, .service-card, .benefit-card {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(7, 26, 53, 0.06) !important;
+  box-shadow: 0 10px 30px -10px rgba(7, 26, 53, 0.03) !important;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.valeur-card:hover, .service-card:hover, .benefit-card:hover {
+  transform: translateY(-8px) scale(1.025) !important;
+  box-shadow: 0 25px 50px -12px rgba(7, 26, 53, 0.08) !important;
+  border-color: rgba(200, 169, 90, 0.45) !important;
+}
+
+/* Enhancing service icon boxes */
+.service-icon-box, .valeur-icon-container, .benefit-icon {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease, color 0.35s ease !important;
+}
+
+.service-card:hover .service-icon-box, 
+.valeur-card:hover .valeur-icon-container, 
+.benefit-card:hover .benefit-icon {
+  transform: scale(1.1) rotate(4deg) !important;
+  background-color: var(--color-primary) !important;
+  color: var(--color-accent) !important;
+}
+
+/* FAQ Glassmorphism Card Style */
+.faq-item {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(7, 26, 53, 0.05) !important;
+  box-shadow: 0 8px 24px -10px rgba(7, 26, 53, 0.02) !important;
+}
+
+/* Testimonials Glassmorphism Card Style */
+.testimonial-slide {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(7, 26, 53, 0.06) !important;
+  box-shadow: 0 20px 45px -15px rgba(7, 26, 53, 0.06) !important;
+}
