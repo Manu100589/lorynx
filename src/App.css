@@ -2177,48 +2177,18 @@
   }
 }
 
-/* Center Hero Typography Style */
-.hero-center-content {
-  text-align: center;
-  z-index: 2;
-  max-width: 850px;
-  padding: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  box-sizing: border-box;
-}
-
-.hero-center-title {
-  font-family: var(--font-title);
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 800;
-  color: white;
-  line-height: 1.2;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  margin: 0;
-  text-shadow: 0 10px 30px rgba(7, 26, 53, 0.4);
-}
-
-.hero-center-slogan {
-  font-family: var(--font-body);
-  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
-  font-weight: 400;
-  color: var(--color-accent);
-  margin: 0;
-  letter-spacing: 0.05em;
-  text-shadow: 0 5px 15px rgba(7, 26, 53, 0.3);
-}
-
-.hero-center-actions {
-  margin-top: 1.5rem;
+/* Bottom Center Action Button */
+.hero-center-actions-bottom {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
 }
 
 @media (max-width: 768px) {
-  .hero-center-content {
-    margin-top: 4rem;
+  .hero-center-actions-bottom {
+    bottom: 2rem;
   }
 }
 

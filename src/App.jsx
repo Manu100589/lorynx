@@ -256,13 +256,12 @@ export default function App() {
       delay: 0.7
     });
 
-    gsap.from('.hero-center-content > *', {
-      y: 40,
+    gsap.from('.hero-center-actions-bottom', {
+      y: 30,
       opacity: 0,
       duration: 1.2,
-      stagger: 0.2,
       ease: 'power3.out',
-      delay: 1.1
+      delay: 1.0
     });
 
     // Pinned Vision Text Highlight scroll reveal
@@ -780,19 +779,14 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               </div>
             </div>
 
-            {/* Center Content: Title, Slogan and Button */}
-            <div className="hero-center-content">
-              <h1 className="hero-center-title">Loryns Strategic Consulting</h1>
-              <p className="hero-center-slogan">Nous faisons avancer votre entreprise</p>
-              
-              <div className="hero-center-actions">
-                <div 
-                  className="magnetic-wrap"
-                  onMouseMove={(e) => handleMagneticMove(e, 0.25)}
-                  onMouseLeave={handleMagneticLeave}
-                >
-                  <a href="#services" className="btn btn-primary interactive">Découvrir nos services</a>
-                </div>
+            {/* Bottom Center Action Button */}
+            <div className="hero-center-actions-bottom">
+              <div 
+                className="magnetic-wrap"
+                onMouseMove={(e) => handleMagneticMove(e, 0.25)}
+                onMouseLeave={handleMagneticLeave}
+              >
+                <a href="#services" className="btn btn-primary interactive">Découvrir nos services</a>
               </div>
             </div>
 
