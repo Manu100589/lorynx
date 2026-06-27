@@ -345,6 +345,7 @@ export default function App() {
       author: "Jean-Pierre Moudiki",
       role: "Directeur Général",
       company: "Afrilog Douala",
+      avatar: "/avatar_jean.png",
       initials: "JM"
     },
     {
@@ -352,6 +353,7 @@ export default function App() {
       author: "Sonia Kamga",
       role: "Co-fondatrice",
       company: "NextGen Telecom",
+      avatar: "/avatar_sonia.png",
       initials: "SK"
     },
     {
@@ -359,6 +361,7 @@ export default function App() {
       author: "Alain Ndongo",
       role: "PCA",
       company: "Société Camerounaise de Distribution",
+      avatar: "/avatar_alain.png",
       initials: "AN"
     }
   ];
@@ -648,6 +651,10 @@ export default function App() {
                 Loryns Strategic Consulting accompagne les organisations, dirigeants et professionnels pour renforcer leur gouvernance, rationaliser leur management et construire une croissance solide, pérenne et compétitive face aux crises économiques modernes.
               </p>
               
+              <div className="about-image-wrapper interactive" style={{ position: 'relative', marginBottom: '2.5rem', borderRadius: '16px', overflow: 'hidden', height: '260px', border: '1px solid rgba(7, 26, 53, 0.08)', boxShadow: 'var(--shadow-soft)' }}>
+                <img src="/boardroom_meeting.png" alt="Collaborateurs Loryns Strategic Consulting" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+
               <div 
                 className="magnetic-wrap"
                 onMouseMove={(e) => handleMagneticMove(e, 0.15)}
@@ -967,8 +974,16 @@ export default function App() {
                   {testimonials[activeTestimonial].quote}
                 </p>
                 <div className="testimonial-author">
-                  <div className="testimonial-avatar">
-                    {testimonials[activeTestimonial].initials}
+                  <div className="testimonial-avatar" style={{ overflow: 'hidden' }}>
+                    {testimonials[activeTestimonial].avatar ? (
+                      <img 
+                        src={testimonials[activeTestimonial].avatar} 
+                        alt={testimonials[activeTestimonial].author} 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                      />
+                    ) : (
+                      testimonials[activeTestimonial].initials
+                    )}
                   </div>
                   <div className="testimonial-info">
                     <h4>{testimonials[activeTestimonial].author}</h4>
