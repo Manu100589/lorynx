@@ -195,6 +195,27 @@ export default function App() {
     return () => cancelAnimationFrame(frameId);
   }, [cursorPos]);
 
+  // Hard refresh ScrollTrigger dimensions after layout settles (Vite HMR & Font load fix)
+  useEffect(() => {
+    if (loading) return;
+    const handleLoad = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener('load', handleLoad);
+    
+    // Multiple fallback timers to guarantee calculations run after CSS compiles
+    const timers = [
+      setTimeout(() => ScrollTrigger.refresh(), 100),
+      setTimeout(() => ScrollTrigger.refresh(), 400),
+      setTimeout(() => ScrollTrigger.refresh(), 800),
+    ];
+
+    return () => {
+      window.removeEventListener('load', handleLoad);
+      timers.forEach(clearTimeout);
+    };
+  }, [loading]);
+
   // GSAP Animations
   useGSAP(() => {
     if (loading) {
