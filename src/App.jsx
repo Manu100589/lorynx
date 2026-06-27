@@ -293,7 +293,7 @@ export default function App() {
       width: '100%',
       ease: 'none',
       scrollTrigger: {
-        trigger: 'body',
+        trigger: document.body,
         start: 'top top',
         end: 'bottom bottom',
         scrub: 0.3
@@ -320,6 +320,9 @@ export default function App() {
         });
       }
     });
+
+    // Force ScrollTrigger to calculate all scroll positions after elements render
+    ScrollTrigger.refresh();
 
   }, { scope: containerRef, dependencies: [loading] });
 
