@@ -188,8 +188,13 @@ section {
 
 /* Section Title Widget */
 .section-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   max-width: 800px;
+}
+
+.section-header p {
+  margin-bottom: 0 !important;
+  margin-top: 0.75rem !important;
 }
 
 .section-tag {
