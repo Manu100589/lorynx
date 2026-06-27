@@ -237,22 +237,14 @@ export default function App() {
       return;
     }
 
-    // Premium Framed Hero entrance sequence
-    gsap.from('.hero-portrait-img', {
-      y: 150,
-      opacity: 0,
-      duration: 1.6,
-      ease: 'power4.out',
-      delay: 0.2
-    });
-
+    // Premium Typographical Hero entrance sequence
     gsap.from('.hero-bg-text-line-1, .hero-bg-text-line-2', {
       y: 80,
       opacity: 0,
       duration: 1.4,
       stagger: 0.2,
       ease: 'power4.out',
-      delay: 0.5
+      delay: 0.2
     });
 
     gsap.from('.hero-badge-pill', {
@@ -261,16 +253,16 @@ export default function App() {
       duration: 1.0,
       stagger: 0.15,
       ease: 'power3.out',
-      delay: 0.9
+      delay: 0.7
     });
 
-    gsap.from('.hero-right-desc > *', {
-      y: 30,
+    gsap.from('.hero-center-content > *', {
+      y: 40,
       opacity: 0,
-      duration: 1.0,
-      stagger: 0.15,
+      duration: 1.2,
+      stagger: 0.2,
       ease: 'power3.out',
-      delay: 1.2
+      delay: 1.1
     });
 
     // Pinned Vision Text Highlight scroll reveal
@@ -775,15 +767,6 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               <div className="hero-bg-text-line-2">STRATEGIC</div>
             </div>
 
-            {/* Center Portrait */}
-            <div className="hero-portrait-container">
-              <img 
-                src="/founder.jpg" 
-                alt="Président Fondateur Loryns Strategic Consulting" 
-                className="hero-portrait-img" 
-              />
-            </div>
-
             {/* Left Side Pill Badges */}
             <div className="hero-left-badges">
               <div className="hero-badge-pill interactive">
@@ -797,9 +780,12 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               </div>
             </div>
 
-            {/* Right Side Action */}
-            <div className="hero-right-desc">
-              <div className="hero-desc-actions">
+            {/* Center Content: Title, Slogan and Button */}
+            <div className="hero-center-content">
+              <h1 className="hero-center-title">Loryns Strategic Consulting</h1>
+              <p className="hero-center-slogan">Nous faisons avancer votre entreprise</p>
+              
+              <div className="hero-center-actions">
                 <div 
                   className="magnetic-wrap"
                   onMouseMove={(e) => handleMagneticMove(e, 0.25)}
