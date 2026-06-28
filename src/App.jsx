@@ -107,6 +107,30 @@ export default function App() {
   const [showRendezVousModal, setShowRendezVousModal] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [processedFounderSrc, setProcessedFounderSrc] = useState(null);
+  const [activeValeurIndex, setActiveValeurIndex] = useState(0);
+
+  const valeurs = [
+    {
+      title: "Excellence",
+      description: "Nous nous positionnons pour être les meilleurs dans nos champs de compétence. Avec des méthodes inédites qui garantissent les résultats. Des résultats font nos éloges.",
+      icon: <Award size={32} />
+    },
+    {
+      title: "Innovation Continue",
+      description: "Une entreprise qui stagne est vouée à la faillite. Nous nous réinventons tous les jours pour vous servir ce qu'il y a de mieux, afin d'anticiper les ruptures sectorielles.",
+      icon: <Zap size={32} />
+    },
+    {
+      title: "Performance",
+      description: "Traduire la stratégie en indicateurs financiers mesurables. Nous calibrons des solutions pragmatiques conçues pour propulser l'efficacité opérationnelle et la rentabilité.",
+      icon: <TrendingUp size={32} />
+    },
+    {
+      title: "Croissance Durable",
+      description: "Construire l'avenir sur des bases saines. Nous accompagnons les dirigeants dans l'établissement de structures pérennes capables de résister aux crises macroéconomiques.",
+      icon: <ShieldCheck size={32} />
+    }
+  ];
   
   // Custom cursor states
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -968,37 +992,66 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
             </p>
           </div>
 
-          <div className="valeurs-grid">
-            <div className="valeur-card interactive">
-              <div className="valeur-icon-container">
-                <Award size={32} />
-              </div>
-              <h3>Excellence</h3>
-              <p>Nous nous positionnons pour être les meilleurs dans nos champs de compétence. Avec des méthodes inédites qui garantissent les résultats. Des résultats font nos éloges.</p>
+          {/* 3D Carousel Viewport */}
+          <div className="valeurs-carousel-container">
+            <div className="valeurs-carousel-viewport">
+              {valeurs.map((valeur, index) => {
+                let position = 'far-back';
+                if (index === activeValeurIndex) {
+                  position = 'active';
+                } else if (index === (activeValeurIndex + 1) % valeurs.length) {
+                  position = 'next';
+                } else if (index === (activeValeurIndex - 1 + valeurs.length) % valeurs.length) {
+                  position = 'prev';
+                }
+                
+                return (
+                  <div 
+                    key={index} 
+                    className={`valeur-3d-card ${position}`}
+                    onClick={() => {
+                      if (position === 'next') setActiveValeurIndex((activeValeurIndex + 1) % valeurs.length);
+                      if (position === 'prev') setActiveValeurIndex((activeValeurIndex - 1 + valeurs.length) % valeurs.length);
+                    }}
+                  >
+                    <div className="valeur-icon-container">
+                      {valeur.icon}
+                    </div>
+                    <h3>{valeur.title}</h3>
+                    <p>{valeur.description}</p>
+                  </div>
+                );
+              })}
             </div>
 
-            <div className="valeur-card interactive">
-              <div className="valeur-icon-container">
-                <Zap size={32} />
+            {/* Carousel Controls */}
+            <div className="valeurs-carousel-controls">
+              <button 
+                onClick={() => setActiveValeurIndex((activeValeurIndex - 1 + valeurs.length) % valeurs.length)}
+                className="carousel-btn interactive"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              
+              <div className="carousel-indicators">
+                {valeurs.map((_, index) => (
+                  <button 
+                    key={index} 
+                    onClick={() => setActiveValeurIndex(index)}
+                    className={`indicator-dot ${index === activeValeurIndex ? 'active' : ''} interactive`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
               </div>
-              <h3>Innovation Continue</h3>
-              <p>Une entreprise qui stagne est vouée à la faillite. Nous nous réinventons tous les jours pour vous servir ce qu'il y a de mieux, afin d'anticiper les ruptures sectorielles.</p>
-            </div>
 
-            <div className="valeur-card interactive">
-              <div className="valeur-icon-container">
-                <TrendingUp size={32} />
-              </div>
-              <h3>Performance</h3>
-              <p>Traduire la stratégie en indicateurs financiers mesurables. Nous calibrons des solutions pragmatiques conçues pour propulser l'efficacité opérationnelle et la rentabilité.</p>
-            </div>
-
-            <div className="valeur-card interactive">
-              <div className="valeur-icon-container">
-                <ShieldCheck size={32} />
-              </div>
-              <h3>Croissance Durable</h3>
-              <p>Construire l'avenir sur des bases saines. Nous accompagnons les dirigeants dans l'établissement de structures pérennes capables de résister aux crises macroéconomiques.</p>
+              <button 
+                onClick={() => setActiveValeurIndex((activeValeurIndex + 1) % valeurs.length)}
+                className="carousel-btn interactive"
+                aria-label="Next slide"
+              >
+                <ChevronRight size={20} />
+              </button>
             </div>
           </div>
 

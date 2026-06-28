@@ -2445,4 +2445,186 @@
   }
 }
 
+/* 3D Carousel Styling */
+.valeurs-carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 4rem auto;
+  perspective: 1200px; /* Crucial for 3D perspective effect! */
+}
+
+.valeurs-carousel-viewport {
+  position: relative;
+  height: 380px;
+  width: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.valeur-3d-card {
+  position: absolute;
+  width: 320px;
+  background: rgba(7, 26, 53, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 3rem 2.2rem;
+  text-align: center;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.35);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, border-color 0.4s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+/* Active central card */
+.valeur-3d-card.active {
+  transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
+  z-index: 10;
+  opacity: 1;
+  border-color: rgba(200, 169, 90, 0.4);
+  background: linear-gradient(135deg, rgba(7, 26, 53, 0.85) 0%, rgba(3, 12, 24, 0.95) 100%);
+  pointer-events: auto;
+}
+
+/* Right card */
+.valeur-3d-card.next {
+  transform: translate3d(50%, 0, -150px) rotateY(-20deg) scale(0.85);
+  z-index: 5;
+  opacity: 0.45;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.valeur-3d-card.next:hover {
+  opacity: 0.8;
+  transform: translate3d(50%, 0, -100px) rotateY(-15deg) scale(0.88);
+}
+
+/* Left card */
+.valeur-3d-card.prev {
+  transform: translate3d(-50%, 0, -150px) rotateY(20deg) scale(0.85);
+  z-index: 5;
+  opacity: 0.45;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.valeur-3d-card.prev:hover {
+  opacity: 0.8;
+  transform: translate3d(-50%, 0, -100px) rotateY(15deg) scale(0.88);
+}
+
+/* Hidden cards in the back */
+.valeur-3d-card.far-back {
+  transform: translate3d(0, 0, -300px) scale(0.7);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.valeur-3d-card h3 {
+  font-family: var(--font-title);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: white;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.valeur-3d-card p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Carousel controls */
+.valeurs-carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  z-index: 15;
+  position: relative;
+}
+
+.carousel-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-primary);
+  transform: scale(1.08);
+  box-shadow: 0 10px 20px -5px rgba(200, 169, 90, 0.35);
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+}
+
+.indicator-dot.active {
+  background: var(--color-accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .valeurs-carousel-viewport {
+    height: 360px;
+  }
+  .valeur-3d-card {
+    width: 280px;
+    padding: 2.2rem 1.6rem;
+  }
+  .valeur-3d-card.next {
+    transform: translate3d(28%, 0, -150px) rotateY(-15deg) scale(0.8);
+  }
+  .valeur-3d-card.prev {
+    transform: translate3d(-28%, 0, -150px) rotateY(15deg) scale(0.8);
+  }
+}
+
+@media (max-width: 480px) {
+  .valeurs-carousel-viewport {
+    height: 380px;
+  }
+  .valeur-3d-card.next,
+  .valeur-3d-card.prev {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+}
+
 
