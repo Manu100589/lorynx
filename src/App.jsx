@@ -22,6 +22,7 @@ import {
   X, 
   Check, 
   Globe, 
+  Compass,
   FileText, 
   Settings, 
   Users, 
@@ -966,17 +967,69 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       <section id="vision" className="vision-pinned-section">
         <div className="vision-sticky-wrapper">
           <div className="vision-bg-pattern"></div>
-          <div className="vision-container">
-            <div className="section-tag" style={{ color: '#C8A95A' }}>Notre Vision</div>
-            
-            {/* ScrollTrigger will dynamically light up words in this text */}
-            <h2 className="vision-text-layer">
-              {`Accompagner les dirigeants et les entreprises vers une croissance exponentielle, une meilleure compétitivité sectorielle et une notoriété internationale durable, grâce à un management stratégique rigoureux de haut niveau.`.split(' ').map((word, index) => (
-                <span key={index} className="vision-word">
-                  {word}
-                </span>
-              ))}
-            </h2>
+          <div className="vision-ambient-glow"></div>
+          
+          <div className="container vision-custom-container">
+            <div className="vision-grid">
+              
+              {/* Left Side: Strategic Pillars */}
+              <div className="vision-left-side">
+                <div className="section-tag" style={{ color: '#C8A95A', marginBottom: '1.5rem' }}>Notre Vision</div>
+                <h3 className="vision-left-title">
+                  Bâtir les leaders de l'économie africaine de demain.
+                </h3>
+                
+                <div className="vision-pillars">
+                  <div className="vision-pillar-card interactive">
+                    <div className="vision-pillar-num">01</div>
+                    <div className="vision-pillar-content">
+                      <h4>Standard International</h4>
+                      <p>Élever le management des entreprises locales aux meilleures normes de gouvernance mondiale.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="vision-pillar-card interactive">
+                    <div className="vision-pillar-num">02</div>
+                    <div className="vision-pillar-content">
+                      <h4>Pérennité des structures</h4>
+                      <p>Anticiper les crises et restructurer les modèles d'affaires pour une rentabilité continue.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="vision-pillar-card interactive">
+                    <div className="vision-pillar-num">03</div>
+                    <div className="vision-pillar-content">
+                      <h4>Impact local & global</h4>
+                      <p>Participer au rayonnement économique du Cameroun et du continent africain à l'échelle internationale.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Interactive Text Reveal in a Premium Glass Card */}
+              <div className="vision-right-side">
+                <div className="vision-glass-card">
+                  <div className="vision-card-glow"></div>
+                  <div className="vision-card-header">
+                    <div className="vision-card-icon">
+                      <Compass size={24} color="#C8A95A" />
+                    </div>
+                    <span className="vision-card-tag">Déclaration de Vision</span>
+                  </div>
+                  
+                  <div className="vision-text-reveal-container">
+                    <h2 className="vision-text-layer">
+                      {`Accompagner les dirigeants et les entreprises vers une croissance exponentielle, une meilleure compétitivité sectorielle et une notoriété internationale durable, grâce à un management stratégique rigoureux de haut niveau.`.split(' ').map((word, index) => (
+                        <span key={index} className="vision-word">
+                          {word}{' '}
+                        </span>
+                      ))}
+                    </h2>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
