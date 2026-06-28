@@ -341,19 +341,22 @@ export default function App() {
       delay: 1.0
     });
 
-    // Custom About Us section fade-in reveal
-    gsap.from('.about-col-1, .about-col-2-card, .about-col-3-card', {
-      y: 60,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.25,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.about-custom-section',
-        start: 'top 75%',
-        toggleActions: 'play none none none'
+    // Custom About Us section fade-in reveal on scroll and descroll
+    gsap.fromTo('.about-col-1, .about-col-2-card, .about-col-3-card', 
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: 0.25,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.about-custom-section',
+          start: 'top 75%',
+          toggleActions: 'play reverse play reverse'
+        }
       }
-    });
+    );
 
     // Pinned Vision Text Highlight scroll reveal
     const words = gsap.utils.toArray('.vision-word');
@@ -369,37 +372,109 @@ export default function App() {
       }
     });
 
-    // Staggered scroll reveal for Valeurs cards (revealing one by one as they scroll in)
-    gsap.utils.toArray('.valeur-card').forEach((card) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 40,
-        scale: 0.96,
-        duration: 0.8,
+    // Reveal 3D Values Carousel on scroll and descroll
+    gsap.fromTo('.valeurs-carousel-container', 
+      { opacity: 0, scale: 0.9, y: 50 },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1.2,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: card,
-          start: 'top 92%',
-          toggleActions: 'play none none none'
+          trigger: '.valeurs-carousel-container',
+          start: 'top 85%',
+          toggleActions: 'play reverse play reverse'
         }
-      });
+      }
+    );
+
+    // Staggered scroll reveal for Benefits cards on scroll and descroll
+    gsap.utils.toArray('.benefit-card').forEach((card) => {
+      gsap.fromTo(card, 
+        { opacity: 0, y: 50, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 92%',
+            toggleActions: 'play reverse play reverse'
+          }
+        }
+      );
     });
 
-    // Staggered scroll reveal for Benefits cards (features scrolling/revealing on scroll)
-    gsap.utils.toArray('.benefit-card').forEach((card) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 50,
-        scale: 0.96,
-        duration: 0.9,
+    // Reveal Services Section on scroll and descroll
+    gsap.fromTo('.services-tabs, .service-card-wrapper', 
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.0,
+        stagger: 0.15,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: card,
-          start: 'top 92%',
-          toggleActions: 'play none none none'
+          trigger: '.services-section',
+          start: 'top 80%',
+          toggleActions: 'play reverse play reverse'
         }
-      });
-    });
+      }
+    );
+
+    // Reveal Testimonials on scroll and descroll
+    gsap.fromTo('.testimonial-active-card, .testimonial-thumb', 
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.0,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.testimonials-section',
+          start: 'top 80%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
+
+    // Reveal Blog articles on scroll and descroll
+    gsap.fromTo('.blog-card', 
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.0,
+        stagger: 0.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.blog-section',
+          start: 'top 80%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
+
+    // Reveal Contact form and details on scroll and descroll
+    gsap.fromTo('.contact-info, .contact-card', 
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.0,
+        stagger: 0.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.contact-section',
+          start: 'top 80%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
 
     // Scroll progress bar indicator
     gsap.to('.scroll-progress-bar', {
