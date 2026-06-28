@@ -2484,25 +2484,26 @@
 }
 
 .carousel-btn {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  width: 44px;
-  height: 44px;
+  background: #071A35; /* Dark blue background circle */
+  border: 1px solid rgba(200, 169, 90, 0.3); /* Subtle gold border to stand out on light sections */
+  width: 48px; /* Slightly larger for better target area and visibility */
+  height: 48px;
   border-radius: 50%;
-  color: white;
+  color: #FFFFFF; /* White arrows */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 12px rgba(7, 26, 53, 0.15);
 }
 
 .carousel-btn:hover {
-  background: var(--color-accent);
+  background: var(--color-accent); /* Gold background on hover */
   border-color: var(--color-accent);
-  color: var(--color-primary);
-  transform: scale(1.08);
-  box-shadow: 0 10px 20px -5px rgba(200, 169, 90, 0.35);
+  color: #071A35; /* Dark blue arrows on hover */
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(200, 169, 90, 0.35);
 }
 
 .carousel-indicators {
