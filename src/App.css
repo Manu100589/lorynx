@@ -2240,4 +2240,209 @@
   }
 }
 
+/* About Custom Section Layout */
+.about-custom-section {
+  padding: 8rem 0;
+  background-color: #F7F8FA;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-section-title {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.about-section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.about-custom-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* Col 1 */
+.about-col-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-img-wrap-large {
+  flex: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(7, 26, 53, 0.06);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  min-height: 280px;
+}
+
+.about-img-wrap-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-img-wrap-large:hover img {
+  transform: scale(1.04);
+}
+
+.about-stats-card {
+  background: linear-gradient(135deg, #071a35 0%, #030c18 100%);
+  border-radius: 24px;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(7, 26, 53, 0.3);
+}
+
+.about-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about-stat-num {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.about-stat-lbl {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Col 2 - Purple Card */
+.about-col-2-card {
+  background: linear-gradient(180deg, #f4edfd 0%, #e6d3fd 100%);
+  border-radius: 24px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  border: 1px solid rgba(168, 85, 247, 0.12);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.about-col-2-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.about-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-card-title {
+  font-family: var(--font-title);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #071a35;
+  line-height: 1.3;
+}
+
+.about-card-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #3b4d66;
+}
+
+.about-card-img-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(7, 26, 53, 0.05);
+  height: 220px;
+}
+
+.about-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Col 3 - Blue Card */
+.about-col-3-card {
+  background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 100%);
+  border-radius: 24px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  border: 1px solid rgba(14, 165, 233, 0.12);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.about-col-3-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Responsive Custom About Grid */
+@media (max-width: 991px) {
+  .about-custom-section {
+    padding: 6rem 0;
+  }
+  .about-custom-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-col-1 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-custom-grid {
+    gap: 1.5rem;
+  }
+  .about-col-2-card,
+  .about-col-3-card {
+    padding: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-custom-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .about-col-1 {
+    grid-column: span 1;
+  }
+}
+
 

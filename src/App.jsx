@@ -316,6 +316,20 @@ export default function App() {
       delay: 1.0
     });
 
+    // Custom About Us section fade-in reveal
+    gsap.from('.about-col-1, .about-col-2-card, .about-col-3-card', {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.25,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.about-custom-section',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    });
+
     // Pinned Vision Text Highlight scroll reveal
     const words = gsap.utils.toArray('.vision-word');
     gsap.to(words, {
@@ -863,57 +877,61 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       </section>
 
       {/* Section "Pourquoi Loryns ?" */}
-      <section id="about" className="about-section">
+      <section id="about" className="about-custom-section">
         <div className="container">
-          <div className="about-grid">
-            <div className="about-content">
-              <div className="section-tag">Qui sommes-nous</div>
-              <h2 className="section-title" style={{ marginBottom: '2rem' }}>Pourquoi Loryns ?</h2>
-              <p className="about-text-lead">
-                En Afrique, de nombreuses entreprises disparaissent avant leur cinquième année faute d'une stratégie adaptée.
-              </p>
-              <p className="about-text-desc">
-                Loryns Strategic Consulting accompagne les organisations, dirigeants et professionnels pour renforcer leur gouvernance, rationaliser leur management et construire une croissance solide, pérenne et compétitive face aux crises économiques modernes.
-              </p>
-              
-              <div className="about-image-wrapper interactive" style={{ position: 'relative', marginBottom: '2.5rem', borderRadius: '16px', overflow: 'hidden', height: '260px', border: '1px solid rgba(7, 26, 53, 0.08)', boxShadow: 'var(--shadow-soft)' }}>
-                <img src="/boardroom_meeting.png" alt="Collaborateurs Loryns Strategic Consulting" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
+          <div className="about-section-header">
+            <div className="section-tag" style={{ justifyContent: 'center' }}>Qui sommes-nous</div>
+            <h2 className="about-section-title">Pourquoi Loryns ?</h2>
+            <p className="about-section-subtitle">
+              Loryns Strategic Consulting accompagne les organisations, dirigeants et professionnels pour renforcer leur gouvernance, rationaliser leur management et construire une croissance solide, pérenne et compétitive face aux crises économiques modernes.
+            </p>
+          </div>
 
-              <div 
-                className="magnetic-wrap"
-                onMouseMove={(e) => handleMagneticMove(e, 0.15)}
-                onMouseLeave={handleMagneticLeave}
-              >
-                <a href="#contact" className="btn btn-outline interactive">
-                  Discuter avec un associé <ArrowRight size={18} />
-                </a>
+          <div className="about-custom-grid">
+            {/* Column 1: Team Photo + Stats Card */}
+            <div className="about-col-1">
+              <div className="about-img-wrap-large interactive">
+                <img src="/about_team_collab.png" alt="Collaborateurs Loryns Strategic Consulting" />
+              </div>
+              <div className="about-stats-card">
+                <div className="about-stat-item">
+                  <div className="about-stat-num">
+                    <Counter endValue={350} prefix="+" />
+                  </div>
+                  <div className="about-stat-lbl">Entreprises conseillées</div>
+                </div>
+                <div className="about-stat-item">
+                  <div className="about-stat-num">
+                    <Counter endValue={100} suffix="%" />
+                  </div>
+                  <div className="about-stat-lbl">Engagement & Rigueur</div>
+                </div>
               </div>
             </div>
 
-            <div className="stats-grid">
-              <div className="stat-card">
-                <div className="stat-number">
-                  <Counter endValue={80} suffix="%" />
-                </div>
-                <div className="stat-label">Taux de faillite</div>
-                <div className="stat-desc">des nouvelles entreprises africaines avant leur 3e année.</div>
+            {/* Column 2: Tall Card with Purple Gradient */}
+            <div className="about-col-2-card interactive">
+              <div className="about-card-content">
+                <h3 className="about-card-title">Créer de la valeur durable</h3>
+                <p className="about-card-text">
+                  Nous concevons des stratégies sur mesure pour assurer la viabilité de votre entreprise, rationaliser vos finances et accélérer votre transformation digitale.
+                </p>
               </div>
-
-              <div className="stat-card">
-                <div className="stat-number">
-                  <Counter endValue={54.2} suffix="%" decimals={1} />
-                </div>
-                <div className="stat-label">Fermetures</div>
-                <div className="stat-desc">des Start-up africaines créées au cours de la dernière décennie.</div>
+              <div className="about-card-img-wrap">
+                <img src="/about_tech_work.png" alt="Transformation technologique Loryns" />
               </div>
+            </div>
 
-              <div className="stat-card" style={{ gridColumn: 'span 2' }}>
-                <div className="stat-number">
-                  <Counter endValue={350} prefix="+" />
-                </div>
-                <div className="stat-label">Entreprises camerounaises</div>
-                <div className="stat-desc">déclarent faillite en moyenne chaque année pour cause de mauvaise gestion.</div>
+            {/* Column 3: Tall Card with Blue Gradient */}
+            <div className="about-col-3-card interactive">
+              <div className="about-card-img-wrap">
+                <img src="/about_team_hands.png" alt="Synergie d'équipe Loryns" />
+              </div>
+              <div className="about-card-content">
+                <h3 className="about-card-title">Une équipe d'experts engagés</h3>
+                <p className="about-card-text">
+                  Un collectif multidisciplinaire associant expertise internationale et ancrage local pour un accompagnement continu et des résultats tangibles.
+                </p>
               </div>
             </div>
           </div>
