@@ -109,6 +109,7 @@ export default function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [processedFounderSrc, setProcessedFounderSrc] = useState(null);
   const [activeValeurIndex, setActiveValeurIndex] = useState(0);
+  const [activeAboutStory, setActiveAboutStory] = useState(0);
 
   const valeurs = [
     {
@@ -297,10 +298,26 @@ export default function App() {
       return;
     }
 
+    // Hero Video Zoom at load and Parallax on scroll
+    gsap.fromTo('.hero-video-bg',
+      { scale: 1.15 },
+      { scale: 1.0, duration: 2.2, ease: 'power2.out' }
+    );
+    gsap.to('.hero-video-bg', {
+      yPercent: 12,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
     // Premium Typographical Hero portrait fade in on scroll
     if (processedFounderSrc) {
       gsap.fromTo('.hero-portrait-img', 
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 55 },
         {
           opacity: 1,
           y: 0,
@@ -315,61 +332,116 @@ export default function App() {
       );
     }
 
-    gsap.from('.hero-bg-text-line-1, .hero-bg-text-line-2', {
-      y: 80,
-      opacity: 0,
-      duration: 1.4,
-      stagger: 0.2,
-      ease: 'power4.out',
-      delay: 0.2
-    });
-
-    gsap.from('.hero-badge-pill', {
-      x: -50,
-      opacity: 0,
-      duration: 1.0,
-      stagger: 0.15,
-      ease: 'power3.out',
-      delay: 0.7
-    });
-
-    gsap.from('.hero-center-actions-bottom', {
-      y: 30,
-      opacity: 0,
-      duration: 1.2,
-      ease: 'power3.out',
-      delay: 1.0
-    });
-
-    // Custom About Us section fade-in reveal on scroll and descroll
-    gsap.fromTo('.about-col-1, .about-col-2-card, .about-col-3-card', 
-      { y: 60, opacity: 0 },
+    // Hero title backdrop character reveal (Blur + Mask + Letter + Scale)
+    gsap.fromTo('.hero-bg-text .char-reveal',
+      { filter: 'blur(10px)', y: '90%', opacity: 0, scale: 0.96 },
       {
-        y: 0,
+        filter: 'blur(0px)',
+        y: '0%',
+        opacity: 0.22,
+        scale: 1,
+        duration: 1.4,
+        stagger: 0.05,
+        ease: 'power4.out',
+        delay: 0.2
+      }
+    );
+    
+    // Parallax on backdrop text
+    gsap.to('.hero-bg-text', {
+      yPercent: -18,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    // Hero left badges slide in
+    gsap.fromTo('.hero-badge-pill', {
+      x: -40,
+      opacity: 0
+    }, {
+      x: 0,
+      opacity: 1,
+      duration: 1.0,
+      stagger: 0.1,
+      ease: 'power3.out',
+      delay: 0.6
+    });
+
+    // Hero subtitle word-by-word reveal
+    gsap.fromTo('.hero-right-desc .word-reveal',
+      { opacity: 0, y: 15 },
+      {
         opacity: 1,
-        duration: 1.2,
-        stagger: 0.25,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.about-custom-section',
-          start: 'top 75%',
-          toggleActions: 'play reverse play reverse'
-        }
+        y: 0,
+        stagger: 0.04,
+        duration: 0.8,
+        ease: 'power2.out',
+        delay: 0.9
       }
     );
 
-    // Pinned Vision Text Highlight scroll reveal
-    const words = gsap.utils.toArray('.vision-word');
-    gsap.to(words, {
+    // Hero center action button slide & fade
+    gsap.fromTo('.hero-center-actions-bottom', {
+      y: 30,
+      opacity: 0
+    }, {
+      y: 0,
       opacity: 1,
-      color: '#FFFFFF',
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: '.vision-pinned-section',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1.2,
-      }
+      duration: 1.2,
+      ease: 'power3.out',
+      delay: 1.2
+    });
+
+    // Section title H2 Mask Reveals
+    gsap.utils.toArray('.mask-reveal-title').forEach((title) => {
+      const text = title.querySelector('.mask-text');
+      const overlay = title.querySelector('.mask-overlay');
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 88%',
+          toggleActions: 'play reverse play reverse'
+        }
+      });
+      
+      tl.to(overlay, { scaleX: 1, duration: 0.5, ease: 'power2.inOut' })
+        .set(text, { opacity: 1, filter: 'blur(0px)' })
+        .to(overlay, { transformOrigin: 'right', scaleX: 0, duration: 0.5, ease: 'power2.inOut' });
+    });
+
+    // Paragraph scroll reveals (Opacity 0 -> 1, translateY 40px -> 0px, 0.8s, 20% visible)
+    gsap.utils.toArray('.scroll-fade-p').forEach((p) => {
+      gsap.fromTo(p,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: p,
+            start: 'top 85%',
+            toggleActions: 'play reverse play reverse'
+          }
+        }
+      );
+    });
+
+    // About Us split-scroll pinning
+    gsap.utils.toArray('.about-story-block').forEach((block, idx) => {
+      ScrollTrigger.create({
+        trigger: block,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => setActiveAboutStory(idx),
+        onEnterBack: () => setActiveAboutStory(idx)
+      });
     });
 
     // Reveal 3D Values Carousel on scroll and descroll
@@ -408,18 +480,37 @@ export default function App() {
       );
     });
 
-    // Reveal Services Section on scroll and descroll
-    gsap.fromTo('.services-tabs, .service-card-wrapper', 
-      { opacity: 0, y: 50 },
+    // Services Section Icons entrance
+    gsap.fromTo('.service-icon-box',
+      { rotation: -45, scale: 0.5, opacity: 0 },
+      {
+        rotation: 0,
+        scale: 1,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.08,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: '.services-grid',
+          start: 'top 85%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
+
+    // Stagger reveal the service cards
+    gsap.fromTo('.service-card',
+      { opacity: 0, y: 50, scale: 0.97 },
       {
         opacity: 1,
         y: 0,
+        scale: 1,
         duration: 1.0,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: '.services-section',
-          start: 'top 80%',
+          trigger: '.services-grid',
+          start: 'top 85%',
           toggleActions: 'play reverse play reverse'
         }
       }
@@ -442,7 +533,7 @@ export default function App() {
       }
     );
 
-    // Reveal Blog articles on scroll and descroll
+    // Reveal Blog cards and their image zoom reveals
     gsap.fromTo('.blog-card', 
       { opacity: 0, y: 50 },
       {
@@ -458,6 +549,34 @@ export default function App() {
         }
       }
     );
+
+    // Image Mask Reveal & Parallax
+    gsap.utils.toArray('.reveal-image-container').forEach((container) => {
+      const overlay = container.querySelector('.reveal-image-overlay');
+      const img = container.querySelector('.parallax-img');
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+      
+      tl.to(overlay, { scaleX: 0, duration: 0.8, ease: 'power2.inOut' })
+        .to(img, { scale: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4');
+        
+      gsap.to(img, {
+        yPercent: -15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: container,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    });
 
     // Reveal Contact form and details on scroll and descroll
     gsap.fromTo('.contact-info, .contact-card', 
@@ -488,10 +607,11 @@ export default function App() {
       }
     });
 
-    // Horizontal scroll timeline on all screens
+    // Horizontal scroll timeline and Methodology progress bar
     const track = document.querySelector('.methodology-timeline-track');
     if (track) {
       const getScrollDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      
       gsap.to(track, {
         x: () => -getScrollDistance(),
         ease: 'none',
@@ -504,6 +624,21 @@ export default function App() {
           invalidateOnRefresh: true,
         }
       });
+
+      // Fill horizontal methodology timeline progress bar
+      gsap.fromTo('.methodology-progress-bar-fill',
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.methodology-pinned-section',
+            start: 'top top',
+            end: () => `+=${getScrollDistance()}`,
+            scrub: 1.2,
+          }
+        }
+      );
     }
 
     // Force ScrollTrigger to calculate all scroll positions after elements render
@@ -533,6 +668,25 @@ export default function App() {
       duration: 0.5,
       ease: 'elastic.out(1, 0.3)'
     });
+  };
+
+  const handle3DCardMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const xc = rect.width / 2;
+    const yc = rect.height / 2;
+    const angleX = (yc - y) / 12; // rotateX
+    const angleY = (x - xc) / 12; // rotateY
+    card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-6px)`;
+    card.style.boxShadow = `0 25px 50px -12px rgba(7, 26, 53, 0.25), 0 0 25px rgba(200, 169, 90, 0.12)`;
+  };
+
+  const handle3DCardMouseLeave = (e) => {
+    const card = e.currentTarget;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    card.style.boxShadow = '';
   };
 
   const testimonials = [
@@ -922,14 +1076,35 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       <section className="hero">
         <div className="hero-frame-container">
           <div className="hero-inner-frame">
+            {/* Ambient Background Video */}
+            <div className="hero-video-container">
+              <video 
+                src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c02227d8787f311c6d7132103f6fdf35&profile_id=139&oauth2_token_id=57447761"
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="hero-video-bg"
+              />
+              <div className="hero-video-overlay"></div>
+            </div>
+
             {/* Ambient Background Lights */}
             <div className="hero-ambient-glow"></div>
             <div className="hero-gold-glow"></div>
             
-            {/* Big Backdrop Typography */}
+            {/* Big Backdrop Typography with Character Reveals */}
             <div className="hero-bg-text">
-              <div className="hero-bg-text-line-1">LORYNS</div>
-              <div className="hero-bg-text-line-2">STRATEGIC</div>
+              <div className="hero-bg-text-line-1">
+                {"LORYNS".split('').map((char, idx) => (
+                  <span key={idx} className="char-reveal">{char}</span>
+                ))}
+              </div>
+              <div className="hero-bg-text-line-2">
+                {"STRATEGIC".split('').map((char, idx) => (
+                  <span key={idx} className="char-reveal">{char}</span>
+                ))}
+              </div>
             </div>
 
             {/* Center Portrait */}
@@ -955,6 +1130,17 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               </div>
             </div>
 
+            {/* Right Side Slogan/Description */}
+            <div className="hero-right-desc">
+              <div className="hero-desc-tag">Cabinet Conseil Agréé</div>
+              <div className="hero-desc-title">Nous faisons avancer votre entreprise</div>
+              <div className="hero-desc-text">
+                {"Nous calibrons des solutions pragmatiques conçues pour propulser l'efficacité opérationnelle et la rentabilité.".split(' ').map((word, idx) => (
+                  <span key={idx} className="word-reveal">{word} </span>
+                ))}
+              </div>
+            </div>
+
             {/* Scroll Mouse Indicator */}
             <a href="#about" className="hero-scroll-indicator-custom interactive">
               <span>Faire défiler</span>
@@ -976,61 +1162,75 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
         </div>
       </section>
 
-      {/* Section "Pourquoi Loryns ?" */}
-      <section id="about" className="about-custom-section">
+      {/* Section "Pourquoi Loryns ?" with Story Scroll Pinning */}
+      <section id="about" className="about-story-section">
         <div className="container">
-          <div className="about-section-header">
+          <div className="about-story-header">
             <div className="section-tag" style={{ justifyContent: 'center' }}>Qui sommes-nous</div>
-            <h2 className="about-section-title">Pourquoi Loryns ?</h2>
-            <p className="about-section-subtitle">
+            <h2 className="about-section-title mask-reveal-title">
+              <span className="mask-text">Pourquoi Loryns ?</span>
+              <span className="mask-overlay"></span>
+            </h2>
+            <p className="about-section-subtitle scroll-fade-p">
               Loryns Strategic Consulting accompagne les organisations, dirigeants et professionnels pour renforcer leur gouvernance, rationaliser leur management et construire une croissance solide, pérenne et compétitive face aux crises économiques modernes.
             </p>
           </div>
 
-          <div className="about-custom-grid">
-            {/* Column 1: Team Photo + Stats Card */}
-            <div className="about-col-1">
-              <div className="about-img-wrap-large interactive">
-                <img src="/about_team_collab.png" alt="Collaborateurs Loryns Strategic Consulting" />
-              </div>
-              <div className="about-stats-card">
-                <div className="about-stat-item">
-                  <div className="about-stat-num">
-                    <Counter endValue={350} prefix="+" />
-                  </div>
-                  <div className="about-stat-lbl">Entreprises conseillées</div>
+          <div className="about-story-grid">
+            {/* Left Side: Sticky Visual Pane */}
+            <div className="about-story-left-pin">
+              <div className="about-story-img-container">
+                <div className={`about-story-img-pane ${activeAboutStory === 0 ? 'active' : ''}`}>
+                  <img src="/about_team_collab.png" alt="Collaborateurs Loryns Strategic Consulting" />
                 </div>
-                <div className="about-stat-item">
-                  <div className="about-stat-num">
-                    <Counter endValue={100} suffix="%" />
-                  </div>
-                  <div className="about-stat-lbl">Engagement & Rigueur</div>
+                <div className={`about-story-img-pane ${activeAboutStory === 1 ? 'active' : ''}`}>
+                  <img src="/about_tech_work.png" alt="Transformation technologique Loryns" />
+                </div>
+                <div className={`about-story-img-pane ${activeAboutStory === 2 ? 'active' : ''}`}>
+                  <img src="/about_team_hands.png" alt="Synergie d'équipe Loryns" />
                 </div>
               </div>
             </div>
 
-            {/* Column 2: Tall Card with Purple Gradient */}
-            <div className="about-col-2-card interactive">
-              <div className="about-card-content">
-                <h3 className="about-card-title">Créer de la valeur durable</h3>
-                <p className="about-card-text">
-                  Nous concevons des stratégies sur mesure pour assurer la viabilité de votre entreprise, rationaliser vos finances et accélérer votre transformation digitale.
+            {/* Right Side: Progressive Scrolling Story Texts */}
+            <div className="about-story-right-scroll">
+              <div className="about-story-block scroll-story-block-0" data-story-index="0">
+                <div className="about-story-block-num">01 / CAPACITÉS</div>
+                <h3>Créer de la valeur durable</h3>
+                <p className="scroll-fade-p">
+                  Nous concevons des stratégies sur mesure pour assurer la viabilité de votre entreprise, rationaliser vos finances et accélérer votre transformation digitale. Nos experts analysent les goulots d'étranglement pour calibrer des solutions adaptées aux réalités du marché.
                 </p>
+                <div className="about-story-stats-inline">
+                  <div className="about-story-stat-item">
+                    <div className="about-story-stat-num">
+                      <Counter endValue={350} prefix="+" />
+                    </div>
+                    <div className="about-story-stat-lbl">Entreprises conseillées</div>
+                  </div>
+                </div>
               </div>
-              <div className="about-card-img-wrap">
-                <img src="/about_tech_work.png" alt="Transformation technologique Loryns" />
-              </div>
-            </div>
 
-            {/* Column 3: Tall Card with Blue Gradient */}
-            <div className="about-col-3-card interactive">
-              <div className="about-card-img-wrap">
-                <img src="/about_team_hands.png" alt="Synergie d'équipe Loryns" />
+              <div className="about-story-block scroll-story-block-1" data-story-index="1">
+                <div className="about-story-block-num">02 / EXPERTISE</div>
+                <h3>Une équipe d'experts engagés</h3>
+                <p className="scroll-fade-p">
+                  Un collectif multidisciplinaire associant expertise internationale et ancrage local pour un accompagnement continu et des résultats tangibles. Nous mettons à profit des décennies d'expérience sectorielle pour pérenniser vos structures.
+                </p>
+                <div className="about-story-stats-inline">
+                  <div className="about-story-stat-item">
+                    <div className="about-story-stat-num">
+                      <Counter endValue={100} suffix="%" />
+                    </div>
+                    <div className="about-story-stat-lbl">Engagement & Rigueur</div>
+                  </div>
+                </div>
               </div>
-              <div className="about-card-content">
-                <h3 className="about-card-title">Une équipe d'experts engagés</h3>
-                <p className="about-card-text">
-                  Un collectif multidisciplinaire associant expertise internationale et ancrage local pour un accompagnement continu et des résultats tangibles.
+
+              <div className="about-story-block scroll-story-block-2" data-story-index="2">
+                <div className="about-story-block-num">03 / ACCOMPAGNEMENT</div>
+                <h3>Un suivi opérationnel continu</h3>
+                <p className="scroll-fade-p">
+                  Au-delà du conseil théorique, nous intervenons directement dans la restructuration financière, la réorganisation managériale et la médiation de conflits. Nous sommes à vos côtés lors des étapes charnières de votre croissance d'affaires.
                 </p>
               </div>
             </div>
@@ -1114,8 +1314,11 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>Fondations</div>
-            <h2 className="section-title">Nos Valeurs Cardinales</h2>
-            <p style={{ marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <h2 className="section-title mask-reveal-title">
+              <span className="mask-text">Nos Valeurs Cardinales</span>
+              <span className="mask-overlay"></span>
+            </h2>
+            <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
               Des standards éthiques et opérationnels rigoureux au service de l'excellence de votre organisation.
             </p>
           </div>
@@ -1187,8 +1390,11 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
 
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>Valeur ajoutée</div>
-            <h2 className="section-title">Pourquoi collaborer avec nous ?</h2>
-            <p style={{ marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <h2 className="section-title mask-reveal-title">
+              <span className="mask-text">Pourquoi collaborer avec nous ?</span>
+              <span className="mask-overlay"></span>
+            </h2>
+            <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
               Ce que vous gagnerez à structurer votre croissance stratégique avec Loryns.
             </p>
           </div>
@@ -1250,8 +1456,11 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>Offre de service</div>
-            <h2 className="section-title">Domaines d'Expertise</h2>
-            <p style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <h2 className="section-title mask-reveal-title">
+              <span className="mask-text">Domaines d'Expertise</span>
+              <span className="mask-overlay"></span>
+            </h2>
+            <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
               Une gamme complète de solutions stratégiques, financières et technologiques à 360° pour les dirigeants d'Afrique et d'Europe.
             </p>
           </div>
@@ -1279,7 +1488,12 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
 
           <div className="services-grid">
             {servicesData[activeServiceTab].map((service, index) => (
-              <div key={index} className="service-card interactive">
+              <div 
+                key={index} 
+                className="service-card interactive"
+                onMouseMove={handle3DCardMouseMove}
+                onMouseLeave={handle3DCardMouseLeave}
+              >
                 <div className="service-header">
                   <div className="service-icon-box">
                     {activeServiceTab === 'conseil' && index === 0 && <TrendingUp size={24} />}
@@ -1325,15 +1539,20 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
             <div className="container">
               <div className="section-header" style={{ marginBottom: '2rem' }}>
                 <div className="section-tag" style={{ color: '#C8A95A' }}>Processus</div>
-                <h2 className="section-title">Notre Méthodologie</h2>
-                <p style={{ color: 'rgba(255, 255, 255, 0.6)', marginTop: '1rem' }}>
+                <h2 className="section-title mask-reveal-title">
+                  <span className="mask-text">Notre Méthodologie</span>
+                  <span className="mask-overlay"></span>
+                </h2>
+                <p className="scroll-fade-p" style={{ color: 'rgba(255, 255, 255, 0.6)', marginTop: '1rem' }}>
                   Un processus rigoureux en 5 étapes pour garantir la réussite et le suivi continu de nos interventions.
                 </p>
               </div>
             </div>
 
             <div className="methodology-scroll-container">
-              <div className="methodology-timeline-line"></div>
+              <div className="methodology-timeline-line">
+                <div className="methodology-progress-bar-fill"></div>
+              </div>
               <div className="methodology-timeline-track">
                 
                 <div className="timeline-step">
@@ -1389,7 +1608,10 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>Témoignages</div>
-            <h2 className="section-title">La voix de nos clients</h2>
+            <h2 className="section-title mask-reveal-title">
+              <span className="mask-text">La voix de nos clients</span>
+              <span className="mask-overlay"></span>
+            </h2>
           </div>
 
           <div className="testimonial-container">
@@ -1442,8 +1664,11 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>Actualités & Insights</div>
-            <h2 className="section-title">Nos Analyses & Conseils</h2>
-            <p style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <h2 className="section-title mask-reveal-title">
+              <span className="mask-text">Nos Analyses & Conseils</span>
+              <span className="mask-overlay"></span>
+            </h2>
+            <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
               Décryptages stratégiques et ingénierie d'affaires pour guider les PME et dirigeants d'Afrique centrale face aux enjeux de croissance.
             </p>
           </div>
@@ -1456,8 +1681,9 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                 onClick={() => setSelectedArticle(article)}
                 style={{ cursor: 'pointer' }}
               >
-                <div className="blog-card-image">
-                  <img src={article.image} alt={article.title} />
+                <div className="blog-card-image reveal-image-container">
+                  <div className="reveal-image-overlay"></div>
+                  <img src={article.image} alt={article.title} className="parallax-img" />
                   <div className="blog-card-category">{article.category}</div>
                 </div>
                 <div className="blog-card-content">
@@ -1479,7 +1705,10 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>FAQ</div>
-            <h2 className="section-title">Questions Fréquentes</h2>
+            <h2 className="section-title mask-reveal-title">
+              <span className="mask-text">Questions Fréquentes</span>
+              <span className="mask-overlay"></span>
+            </h2>
           </div>
 
           <div className="faq-grid">
@@ -1515,8 +1744,11 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
             <div className="contact-info">
               <div>
                 <div className="section-tag">Contactez-nous</div>
-                <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>Prêt à accélérer votre croissance ?</h2>
-                <p>Rencontrons-nous pour analyser vos défis opérationnels et structurer une feuille de route adaptée.</p>
+                <h2 className="section-title mask-reveal-title" style={{ marginBottom: '1.5rem' }}>
+                  <span className="mask-text">Prêt à accélérer votre croissance ?</span>
+                  <span className="mask-overlay"></span>
+                </h2>
+                <p className="scroll-fade-p">Rencontrons-nous pour analyser vos défis opérationnels et structurer une feuille de route adaptée.</p>
               </div>
 
               <div className="contact-detail-item">
@@ -1897,7 +2129,8 @@ function CustomCursor({ cursorPos, cursorTrail, cursorHovered }) {
           height: cursorHovered ? '48px' : '24px',
           backgroundColor: cursorHovered ? 'rgba(200, 169, 90, 0.1)' : 'transparent',
           borderColor: cursorHovered ? '#C8A95A' : '#C8A95A',
-          transform: `translate(-50%, -50%) scale(${cursorHovered ? 1.25 : 1})`
+          transform: `translate(-50%, -50%) scale(${cursorHovered ? 1.25 : 1})`,
+          boxShadow: cursorHovered ? '0 0 20px rgba(200, 169, 90, 0.4)' : 'none'
         }}
       />
     </>
