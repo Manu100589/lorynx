@@ -723,7 +723,7 @@ export default function App() {
       date: "24 Juin 2026",
       title: "Restructuration d'Entreprise au Cameroun : Comment éviter la faillite dans les 3 premières années",
       excerpt: "Découvrez les facteurs clés de la mortalité précoce des PME à Douala et Yaoundé, et comment un audit de gouvernance rigoureux peut sauver votre structure.",
-      image: "/blog_restructuring.png",
+      image: "/boardroom_meeting.png",
       keywords: "restructuration entreprise Cameroun, gouvernance stratégique, gestion de crise PME, Loryns Consulting",
       content: `
 # Restructuration d'Entreprise au Cameroun : Comment éviter la faillite précoce
@@ -761,7 +761,7 @@ La restructuration réussie repose sur une transition de la gestion purement fam
       date: "18 Juin 2026",
       title: "Levée de Fonds en Afrique Centrale : Stratégies clés pour séduire les bailleurs de fonds",
       excerpt: "Comment structurer son dossier de financement et calibrer sa modélisation financière pour convaincre les banques et les fonds d'investissement régionaux.",
-      image: "/blog_funding.png",
+      image: "/about_tech_work.png",
       keywords: "levée de fonds Afrique, financement PME Cameroun, ingénierie financière, BDEAC, banque Douala",
       content: `
 # Levée de Fonds en Afrique Centrale : Comment convaincre les investisseurs ?
@@ -798,7 +798,7 @@ Un dirigeant de PME n'a pas toujours en interne les compétences d'un banquier d
       date: "10 Juin 2026",
       title: "La Transformation Digitale : Le levier incontournable de performance pour les PME en 2026",
       excerpt: "Au-delà de la communication, apprenez comment automatiser vos processus métier internes pour réduire les coûts et sécuriser vos opérations.",
-      image: "/blog_digital.png",
+      image: "/about_team_hands.png",
       keywords: "transformation digitale PME, performance opérationnelle, digitalisation Douala, automatisation processus",
       content: `
 # La Transformation Digitale : Levier de Performance Incontournable pour les PME
