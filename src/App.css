@@ -521,46 +521,62 @@
   }
 
   .hero-left-badges {
-    left: 1.5rem;
-    right: 1.5rem;
-    bottom: 1.5rem;
-    top: auto;
-    transform: none;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.6rem;
+    position: absolute;
+    left: 0.75rem;
+    top: 42%;
+    bottom: auto;
+    right: auto;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
     width: auto;
+    z-index: 10;
   }
 
   .hero-badge-pill {
-    padding: 0.6rem 1.1rem;
-    font-size: 0.8rem;
-    border-radius: 20px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.62rem;
+    border-radius: 10px;
+    background: rgba(7, 26, 53, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
   }
   
   .hero-badge-pill:hover {
-    transform: translateY(-3px) !important;
+    transform: translateY(-2px) !important;
   }
 
   .hero-right-desc {
-    right: 1.5rem;
-    left: 1.5rem;
-    top: 7.5rem;
+    position: absolute;
+    right: 0.75rem;
+    top: 42%;
     bottom: auto;
-    max-width: none;
-    text-align: center;
-    align-items: center;
+    left: auto;
+    max-width: 130px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 10;
+  }
+
+  .hero-desc-tag {
+    font-size: 0.5rem;
+    margin-bottom: 0.2rem;
   }
 
   .hero-desc-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
   }
 
   .hero-desc-text {
-    font-size: 0.85rem;
-    margin-bottom: 1.25rem;
+    font-size: 0.6rem;
+    line-height: 1.35;
+    margin-bottom: 0;
   }
 
   .hero-scroll-indicator-custom {
