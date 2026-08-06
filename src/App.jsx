@@ -806,10 +806,7 @@ export default function App() {
     { src: "/1767905091093.jpg.jpeg", category: language === 'fr' ? "Négociation" : "Negotiation", title: language === 'fr' ? "Partenariat Institutionnel Douala" : "Douala Institutional Partnership" },
     { src: "/1767905095215.jpg.jpeg", category: language === 'fr' ? "Digitalisation" : "Digitalization", title: language === 'fr' ? "Lancement Plateforme PME" : "SME Platform Launch" },
     { src: "/1767905100381.jpg.jpeg", category: language === 'fr' ? "Cabinet" : "Firm", title: language === 'fr' ? "Réunion Équipe Loryns" : "Loryns Team Alignment" },
-    { src: "/dddd.jpeg", category: language === 'fr' ? "Conseil" : "Advisory", title: language === 'fr' ? "Évaluation de Portefeuille" : "Portfolio Valuation" },
-    { src: "/1740742774600.jpgeee.jpeg", category: language === 'fr' ? "Consulting" : "Consulting", title: language === 'fr' ? "Diagnostic Stratégique PME" : "SME Strategic Diagnosis" },
-    { src: "/1767905095215.jpg.jpeg", category: language === 'fr' ? "Technologie" : "Technology", title: language === 'fr' ? "Audit d'Architecture Cloud" : "Cloud Architecture Audit" },
-    { src: "/dddd.jpeg", category: language === 'fr' ? "Coaching" : "Coaching", title: language === 'fr' ? "Accompagnement de Dirigeant" : "Executive Advisory Support" }
+    { src: "/dddd.jpeg", category: language === 'fr' ? "Conseil" : "Advisory", title: language === 'fr' ? "Évaluation de Portefeuille" : "Portfolio Valuation" }
   ];
 
   const faqs = [
@@ -1575,11 +1572,10 @@ export default function App() {
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>{t('gallery.tag')}</div>
-            <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">{t('gallery.title')}</span>
-              <span className="mask-overlay"></span>
+            <h2 className="section-title" style={{ opacity: 1, transform: 'none' }}>
+              <span>{t('gallery.title')}</span>
             </h2>
-            <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <p style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto', opacity: 0.8 }}>
               {t('gallery.subtitle')}
             </p>
           </div>
@@ -1588,7 +1584,7 @@ export default function App() {
             {galleryItems.map((item, index) => (
               <div 
                 key={index} 
-                className={`gallery-item item-${index + 1} scroll-fade-p interactive`}
+                className={`gallery-item item-${index + 1} interactive`}
                 onClick={() => alert(language === 'fr' ? `Aperçu : ${item.title}` : `Preview: ${item.title}`)}
               >
                 <img src={item.src} alt={item.alt} loading="lazy" />
