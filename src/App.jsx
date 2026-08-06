@@ -103,7 +103,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [loaderVisible, setLoaderVisible] = useState(true);
   const [navScrolled, setNavScrolled] = useState(false);
-  const [activeServiceTab, setActiveServiceTab] = useState('conseil');
+  const servicesCarouselRef = useRef(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -934,6 +934,22 @@ export default function App() {
     ]
   };
 
+  const allServicesList = [
+    ...servicesData.conseil.map((s, idx) => ({ ...s, category: 'conseil', iconIndex: idx })),
+    ...servicesData.finance.map((s, idx) => ({ ...s, category: 'finance', iconIndex: idx })),
+    ...servicesData.digital.map((s, idx) => ({ ...s, category: 'digital', iconIndex: idx }))
+  ];
+
+  const scrollServices = (direction) => {
+    if (servicesCarouselRef.current) {
+      const scrollAmount = servicesCarouselRef.current.offsetWidth * 0.75;
+      servicesCarouselRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     alert("Votre demande de consultation a bien été envoyée. Un associé de Loryns Strategic Consulting vous contactera sous 24 heures.");
@@ -1417,83 +1433,80 @@ export default function App() {
         </div>
       </section>
 
-      {/* Nos Services */}
+      {/* Nos Services Redesigned as a Horizontal Carousel */}
       <section id="services" className="services-section">
         <div className="container">
-          <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('services.tag')}</div>
-            <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">{t('services.title')}</span>
-              <span className="mask-overlay"></span>
-            </h2>
-            <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-              {t('services.subtitle')}
-            </p>
-          </div>
-
-          <div className="services-tabs">
-            <button 
-              className={`services-tab-trigger interactive ${activeServiceTab === 'conseil' ? 'active' : ''}`}
-              onClick={() => setActiveServiceTab('conseil')}
-            >
-              {t('services.tabConseil')}
-            </button>
-            <button 
-              className={`services-tab-trigger interactive ${activeServiceTab === 'finance' ? 'active' : ''}`}
-              onClick={() => setActiveServiceTab('finance')}
-            >
-              {t('services.tabFinance')}
-            </button>
-            <button 
-              className={`services-tab-trigger interactive ${activeServiceTab === 'digital' ? 'active' : ''}`}
-              onClick={() => setActiveServiceTab('digital')}
-            >
-              {t('services.tabDigital')}
-            </button>
-          </div>
-
-          <div className="services-grid">
-            {servicesData[activeServiceTab].map((service, index) => (
-              <div 
-                key={index} 
-                className="service-card interactive"
-                onMouseMove={handle3DCardMouseMove}
-                onMouseLeave={handle3DCardMouseLeave}
-              >
-                <div className="service-header">
-                  <div className="service-icon-box">
-                    {activeServiceTab === 'conseil' && index === 0 && <TrendingUp size={24} />}
-                    {activeServiceTab === 'conseil' && index === 1 && <Building size={24} />}
-                    {activeServiceTab === 'conseil' && index === 2 && <BarChart2 size={24} />}
-                    {activeServiceTab === 'conseil' && index === 3 && <UserCheck size={24} />}
-                    {activeServiceTab === 'conseil' && index === 4 && <Users size={24} />}
-                    {activeServiceTab === 'conseil' && index === 5 && <ShieldCheck size={24} />}
-                    
-                    {activeServiceTab === 'finance' && index === 0 && <Briefcase size={24} />}
-                    {activeServiceTab === 'finance' && index === 1 && <Layers size={24} />}
-                    {activeServiceTab === 'finance' && index === 2 && <RefreshCw size={24} />}
-                    {activeServiceTab === 'finance' && index === 3 && <FileText size={24} />}
-                    {activeServiceTab === 'finance' && index === 4 && <Users size={24} />}
-                    
-                    {activeServiceTab === 'digital' && index === 0 && <Globe size={24} />}
-                    {activeServiceTab === 'digital' && index === 1 && <Settings size={24} />}
-                    {activeServiceTab === 'digital' && index === 2 && <Clock size={24} />}
-                    {activeServiceTab === 'digital' && index === 3 && <MessageSquare size={24} />}
-                    {activeServiceTab === 'digital' && index === 4 && <MessageCircle size={24} />}
-                    {activeServiceTab === 'digital' && index === 5 && <Sparkles size={24} />}
-                  </div>
-                  <div className="service-number">{service.num}</div>
-                </div>
-                <h3>{service.title}</h3>
-                <p>{service.desc}</p>
-                <ul className="service-features-list">
-                  {service.features.map((feat, fIdx) => (
-                    <li key={fIdx}>{feat}</li>
-                  ))}
-                </ul>
+          
+          <div className="services-new-header">
+            <div className="services-new-header-left">
+              <div className="section-tag">★ {t('services.tag')}</div>
+              <h2 className="services-new-title">
+                {language === 'fr' 
+                  ? "Des expertises clés pour propulser votre réussite d'affaires." 
+                  : "Essential expertise for modern business success."}
+              </h2>
+            </div>
+            <div className="services-new-header-right">
+              <p className="services-new-desc">{t('services.subtitle')}</p>
+              <div className="services-carousel-nav">
+                <button className="carousel-nav-btn prev interactive" onClick={() => scrollServices('left')} aria-label="Previous">
+                  <ChevronLeft size={20} />
+                </button>
+                <button className="carousel-nav-btn next interactive" onClick={() => scrollServices('right')} aria-label="Next">
+                  <ChevronRight size={20} />
+                </button>
               </div>
-            ))}
+            </div>
           </div>
+
+          <div className="services-carousel-wrapper">
+            <div className="services-carousel-track" ref={servicesCarouselRef}>
+              {allServicesList.map((service, index) => {
+                const cardStyles = ['card-style-white', 'card-style-gold', 'card-style-dark'];
+                const styleClass = cardStyles[index % 3];
+                return (
+                  <div 
+                    key={index} 
+                    className={`service-new-card ${styleClass} interactive`}
+                    onClick={() => setShowRendezVousModal(true)}
+                  >
+                    <div className="service-new-card-header">
+                      <div className="service-new-icon-box">
+                        {service.category === 'conseil' && service.iconIndex === 0 && <TrendingUp size={24} />}
+                        {service.category === 'conseil' && service.iconIndex === 1 && <Building size={24} />}
+                        {service.category === 'conseil' && service.iconIndex === 2 && <BarChart2 size={24} />}
+                        {service.category === 'conseil' && service.iconIndex === 3 && <UserCheck size={24} />}
+                        {service.category === 'conseil' && service.iconIndex === 4 && <Users size={24} />}
+                        {service.category === 'conseil' && service.iconIndex === 5 && <ShieldCheck size={24} />}
+                        
+                        {service.category === 'finance' && service.iconIndex === 0 && <Briefcase size={24} />}
+                        {service.category === 'finance' && service.iconIndex === 1 && <Layers size={24} />}
+                        {service.category === 'finance' && service.iconIndex === 2 && <RefreshCw size={24} />}
+                        {service.category === 'finance' && service.iconIndex === 3 && <FileText size={24} />}
+                        {service.category === 'finance' && service.iconIndex === 4 && <Users size={24} />}
+                        
+                        {service.category === 'digital' && service.iconIndex === 0 && <Globe size={24} />}
+                        {service.category === 'digital' && service.iconIndex === 1 && <Settings size={24} />}
+                        {service.category === 'digital' && service.iconIndex === 2 && <Clock size={24} />}
+                        {service.category === 'digital' && service.iconIndex === 3 && <MessageSquare size={24} />}
+                        {service.category === 'digital' && service.iconIndex === 4 && <MessageCircle size={24} />}
+                        {service.category === 'digital' && service.iconIndex === 5 && <Sparkles size={24} />}
+                      </div>
+                      <div className="service-new-num">#{service.num}</div>
+                    </div>
+                    <h3>{service.title}</h3>
+                    <p>{service.desc}</p>
+                    
+                    <button className="service-new-card-btn interactive" onClick={(e) => { e.stopPropagation(); setShowRendezVousModal(true); }}>
+                      <span>{language === 'fr' ? "En savoir plus" : "Explore More"}</span>
+                      <ArrowRight size={14} />
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
         </div>
       </section>
 
