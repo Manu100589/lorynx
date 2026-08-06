@@ -110,6 +110,21 @@ export default function App() {
   const [processedFounderSrc, setProcessedFounderSrc] = useState(null);
   const [activeValeurIndex, setActiveValeurIndex] = useState(0);
   const [activeAboutStory, setActiveAboutStory] = useState(0);
+  const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'fr');
+
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
+
+  const t = (key) => {
+    const keys = key.split('.');
+    let obj = translations[language];
+    for (const k of keys) {
+      if (!obj || !obj[k]) return key;
+      obj = obj[k];
+    }
+    return obj;
+  };
 
   const valeurs = [
     {
@@ -691,26 +706,26 @@ export default function App() {
 
   const testimonials = [
     {
-      quote: "Loryns Consulting a transformé notre gouvernance. Grâce à leur diagnostic rigoureux et leur plan d'action, notre chiffre d'affaires a augmenté de 40% en deux ans.",
-      author: "Jean-Pierre Moudiki",
-      role: "Directeur Général",
-      company: "Afrilog Douala",
+      quote: t('testimonials.list.0.quote'),
+      author: t('testimonials.list.0.author'),
+      role: t('testimonials.list.0.role'),
+      company: t('testimonials.list.0.company'),
       avatar: "/avatar_jean.png",
       initials: "JM"
     },
     {
-      quote: "Leur accompagnement dans la recherche de financement a été déterminant pour notre projet d'infrastructure. Une expertise de niveau international, ancrée dans la réalité locale.",
-      author: "Sonia Kamga",
-      role: "Co-fondatrice",
-      company: "NextGen Telecom",
+      quote: t('testimonials.list.1.quote'),
+      author: t('testimonials.list.1.author'),
+      role: t('testimonials.list.1.role'),
+      company: t('testimonials.list.1.company'),
       avatar: "/avatar_sonia.png",
       initials: "SK"
     },
     {
-      quote: "Une équipe d'experts à l'écoute, pragmatique et orientée résultats. Le management de transition proposé par Loryns a stabilisé nos opérations en période de crise.",
-      author: "Alain Ndongo",
-      role: "PCA",
-      company: "Société Camerounaise de Distribution",
+      quote: t('testimonials.list.2.quote'),
+      author: t('testimonials.list.2.author'),
+      role: t('testimonials.list.2.role'),
+      company: t('testimonials.list.2.company'),
       avatar: "/avatar_alain.png",
       initials: "AN"
     }
@@ -721,114 +736,31 @@ export default function App() {
       id: 1,
       category: "Gouvernance",
       date: "24 Juin 2026",
-      title: "Restructuration d'Entreprise au Cameroun : Comment éviter la faillite dans les 3 premières années",
-      excerpt: "Découvrez les facteurs clés de la mortalité précoce des PME à Douala et Yaoundé, et comment un audit de gouvernance rigoureux peut sauver votre structure.",
+      title: t('blog.articles.0.title'),
+      excerpt: t('blog.articles.0.excerpt'),
       image: "/boardroom_meeting.png",
       keywords: "restructuration entreprise Cameroun, gouvernance stratégique, gestion de crise PME, Loryns Consulting",
-      content: `
-# Restructuration d'Entreprise au Cameroun : Comment éviter la faillite précoce
-
-En Afrique subsaharienne, et plus particulièrement au Cameroun, la dynamique entrepreneuriale est l'une des plus fortes au monde. Cependant, les statistiques révèlent une réalité plus sombre : **près de 80% des jeunes entreprises disparaissent avant leur 3e anniversaire**, et plus de 54% des PME déclarent faillite au cours de leur première décennie d'existence. 
-
-À Douala, poumon économique, des centaines d'entreprises ferment discrètement leurs portes chaque année. Pourquoi un tel taux d'échec ? Et surtout, comment y faire face grâce à la **restructuration stratégique** ?
-
-## 1. Les causes majeures de la mortalité des PME au Cameroun
-
-Nos diagnostics menés auprès de dizaines d'entreprises locales identifient trois faiblesses cardinales :
-* **Une gouvernance informelle** : Les décisions stratégiques reposent trop souvent sur une seule personne, sans conseil d'administration structuré ni processus de validation des risques.
-* **Le pilotage financier à vue** : L'absence de comptabilité analytique et de tableaux de bord financiers réguliers empêche d'anticiper les crises de trésorerie.
-* **L'inadaptation aux ruptures sectorielles** : Face à l'inflation et à la numérisation rapide, les business models traditionnels s'essoufflent sans réinventer leur offre.
-
-## 2. Qu'est-ce que la restructuration d'entreprise ?
-
-Contrairement aux idées reçues, restructurer n'est pas uniquement synonyme de réduction d'effectifs en situation désespérée. Il s'agit d'une **réingénierie opérationnelle et financière** destinée à relancer la rentabilité d'une structure en perte de vitesse.
-
-Chez *Loryns Strategic Consulting*, notre processus s'articule autour de trois leviers d'urgence :
-1. **Le Diagnostic Flash** : Un audit complet en 15 jours pour identifier les goulets d'étranglement financiers et opérationnels.
-2. **Le Management de Transition** : La mise à disposition d'un Directeur Général ou Financier intérimaire pour restructurer la comptabilité et stabiliser la trésorerie.
-3. **La rationalisation des charges** : La renégociation des contrats d'intermédiation et de distribution pour dégager de l'oxygène financier.
-
-## 3. L'importance cruciale de la gouvernance stratégique
-
-La restructuration réussie repose sur une transition de la gestion purement familiale vers une **gouvernance d'entreprise moderne et transparente**. En structurant vos comités de direction et en intégrant des conseillers externes qualifiés, vous rassurez non seulement vos partenaires commerciaux, mais vous ouvrez aussi la voie à de futurs financements institutionnels.
-
-*Ne laissez pas votre entreprise grossir les statistiques de faillite. Prenez les devants et sollicitez un diagnostic de gouvernance complet dès aujourd'hui.*
-      `
+      content: t('blog.articles.0.content')
     },
     {
       id: 2,
       category: "Finance",
       date: "18 Juin 2026",
-      title: "Levée de Fonds en Afrique Centrale : Stratégies clés pour séduire les bailleurs de fonds",
-      excerpt: "Comment structurer son dossier de financement et calibrer sa modélisation financière pour convaincre les banques et les fonds d'investissement régionaux.",
+      title: t('blog.articles.1.title'),
+      excerpt: t('blog.articles.1.excerpt'),
       image: "/about_tech_work.png",
       keywords: "levée de fonds Afrique, financement PME Cameroun, ingénierie financière, BDEAC, banque Douala",
-      content: `
-# Levée de Fonds en Afrique Centrale : Comment convaincre les investisseurs ?
-
-L'accès au capital est le principal frein à l'expansion des PME et des projets d'infrastructure au Cameroun et dans toute la zone CEMAC. Pourtant, les liquidités existent : banques commerciales locales, institutions financières internationales (BAD, BDEAC, SFI) et fonds d'investissement privés cherchent activement des projets viables.
-
-Le défi réside dans la **calibration financière** et la présentation du projet. Voici comment optimiser votre ingénierie financière pour lever des fonds avec succès.
-
-## 1. Comprendre les attentes des investisseurs en zone CEMAC
-
-Qu'il s'agisse d'un crédit bancaire classique ou d'une entrée au capital par un fonds de capital-investissement (Private Equity), les bailleurs évaluent trois piliers fondamentaux :
-* **La qualité et la transparence des états financiers** : Les bilans audités et certifiés sont la condition sine qua non de toute étude de dossier.
-* **La solidité du business plan** : Une modélisation financière rigoureuse sur 5 ans intégrant différents scénarios de croissance (optimiste, réaliste, pessimiste).
-* **Le dispositif de réduction des risques** : Quelles sont les garanties réelles ? La structure juridique de l'entreprise est-elle conforme aux règles OHADA ?
-
-## 2. Les étapes pour structurer une levée de fonds réussie
-
-Pour maximiser vos chances d'obtenir un financement, nous conseillons une approche en quatre étapes méthodiques :
-1. **L'Évaluation de la capacité d'endettement** : Analyser le ratio d'endettement actuel et déterminer le besoin de financement réel (BFR ou investissement long terme).
-2. **La rédaction de l'Information Memorandum (InfoMemo)** : Un document de présentation synthétique et percutant décrivant le marché, le positionnement commercial et la gouvernance.
-3. **La modélisation financière avancée** : Construction de prévisions de flux de trésorerie (Cash Flow Statements) robustes avec calcul du TRI (Taux de Rendement Interne) et de la VAN (Valeur Actuelle Nette).
-4. **La négociation des Term Sheets** : Cadrer les conditions de remboursement, les covenants bancaires ou la gouvernance partagée en cas d'ouverture de capital.
-
-## 3. Le rôle de l'ingénierie financière de Loryns
-
-Un dirigeant de PME n'a pas toujours en interne les compétences d'un banquier d'affaires. C'est là que l'accompagnement de *Loryns Strategic Consulting* prend tout son sens. Nous structurons vos dossiers financiers pour parler le langage exact des banques et des fonds d'investissement, et nous vous introduisons directement auprès de réseaux d'intermédiation stratégiques en zone Afrique centrale.
-
-*Vous préparez un grand projet d'infrastructure ou d'expansion industrielle ? Contactez nos experts en ingénierie financière pour valider votre modèle de financement.*
-      `
+      content: t('blog.articles.1.content')
     },
     {
       id: 3,
       category: "Digitalisation",
       date: "10 Juin 2026",
-      title: "La Transformation Digitale : Le levier incontournable de performance pour les PME en 2026",
-      excerpt: "Au-delà de la communication, apprenez comment automatiser vos processus métier internes pour réduire les coûts et sécuriser vos opérations.",
+      title: t('blog.articles.2.title'),
+      excerpt: t('blog.articles.2.excerpt'),
       image: "/about_team_hands.png",
       keywords: "transformation digitale PME, performance opérationnelle, digitalisation Douala, automatisation processus",
-      content: `
-# La Transformation Digitale : Levier de Performance Incontournable pour les PME
-
-Dans le paysage économique hyper-compétitif de 2026, la transformation digitale ne se résume plus à posséder une page Facebook ou un site web institutionnel. Elle représente la **colonne vertébrale opérationnelle** d'une entreprise moderne.
-
-Pour les PME camerounaises, automatiser ses processus internes est devenu un enjeu de survie et de compétitivité.
-
-## 1. La digitalisation opérationnelle : Définition et bénéfices
-
-Trop d'entreprises locales souffrent de lenteurs administratives dues au traitement manuel des informations : doubles saisies, pertes de factures, reporting commercial obsolète. La transformation digitale consiste à déployer des outils logiciels intégrés pour rationaliser ces tâches.
-
-Les gains pour une PME sont immédiats :
-* **Réduction drastique des coûts d'exploitation** : Moins de papier, moins d'erreurs humaines et réduction des heures de saisie à faible valeur ajoutée.
-* **Sécurisation des processus financiers** : Suivi en temps réel de la facturation et réduction du délai de recouvrement des créances.
-* **Décisions basées sur les données** : Des indicateurs de performance (KPI) mis à jour instantanément pour le comité de direction.
-
-## 2. Par où commencer sa transformation digitale ?
-
-Plutôt que d'acheter des logiciels coûteux qui ne seront pas adaptés à vos équipes, nous préconisons une démarche pragmatique :
-1. **La cartographie des processus métiers** : Identifier quelles étapes créent le plus de friction dans vos ventes, vos RH ou votre logistique.
-2. **Le choix de solutions agiles et cloud** : Privilégier des outils simples d'intégration (CRM, outils d'automatisation comme Zapier ou Make, ou ERP open-source).
-3. **La conduite du changement** : La clé de voûte de la réussite réside dans la formation de vos équipes. Un outil digital n'est utile que s'il est adopté à 100%.
-
-## 3. L'approche technologique intégrée de Loryns
-
-Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique traditionnel avec le génie logiciel. Nos ingénieurs conçoivent des passerelles d'automatisation personnalisées et déploient des solutions de reporting décisionnel pour rationaliser votre gestion managériale. Nous veillons à ce que chaque investissement technologique se traduise par une hausse immédiate de votre rentabilité opérationnelle.
-
-*Prêt à accélérer la performance digitale de votre entreprise ? Discutez avec un de nos consultants techniques pour concevoir votre plan de transition.*
-      `
+      content: t('blog.articles.2.content')
     }
   ];
 
@@ -866,24 +798,24 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
 
   const faqs = [
     {
-      question: "Comment se déroule la première prise de contact ?",
-      answer: "Nous commençons par un entretien d'évaluation gratuit pour comprendre vos défis immédiats, suivi d'un pré-diagnostic rapide permettant de cadrer notre future intervention."
+      question: t('faq.list.0.question'),
+      answer: t('faq.list.0.answer')
     },
     {
-      question: "Comment structurez-vous vos honoraires de conseil ?",
-      answer: "Nos honoraires s'adaptent à la nature de la mission : taux journalier pour le conseil d'accompagnement, forfait fixe pour les projets structurés, ou une part variable basée sur les résultats (success fees) pour la recherche de financement."
+      question: t('faq.list.1.question'),
+      answer: t('faq.list.1.answer')
     },
     {
-      question: "Quels types d'entreprises accompagnez-vous ?",
-      answer: "Nous intervenons auprès des Start-up innovantes en recherche de structuration, des PME en phase de croissance ou de restructuration, ainsi que des grandes entreprises publiques et privées à l'échelle africaine."
+      question: t('faq.list.2.question'),
+      answer: t('faq.list.2.answer')
     },
     {
-      question: "Proposez-vous un accompagnement juridique et financier complet ?",
-      answer: "Oui, grâce à notre pool d'experts en services financiers et juridiques, nous couvrons la création d'entreprise, la conformité réglementaire, la négociation de partenariats et le montage de dossiers d'investissement."
+      question: t('faq.list.3.question'),
+      answer: t('faq.list.3.answer')
     },
     {
-      question: "Comment garantissez-vous le suivi de la mise en œuvre ?",
-      answer: "Notre méthodologie intègre une phase dédiée de 'Suivi & Performance'. Nos consultants accompagnent vos équipes opérationnelles pendant plusieurs mois sur le terrain pour valider l'exécution et ajuster le tir."
+      question: t('faq.list.4.question'),
+      answer: t('faq.list.4.answer')
     }
   ];
 
@@ -892,109 +824,109 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
     conseil: [
       {
         num: "01",
-        title: "Conseil stratégique",
-        desc: "Accompagner les dirigeants dans la définition de leur vision, la croissance durable et la résilience face aux mutations du marché.",
-        features: ["Revue de business model", "Plan de croissance à 5 ans", "Optimisation de portefeuille"]
+        title: t('services.conseil.0.title'),
+        desc: t('services.conseil.0.desc'),
+        features: [t('services.conseil.0.features.0'), t('services.conseil.0.features.1'), t('services.conseil.0.features.2')]
       },
       {
         num: "02",
-        title: "Management des entreprises",
-        desc: "Restructuration organisationnelle et audit managérial complet à 360° pour sécuriser vos opérations.",
-        features: ["Gouvernance d'entreprise", "Régulation des processus", "Coaching exécutif"]
+        title: t('services.conseil.1.title'),
+        desc: t('services.conseil.1.desc'),
+        features: [t('services.conseil.1.features.0'), t('services.conseil.1.features.1'), t('services.conseil.1.features.2')]
       },
       {
         num: "03",
-        title: "Études et conseils",
-        desc: "Analyses sectorielles approfondies et études de faisabilité pour guider vos lancements et investissements en Afrique.",
-        features: ["Études de marché", "Analyses macroéconomiques", "Plans d'affaires validés"]
+        title: t('services.conseil.2.title'),
+        desc: t('services.conseil.2.desc'),
+        features: [t('services.conseil.2.features.0'), t('services.conseil.2.features.1'), t('services.conseil.2.features.2')]
       },
       {
         num: "04",
-        title: "Négociation",
-        desc: "Conseil et appui direct lors de négociations commerciales ou partenariats complexes pour optimiser vos termes.",
-        features: ["Closing de contrats", "Stratégies d'achat/vente", "Gestion de conflits d'associés"]
+        title: t('services.conseil.3.title'),
+        desc: t('services.conseil.3.desc'),
+        features: [t('services.conseil.3.features.0'), t('services.conseil.3.features.1'), t('services.conseil.3.features.2')]
       },
       {
         num: "05",
-        title: "Intermédiation",
-        desc: "Mise en relation d'affaires stratégiques et facilitation de partenariats gagnant-gagnant à l'international.",
-        features: ["Lobbying institutionnel", "Réseautage d'affaires", "Recherche de partenaires clés"]
+        title: t('services.conseil.4.title'),
+        desc: t('services.conseil.4.desc'),
+        features: [t('services.conseil.4.features.0'), t('services.conseil.4.features.1'), t('services.conseil.4.features.2')]
       },
       {
         num: "06",
-        title: "Expertise en norme & qualité",
-        desc: "Accompagnement des banques, télécoms et hôtels pour s'aligner sur les réglementations en vigueur et standards internationaux.",
-        features: ["Conformité réglementaire", "Certification ISO", "Prévention des pénalités"]
+        title: t('services.conseil.5.title'),
+        desc: t('services.conseil.5.desc'),
+        features: [t('services.conseil.5.features.0'), t('services.conseil.5.features.1'), t('services.conseil.5.features.2')]
       }
     ],
     finance: [
       {
         num: "07",
-        title: "Services financiers",
-        desc: "Conseil en investissement de capitaux, acquisitions de titres (actions/obligations) et évaluation de valeur.",
-        features: ["Plans d'investissement", "Valorisation d'entreprise", "Conseils cotation en Bourse"]
+        title: t('services.finance.0.title'),
+        desc: t('services.finance.0.desc'),
+        features: [t('services.finance.0.features.0'), t('services.finance.0.features.1'), t('services.finance.0.features.2')]
       },
       {
         num: "08",
-        title: "Recherche de financement",
-        desc: "Structuration de dossiers financiers haut de gamme et mise en relation avec des bailleurs de fonds mondiaux.",
-        features: ["Levée de fonds", "Ingénierie de la dette", "Financement de projets d'envergure"]
+        title: t('services.finance.1.title'),
+        desc: t('services.finance.1.desc'),
+        features: [t('services.finance.1.features.0'), t('services.finance.1.features.1'), t('services.finance.1.features.2')]
       },
       {
         num: "09",
-        title: "Recouvrement de créances",
-        desc: "Sécurisation de vos liquidités et gestion éthique, ferme et amiable du recouvrement de vos factures impayées.",
-        features: ["Négociation amiable", "Suivi pré-contentieux", "Optimisation du DSO"]
+        title: t('services.finance.2.title'),
+        desc: t('services.finance.2.desc'),
+        features: [t('services.finance.2.features.0'), t('services.finance.2.features.1'), t('services.finance.2.features.2')]
       },
       {
         num: "10",
-        title: "Services juridiques",
-        desc: "Création de structures, secrétariat juridique de haut niveau et assistance contractuelle sur mesure.",
-        features: ["Création d'entreprise", "Rédaction de pactes d'associés", "Conformité OHADA"]
+        title: t('services.finance.3.title'),
+        desc: t('services.finance.3.desc'),
+        features: [t('services.finance.3.features.0'), t('services.finance.3.features.1'), t('services.finance.3.features.2')]
       },
       {
         num: "11",
-        title: "Gestion RH",
-        desc: "Recrutement de talents stratégiques, audit social, gestion de la paie et régulation des relations de travail.",
-        features: ["Recrutement exécutif", "Externalisation de la paie", "Plans de formation continue"]
+        title: t('services.finance.4.title'),
+        desc: t('services.finance.4.desc'),
+        features: [t('services.finance.4.features.0'), t('services.finance.4.features.1'), t('services.finance.4.features.2')]
       }
     ],
     digital: [
       {
         num: "12",
-        title: "Transformation digitale",
-        desc: "Audit de maturité numérique et migration de vos anciens processus vers des écosystèmes digitaux performants.",
-        features: ["Stratégie Cloud", "Audit informatique", "Conduite du changement"]
+        title: t('services.digital.0.title'),
+        desc: t('services.digital.0.desc'),
+        features: [t('services.digital.0.features.0'), t('services.digital.0.features.1'), t('services.digital.0.features.2')]
       },
       {
         num: "13",
-        title: "Développement informatique",
-        desc: "Fourniture de progiciels, développement d'applications mobiles et web adaptées à votre contexte métier.",
-        features: ["Solutions SaaS personnalisées", "Développement Web & Mobile", "Applications ERP/CRM"]
+        title: t('services.digital.1.title'),
+        desc: t('services.digital.1.desc'),
+        features: [t('services.digital.1.features.0'), t('services.digital.1.features.1'), t('services.digital.1.features.2')]
       },
       {
         num: "14",
-        title: "Automatisation des processus",
-        desc: "Suppression des tâches répétitives par l'implémentation de robots logiciels (RPA) et d'outils collaboratifs.",
-        features: ["Workflows automatisés", "Gain de temps opérationnel", "Intégration d'outils métier"]
+        title: t('services.digital.2.title'),
+        desc: t('services.digital.2.desc'),
+        features: [t('services.digital.2.features.0'), t('services.digital.2.features.1'), t('services.digital.2.features.2')]
       },
       {
         num: "15",
-        title: "Services de communication",
-        desc: "Stratégie de marque haut de gamme, création d'identité visuelle, graphisme et campagnes publicitaires multicanales.",
-        features: ["Charte graphique & Webdesign", "Copywriting de marque", "Campagnes publicitaires payantes"]
+        title: t('services.digital.3.title'),
+        desc: t('services.digital.3.desc'),
+        features: [t('services.digital.3.features.0'), t('services.digital.3.features.1'), t('services.digital.3.features.2')]
       },
       {
         num: "16",
-        title: "Community Management",
-        desc: "Fidélisation de votre audience et valorisation de votre e-réputation sur les réseaux sociaux professionnels.",
-        features: ["Gestion LinkedIn & Facebook", "Création de contenus vidéos/visuels", "Modération active"]
+        title: t('services.digital.4.title'),
+        desc: t('services.digital.4.desc'),
+        features: [t('services.digital.4.features.0'), t('services.digital.4.features.1'), t('services.digital.4.features.2')]
       },
       {
         num: "17",
-        title: "Architecture intérieure",
-        desc: "Aménagement haut de gamme des espaces de travail et habitations pour allier confort, design et productivité.",
-        features: ["Workspace Branding", "Plan d'aménagement 3D", "Mobilier premium sur mesure"]
+        title: t('services.digital.5.title'),
+        desc: t('services.digital.5.desc'),
+        features: [t('services.digital.5.features.0'), t('services.digital.5.features.1'), t('services.digital.5.features.2')]
       }
     ]
   };
@@ -1039,14 +971,28 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
           </a>
 
           <nav className={`navbar-menu ${mobileMenuOpen ? 'open' : ''}`}>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Cabinet</a>
-            <a href="#vision" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Vision</a>
-            <a href="#valeurs" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Valeurs</a>
-            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Nos Services</a>
-            <a href="#methodology" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Méthodologie</a>
-            <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Insights</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">Contact</a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.cabinet')}</a>
+            <a href="#vision" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.vision')}</a>
+            <a href="#valeurs" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.valeurs')}</a>
+            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.services')}</a>
+            <a href="#methodology" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.methodology')}</a>
+            <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.insights')}</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.contact')}</a>
             
+            {/* Language Selector */}
+            <div className="language-selector-wrap">
+              <button 
+                onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')} 
+                className="language-toggle-btn interactive"
+                aria-label="Toggle language"
+              >
+                <Globe size={15} className="lang-globe-icon" />
+                <span className={`lang-text ${language === 'fr' ? 'active' : ''}`}>FR</span>
+                <span className="lang-separator">|</span>
+                <span className={`lang-text ${language === 'en' ? 'active' : ''}`}>EN</span>
+              </button>
+            </div>
+
             <div 
               className="magnetic-wrap"
               onMouseMove={(e) => handleMagneticMove(e, 0.2)}
@@ -1056,7 +1002,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                 onClick={() => { setShowRendezVousModal(true); setMobileMenuOpen(false); }} 
                 className="btn btn-primary navbar-btn interactive"
               >
-                Prise de RDV
+                {t('nav.rdv')}
               </button>
             </div>
           </nav>
@@ -1096,12 +1042,12 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
             {/* Big Backdrop Typography with Character Reveals */}
             <div className="hero-bg-text">
               <div className="hero-bg-text-line-1">
-                {"LORYNS".split('').map((char, idx) => (
+                {t('hero.logoLabel').split('').map((char, idx) => (
                   <span key={idx} className="char-reveal">{char}</span>
                 ))}
               </div>
               <div className="hero-bg-text-line-2">
-                {"STRATEGIC".split('').map((char, idx) => (
+                {(language === 'fr' ? 'STRATEGIC' : 'STRATEGIC').split('').map((char, idx) => (
                   <span key={idx} className="char-reveal">{char}</span>
                 ))}
               </div>
@@ -1120,22 +1066,25 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
             {/* Left Side Pill Badges */}
             <div className="hero-left-badges">
               <div className="hero-badge-pill interactive">
-                <span className="gold-dot">•</span> Gouvernance & Stratégie
+                <span className="gold-dot">•</span> {t('hero.badge2')}
               </div>
               <div className="hero-badge-pill interactive">
-                <span className="gold-dot">•</span> Ingénierie Financière
+                <span className="gold-dot">•</span> {t('hero.badge1')}
               </div>
               <div className="hero-badge-pill interactive">
-                <span className="gold-dot">•</span> Transformation Digitale
+                <span className="gold-dot">•</span> {t('hero.badge3')}
               </div>
             </div>
 
             {/* Right Side Slogan/Description */}
             <div className="hero-right-desc">
-              <div className="hero-desc-tag">Cabinet Conseil Agréé</div>
-              <div className="hero-desc-title">Nous faisons avancer votre entreprise</div>
+              <div className="hero-desc-tag">{language === 'fr' ? "Cabinet Conseil Agréé" : "Certified Advisory Firm"}</div>
+              <div className="hero-desc-title">{language === 'fr' ? "Nous faisons avancer votre entreprise" : "We move your business forward"}</div>
               <div className="hero-desc-text">
-                {"Nous calibrons des solutions pragmatiques conçues pour propulser l'efficacité opérationnelle et la rentabilité.".split(' ').map((word, idx) => (
+                {(language === 'fr' 
+                  ? "Nous calibrons des solutions pragmatiques conçues pour propulser l'efficacité opérationnelle et la rentabilité." 
+                  : "We calibrate pragmatic solutions designed to propel operational efficiency and profitability."
+                ).split(' ').map((word, idx) => (
                   <span key={idx} className="word-reveal">{word} </span>
                 ))}
               </div>
@@ -1143,7 +1092,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
 
             {/* Scroll Mouse Indicator */}
             <a href="#about" className="hero-scroll-indicator-custom interactive">
-              <span>Faire défiler</span>
+              <span>{language === 'fr' ? "Faire défiler" : "Scroll down"}</span>
               <div className="hero-scroll-mouse-custom"></div>
             </a>
           </div>
@@ -1155,9 +1104,9 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               onMouseMove={(e) => handleMagneticMove(e, 0.25)}
               onMouseLeave={handleMagneticLeave}
             >
-              <a href="#services" className="btn btn-primary interactive">Découvrir nos services</a>
+              <a href="#services" className="btn btn-primary interactive">{language === 'fr' ? "Découvrir nos services" : "Discover our services"}</a>
             </div>
-            <span className="hero-brush-text">Consulting</span>
+            <span className="hero-brush-text">{t('hero.brush')}</span>
           </div>
         </div>
       </section>
@@ -1166,13 +1115,13 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       <section id="about" className="about-story-section">
         <div className="container">
           <div className="about-story-header">
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Qui sommes-nous</div>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('about.tag')}</div>
             <h2 className="about-section-title mask-reveal-title">
-              <span className="mask-text">Pourquoi Loryns ?</span>
+              <span className="mask-text">{t('about.title')}</span>
               <span className="mask-overlay"></span>
             </h2>
             <p className="about-section-subtitle scroll-fade-p">
-              Loryns Strategic Consulting accompagne les organisations, dirigeants et professionnels pour renforcer leur gouvernance, rationaliser leur management et construire une croissance solide, pérenne et compétitive face aux crises économiques modernes.
+              {t('about.subtitle')}
             </p>
           </div>
 
@@ -1195,42 +1144,42 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
             {/* Right Side: Progressive Scrolling Story Texts */}
             <div className="about-story-right-scroll">
               <div className="about-story-block scroll-story-block-0" data-story-index="0">
-                <div className="about-story-block-num">01 / CAPACITÉS</div>
-                <h3>Créer de la valeur durable</h3>
+                <div className="about-story-block-num">{t('about.block0Num')}</div>
+                <h3>{t('about.block0Title')}</h3>
                 <p className="scroll-fade-p">
-                  Nous concevons des stratégies sur mesure pour assurer la viabilité de votre entreprise, rationaliser vos finances et accélérer votre transformation digitale. Nos experts analysent les goulots d'étranglement pour calibrer des solutions adaptées aux réalités du marché.
+                  {t('about.block0Text')}
                 </p>
                 <div className="about-story-stats-inline">
                   <div className="about-story-stat-item">
                     <div className="about-story-stat-num">
                       <Counter endValue={350} prefix="+" />
                     </div>
-                    <div className="about-story-stat-lbl">Entreprises conseillées</div>
+                    <div className="about-story-stat-lbl">{t('about.block0StatLbl')}</div>
                   </div>
                 </div>
               </div>
 
               <div className="about-story-block scroll-story-block-1" data-story-index="1">
-                <div className="about-story-block-num">02 / EXPERTISE</div>
-                <h3>Une équipe d'experts engagés</h3>
+                <div className="about-story-block-num">{t('about.block1Num')}</div>
+                <h3>{t('about.block1Title')}</h3>
                 <p className="scroll-fade-p">
-                  Un collectif multidisciplinaire associant expertise internationale et ancrage local pour un accompagnement continu et des résultats tangibles. Nous mettons à profit des décennies d'expérience sectorielle pour pérenniser vos structures.
+                  {t('about.block1Text')}
                 </p>
                 <div className="about-story-stats-inline">
                   <div className="about-story-stat-item">
                     <div className="about-story-stat-num">
                       <Counter endValue={100} suffix="%" />
                     </div>
-                    <div className="about-story-stat-lbl">Engagement & Rigueur</div>
+                    <div className="about-story-stat-lbl">{t('about.block1StatLbl')}</div>
                   </div>
                 </div>
               </div>
 
               <div className="about-story-block scroll-story-block-2" data-story-index="2">
-                <div className="about-story-block-num">03 / ACCOMPAGNEMENT</div>
-                <h3>Un suivi opérationnel continu</h3>
+                <div className="about-story-block-num">{t('about.block2Num')}</div>
+                <h3>{t('about.block2Title')}</h3>
                 <p className="scroll-fade-p">
-                  Au-delà du conseil théorique, nous intervenons directement dans la restructuration financière, la réorganisation managériale et la médiation de conflits. Nous sommes à vos côtés lors des étapes charnières de votre croissance d'affaires.
+                  {t('about.block2Text')}
                 </p>
               </div>
             </div>
@@ -1249,33 +1198,33 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               
               {/* Left Side: Strategic Pillars */}
               <div className="vision-left-side">
-                <div className="section-tag" style={{ color: '#C8A95A', marginBottom: '1.5rem' }}>Notre Vision</div>
+                <div className="section-tag" style={{ color: '#C8A95A', marginBottom: '1.5rem' }}>{t('vision.tag')}</div>
                 <h3 className="vision-left-title">
-                  Bâtir les leaders de l'économie africaine de demain.
+                  {language === 'fr' ? "Bâtir les leaders de l'économie africaine de demain." : "Building the leaders of tomorrow's African economy."}
                 </h3>
                 
                 <div className="vision-pillars">
                   <div className="vision-pillar-card interactive">
-                    <div className="vision-pillar-num">01</div>
+                    <div className="vision-pillar-num">{t('vision.p1Num')}</div>
                     <div className="vision-pillar-content">
-                      <h4>Standard International</h4>
-                      <p>Élever le management des entreprises locales aux meilleures normes de gouvernance mondiale.</p>
+                      <h4>{t('vision.p1Title')}</h4>
+                      <p>{t('vision.p1Text')}</p>
                     </div>
                   </div>
                   
                   <div className="vision-pillar-card interactive">
-                    <div className="vision-pillar-num">02</div>
+                    <div className="vision-pillar-num">{t('vision.p2Num')}</div>
                     <div className="vision-pillar-content">
-                      <h4>Pérennité des structures</h4>
-                      <p>Anticiper les crises et restructurer les modèles d'affaires pour une rentabilité continue.</p>
+                      <h4>{t('vision.p2Title')}</h4>
+                      <p>{t('vision.p2Text')}</p>
                     </div>
                   </div>
                   
                   <div className="vision-pillar-card interactive">
-                    <div className="vision-pillar-num">03</div>
+                    <div className="vision-pillar-num">{t('vision.p3Num')}</div>
                     <div className="vision-pillar-content">
-                      <h4>Impact local & global</h4>
-                      <p>Participer au rayonnement économique du Cameroun et du continent africain à l'échelle internationale.</p>
+                      <h4>{t('vision.p3Title')}</h4>
+                      <p>{t('vision.p3Text')}</p>
                     </div>
                   </div>
                 </div>
@@ -1289,12 +1238,15 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                     <div className="vision-card-icon">
                       <Compass size={24} color="#C8A95A" />
                     </div>
-                    <span className="vision-card-tag">Déclaration de Vision</span>
+                    <span className="vision-card-tag">{language === 'fr' ? "Déclaration de Vision" : "Vision Statement"}</span>
                   </div>
                   
                   <div className="vision-text-reveal-container">
                     <h2 className="vision-text-layer">
-                      {`Accompagner les dirigeants et les entreprises vers une croissance exponentielle, une meilleure compétitivité sectorielle et une notoriété internationale durable, grâce à un management stratégique rigoureux de haut niveau.`.split(' ').map((word, index) => (
+                      {(language === 'fr' 
+                        ? "Accompagner les dirigeants et les entreprises vers une croissance exponentielle, une meilleure compétitivité sectorielle et une notoriété internationale durable, grâce à un management stratégique rigoureux de haut niveau." 
+                        : "Guiding executives and enterprises toward exponential growth, stronger sectoral competitiveness, and sustainable global reputation through high-level strategic management."
+                      ).split(' ').map((word, index) => (
                         <span key={index} className="vision-word">
                           {word}{' '}
                         </span>
@@ -1313,13 +1265,13 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       <section id="valeurs" className="valeurs-benefits-section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Fondations</div>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('valeurs.tag')}</div>
             <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">Nos Valeurs Cardinales</span>
+              <span className="mask-text">{t('valeurs.title')}</span>
               <span className="mask-overlay"></span>
             </h2>
             <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-              Des standards éthiques et opérationnels rigoureux au service de l'excellence de votre organisation.
+              {t('valeurs.subtitle')}
             </p>
           </div>
 
@@ -1389,13 +1341,13 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
           <div className="valeurs-benefits-separator"></div>
 
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Valeur ajoutée</div>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('benefits.tag')}</div>
             <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">Pourquoi collaborer avec nous ?</span>
+              <span className="mask-text">{t('benefits.title')}</span>
               <span className="mask-overlay"></span>
             </h2>
             <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-              Ce que vous gagnerez à structurer votre croissance stratégique avec Loryns.
+              {t('benefits.subtitle')}
             </p>
           </div>
 
@@ -1404,48 +1356,48 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               <div className="benefit-icon">
                 <TrendingUp size={28} />
               </div>
-              <h3>Augmentation du chiffre d'affaires</h3>
-              <p>Optimisation de vos offres, meilleure pénétration commerciale et structuration des réseaux d'intermédiation clés.</p>
+              <h3>{t('benefits.cards.0.title')}</h3>
+              <p>{t('benefits.cards.0.desc')}</p>
             </div>
 
             <div className="benefit-card">
               <div className="benefit-icon">
                 <Briefcase size={28} />
               </div>
-              <h3>Optimisation des coûts</h3>
-              <p>Élimination des inefficacités opérationnelles, renégociation de contrats et réduction des gaspillages.</p>
+              <h3>{t('benefits.cards.1.title')}</h3>
+              <p>{t('benefits.cards.1.desc')}</p>
             </div>
 
             <div className="benefit-card">
               <div className="benefit-icon">
                 <Users size={28} />
               </div>
-              <h3>Optimisation des ressources</h3>
-              <p>Alignement optimal de vos compétences internes, automatisation logicielle et gouvernance managériale claire.</p>
+              <h3>{t('benefits.cards.2.title')}</h3>
+              <p>{t('benefits.cards.2.desc')}</p>
             </div>
 
             <div className="benefit-card">
               <div className="benefit-icon">
                 <Clock size={28} />
               </div>
-              <h3>Gain de temps stratégique</h3>
-              <p>Déléguez l'ingénierie financière et les audits complexes pour vous recentrer sur votre cœur de métier.</p>
+              <h3>{t('benefits.cards.3.title')}</h3>
+              <p>{t('benefits.cards.3.desc')}</p>
             </div>
 
             <div className="benefit-card">
               <div className="benefit-icon">
                 <Globe size={28} />
               </div>
-              <h3>Positionnement sur le marché</h3>
-              <p>Alignement sur les normes internationales pour accéder à des marchés étrangers et accroître votre e-réputation.</p>
+              <h3>{t('benefits.cards.4.title')}</h3>
+              <p>{t('benefits.cards.4.desc')}</p>
             </div>
 
             <div className="benefit-card">
               <div className="benefit-icon">
                 <ShieldCheck size={28} />
               </div>
-              <h3>Accompagnement durable</h3>
-              <p>Un partenariat fondé sur la confiance, le suivi continu et la formation continue de vos ressources clés.</p>
+              <h3>{t('benefits.cards.5.title')}</h3>
+              <p>{t('benefits.cards.5.desc')}</p>
             </div>
           </div>
         </div>
@@ -1455,13 +1407,13 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       <section id="services" className="services-section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Offre de service</div>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('services.tag')}</div>
             <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">Domaines d'Expertise</span>
+              <span className="mask-text">{t('services.title')}</span>
               <span className="mask-overlay"></span>
             </h2>
             <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-              Une gamme complète de solutions stratégiques, financières et technologiques à 360° pour les dirigeants d'Afrique et d'Europe.
+              {t('services.subtitle')}
             </p>
           </div>
 
@@ -1470,19 +1422,19 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               className={`services-tab-trigger interactive ${activeServiceTab === 'conseil' ? 'active' : ''}`}
               onClick={() => setActiveServiceTab('conseil')}
             >
-              Stratégie & Conseil
+              {t('services.tabConseil')}
             </button>
             <button 
               className={`services-tab-trigger interactive ${activeServiceTab === 'finance' ? 'active' : ''}`}
               onClick={() => setActiveServiceTab('finance')}
             >
-              Finances & Affaires
+              {t('services.tabFinance')}
             </button>
             <button 
               className={`services-tab-trigger interactive ${activeServiceTab === 'digital' ? 'active' : ''}`}
               onClick={() => setActiveServiceTab('digital')}
             >
-              Digital & Créativité
+              {t('services.tabDigital')}
             </button>
           </div>
 
@@ -1538,13 +1490,13 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
             
             <div className="container">
               <div className="section-header" style={{ marginBottom: '2rem' }}>
-                <div className="section-tag" style={{ color: '#C8A95A' }}>Processus</div>
+                <div className="section-tag" style={{ color: '#C8A95A' }}>{t('methodology.tag')}</div>
                 <h2 className="section-title mask-reveal-title">
-                  <span className="mask-text">Notre Méthodologie</span>
+                  <span className="mask-text">{t('methodology.title')}</span>
                   <span className="mask-overlay"></span>
                 </h2>
                 <p className="scroll-fade-p" style={{ color: 'rgba(255, 255, 255, 0.6)', marginTop: '1rem' }}>
-                  Un processus rigoureux en 5 étapes pour garantir la réussite et le suivi continu de nos interventions.
+                  {t('methodology.subtitle')}
                 </p>
               </div>
             </div>
@@ -1558,40 +1510,40 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                 <div className="timeline-step">
                   <div className="timeline-step-node">1</div>
                   <div className="timeline-step-card">
-                    <h4>Diagnostic</h4>
-                    <p>Audit initial rigoureux de vos opérations, identification des goulets d'étranglement et analyse de la gouvernance.</p>
+                    <h4>{t('methodology.steps.0.title')}</h4>
+                    <p>{t('methodology.steps.0.desc')}</p>
                   </div>
                 </div>
 
                 <div className="timeline-step">
                   <div className="timeline-step-node">2</div>
                   <div className="timeline-step-card">
-                    <h4>Analyse stratégique</h4>
-                    <p>Calibration des scénarios de croissance, modélisation financière et benchmark de la concurrence.</p>
+                    <h4>{t('methodology.steps.1.title')}</h4>
+                    <p>{t('methodology.steps.1.desc')}</p>
                   </div>
                 </div>
 
                 <div className="timeline-step">
                   <div className="timeline-step-node">3</div>
                   <div className="timeline-step-card">
-                    <h4>Plan d'action</h4>
-                    <p>Co-construction des livrables de transformation, assignation des KPI et définition du budget.</p>
+                    <h4>{t('methodology.steps.2.title')}</h4>
+                    <p>{t('methodology.steps.2.desc')}</p>
                   </div>
                 </div>
 
                 <div className="timeline-step">
                   <div className="timeline-step-node">4</div>
                   <div className="timeline-step-card">
-                    <h4>Mise en œuvre</h4>
-                    <p>Accompagnement opérationnel rapproché par nos consultants spécialisés pour encadrer les équipes.</p>
+                    <h4>{t('methodology.steps.3.title')}</h4>
+                    <p>{t('methodology.steps.3.desc')}</p>
                   </div>
                 </div>
 
                 <div className="timeline-step">
                   <div className="timeline-step-node">5</div>
                   <div className="timeline-step-card">
-                    <h4>Suivi & Performance</h4>
-                    <p>Évaluation mensuelle des résultats et ajustements stratégiques réguliers pour pérenniser l'activité.</p>
+                    <h4>{t('methodology.steps.4.title')}</h4>
+                    <p>{t('methodology.steps.4.desc')}</p>
                   </div>
                 </div>
 
@@ -1607,9 +1559,9 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       <section className="testimonials-section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Témoignages</div>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('testimonials.tag')}</div>
             <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">La voix de nos clients</span>
+              <span className="mask-text">{t('testimonials.title')}</span>
               <span className="mask-overlay"></span>
             </h2>
           </div>
@@ -1663,13 +1615,13 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       <section id="blog" className="blog-section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Actualités & Insights</div>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('blog.tag')}</div>
             <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">Nos Analyses & Conseils</span>
+              <span className="mask-text">{t('blog.title')}</span>
               <span className="mask-overlay"></span>
             </h2>
             <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-              Décryptages stratégiques et ingénierie d'affaires pour guider les PME et dirigeants d'Afrique centrale face aux enjeux de croissance.
+              {t('blog.subtitle')}
             </p>
           </div>
 
@@ -1691,7 +1643,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                   <h3>{article.title}</h3>
                   <p>{article.excerpt}</p>
                   <div className="blog-card-link">
-                    Lire l'article <ChevronRight size={16} />
+                    {t('blog.readMore')} <ChevronRight size={16} />
                   </div>
                 </div>
               </div>
@@ -1704,9 +1656,9 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       <section className="faq-section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>FAQ</div>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('faq.tag')}</div>
             <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">Questions Fréquentes</span>
+              <span className="mask-text">{t('faq.title')}</span>
               <span className="mask-overlay"></span>
             </h2>
           </div>
@@ -1743,12 +1695,12 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
           <div className="contact-grid">
             <div className="contact-info">
               <div>
-                <div className="section-tag">Contactez-nous</div>
+                <div className="section-tag">{t('contact.tag')}</div>
                 <h2 className="section-title mask-reveal-title" style={{ marginBottom: '1.5rem' }}>
-                  <span className="mask-text">Prêt à accélérer votre croissance ?</span>
+                  <span className="mask-text">{t('contact.title')}</span>
                   <span className="mask-overlay"></span>
                 </h2>
-                <p className="scroll-fade-p">Rencontrons-nous pour analyser vos défis opérationnels et structurer une feuille de route adaptée.</p>
+                <p className="scroll-fade-p">{t('contact.subtitle')}</p>
               </div>
 
               <div className="contact-detail-item">
@@ -1756,8 +1708,8 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                   <MapPin size={24} />
                 </div>
                 <div className="contact-detail-content">
-                  <h4>Localisation</h4>
-                  <p>Rue de la Joie, Akwa, Douala — Cameroun</p>
+                  <h4>{t('contact.locTitle')}</h4>
+                  <p>{t('contact.locDesc')}</p>
                 </div>
               </div>
 
@@ -1766,7 +1718,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                   <Phone size={24} />
                 </div>
                 <div className="contact-detail-content">
-                  <h4>Téléphone</h4>
+                  <h4>{language === 'fr' ? 'Téléphone' : 'Phone'}</h4>
                   <p><a href="tel:+237677549121" className="interactive">+237 677 54 91 21</a></p>
                   <p><a href="tel:+237697952330" className="interactive">+237 697 95 23 30</a></p>
                 </div>
@@ -1794,7 +1746,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                     rel="noreferrer" 
                     className="btn btn-whatsapp interactive"
                   >
-                    <MessageCircle size={20} /> Échanger sur WhatsApp
+                    <MessageCircle size={20} /> {language === 'fr' ? 'Échanger sur WhatsApp' : 'Chat on WhatsApp'}
                   </a>
                 </div>
 
@@ -1807,7 +1759,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                     onClick={() => setShowRendezVousModal(true)} 
                     className="btn btn-primary interactive"
                   >
-                    <Calendar size={20} /> Réserver un créneau (Calendly)
+                    <Calendar size={20} /> {language === 'fr' ? 'Réserver un créneau (Calendly)' : 'Book a Meeting (Calendly)'}
                   </button>
                 </div>
               </div>
@@ -1830,39 +1782,39 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               <form onSubmit={handleFormSubmit} className="contact-form">
                 <div className="form-group-row">
                   <div className="form-group">
-                    <label htmlFor="firstname">Prénom</label>
-                    <input type="text" id="firstname" required placeholder="Jean" className="interactive" />
+                    <label htmlFor="firstname">{language === 'fr' ? 'Prénom' : 'First Name'}</label>
+                    <input type="text" id="firstname" required placeholder={language === 'fr' ? 'Jean' : 'John'} className="interactive" />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="lastname">Nom</label>
-                    <input type="text" id="lastname" required placeholder="Moudiki" className="interactive" />
+                    <label htmlFor="lastname">{language === 'fr' ? 'Nom' : 'Last Name'}</label>
+                    <input type="text" id="lastname" required placeholder={language === 'fr' ? 'Moudiki' : 'Doe'} className="interactive" />
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email professionnel</label>
-                  <input type="email" id="email" required placeholder="jean.moudiki@entreprise.cm" className="interactive" />
+                  <label htmlFor="email">{language === 'fr' ? 'Email professionnel' : 'Professional Email'}</label>
+                  <input type="email" id="email" required placeholder="contact@company.com" className="interactive" />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="company">Entreprise</label>
+                  <label htmlFor="company">{language === 'fr' ? 'Entreprise' : 'Company Name'}</label>
                   <input type="text" id="company" placeholder="Afrilog SA" className="interactive" />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="service">Sujet d'intérêt</label>
+                  <label htmlFor="service">{language === 'fr' ? "Sujet d'intérêt" : 'Subject of Interest'}</label>
                   <select id="service" className="interactive">
-                    <option value="strategie">Conseil Stratégique & Organisationnel</option>
-                    <option value="financement">Recherche de Financement</option>
-                    <option value="digital">Transformation Digitale & Informatique</option>
-                    <option value="conformite">Norme, Qualité & Juridique</option>
-                    <option value="autre">Autre Demande</option>
+                    <option value="strategie">{language === 'fr' ? 'Conseil Stratégique & Organisationnel' : 'Strategic & Organizational Consulting'}</option>
+                    <option value="financement">{language === 'fr' ? 'Recherche de Financement' : 'Fundraising & Investment'}</option>
+                    <option value="digital">{language === 'fr' ? 'Transformation Digitale & Informatique' : 'Digital & IT Transformation'}</option>
+                    <option value="conformite">{language === 'fr' ? 'Norme, Qualité & Juridique' : 'Standards, Quality & Legal'}</option>
+                    <option value="autre">{language === 'fr' ? 'Autre Demande' : 'Other Request'}</option>
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Votre message</label>
-                  <textarea id="message" rows="5" required placeholder="Décrivez brièvement les défis stratégiques de votre organisation..." className="interactive"></textarea>
+                  <label htmlFor="message">{language === 'fr' ? 'Votre message' : 'Your Message'}</label>
+                  <textarea id="message" rows="5" required placeholder={language === 'fr' ? "Décrivez brièvement les défis stratégiques de votre organisation..." : "Briefly describe the strategic challenges of your organization..."} className="interactive"></textarea>
                 </div>
 
                 <div 
@@ -1872,7 +1824,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                   style={{ alignSelf: 'flex-start' }}
                 >
                   <button type="submit" className="btn btn-primary interactive">
-                    Envoyer ma demande <ArrowRight size={18} />
+                    {language === 'fr' ? 'Envoyer ma demande' : 'Submit My Request'} <ArrowRight size={18} />
                   </button>
                 </div>
               </form>
@@ -1894,42 +1846,44 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                 </svg>
                 <span style={{ fontSize: '1.4rem' }}>LORYNS</span>
               </a>
-              <p>Cabinet conseil stratégique international de haut niveau. Nous accompagnons les dirigeants et propulsons la création de valeur durable en Afrique.</p>
+              <p>{language === 'fr' ? 'Cabinet conseil stratégique international de haut niveau. Nous accompagnons les dirigeants et propulsons la création de valeur durable en Afrique.' : 'High-level international strategic consulting firm. We guide business leaders and drive sustainable value creation in Africa.'}</p>
             </div>
 
             <div className="footer-links-col">
-              <h4>Cabinet</h4>
+              <h4>{language === 'fr' ? 'Cabinet' : 'Company'}</h4>
               <ul className="footer-links">
-                <li className="footer-link"><a href="#about" className="interactive">À propos</a></li>
-                <li className="footer-link"><a href="#vision" className="interactive">Notre Vision</a></li>
-                <li className="footer-link"><a href="#valeurs" className="interactive">Nos Valeurs</a></li>
-                <li className="footer-link"><a href="#methodology" className="interactive">Méthodologie</a></li>
+                <li className="footer-link"><a href="#about" className="interactive">{language === 'fr' ? 'À propos' : 'About'}</a></li>
+                <li className="footer-link"><a href="#vision" className="interactive">{t('vision.title')}</a></li>
+                <li className="footer-link"><a href="#valeurs" className="interactive">{t('nav.valeurs')}</a></li>
+                <li className="footer-link"><a href="#methodology" className="interactive">{t('nav.methodology')}</a></li>
               </ul>
             </div>
 
             <div className="footer-links-col">
-              <h4>Expertises</h4>
+              <h4>{language === 'fr' ? 'Expertises' : 'Expertise'}</h4>
               <ul className="footer-links">
-                <li className="footer-link"><a href="#services" className="interactive">Conseil Stratégique</a></li>
-                <li className="footer-link"><a href="#services" className="interactive">Services Financiers</a></li>
-                <li className="footer-link"><a href="#services" className="interactive">Transformation Digitale</a></li>
-                <li className="footer-link"><a href="#services" className="interactive">Expertise Réglementaire</a></li>
+                <li className="footer-link"><a href="#services" className="interactive">{language === 'fr' ? 'Conseil Stratégique' : 'Strategic Consulting'}</a></li>
+                <li className="footer-link"><a href="#services" className="interactive">{language === 'fr' ? 'Services Financiers' : 'Financial Services'}</a></li>
+                <li className="footer-link"><a href="#services" className="interactive">{language === 'fr' ? 'Transformation Digitale' : 'Digital Transformation'}</a></li>
+                <li className="footer-link"><a href="#services" className="interactive">{language === 'fr' ? 'Expertise Réglementaire' : 'Regulatory Compliance'}</a></li>
               </ul>
             </div>
 
             <div className="footer-newsletter">
               <h4>Newsletter</h4>
-              <p>Recevez nos analyses stratégiques mensuelles sur les opportunités de marché en Afrique centrale.</p>
-              <form className="newsletter-form" onSubmit={(e) => { e.preventDefault(); alert("Merci pour votre inscription !"); }}>
-                <input type="email" placeholder="votre@adresse.com" required className="interactive" />
-                <button type="submit" className="interactive">S'abonner</button>
+              <p>{language === 'fr' ? 'Recevez nos analyses stratégiques mensuelles sur les opportunités de marché en Afrique centrale.' : 'Receive our monthly strategic insights on market opportunities in Central Africa.'}</p>
+              <form className="newsletter-form" onSubmit={(e) => { e.preventDefault(); alert(language === 'fr' ? 'Merci pour votre inscription !' : 'Thank you for subscribing!'); }}>
+                <input type="email" placeholder={language === 'fr' ? 'votre@adresse.com' : 'your@email.com'} required className="interactive" />
+                <button type="submit" className="interactive">{language === 'fr' ? "S'abonner" : 'Subscribe'}</button>
               </form>
             </div>
           </div>
 
           <div className="footer-bottom">
             <div className="footer-copy">
-              &copy; {new Date().getFullYear()} Loryns Strategic Consulting. Tous droits réservés. Mentions Légales | Politique de Confidentialité.
+              {language === 'fr' 
+                ? `© ${new Date().getFullYear()} Loryns Strategic Consulting. Tous droits réservés. Mentions Légales | Politique de Confidentialité.`
+                : `© ${new Date().getFullYear()} Loryns Strategic Consulting. All rights reserved. Legal Mentions | Privacy Policy.`}
             </div>
 
             <div className="footer-socials">
@@ -1999,15 +1953,17 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               <Calendar size={36} />
             </div>
 
-            <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Planifier un entretien stratégique</h3>
+            <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>{language === 'fr' ? 'Planifier un entretien stratégique' : 'Schedule a Strategic Consultation'}</h3>
             <p style={{ color: 'var(--color-text-muted)', marginBottom: '2.5rem' }}>
-              Sélectionnez le type d'entretien avec l'un de nos directeurs associés. La séance dure 30 minutes et a pour but de cadrer vos besoins immédiats.
+              {language === 'fr' 
+                ? "Sélectionnez le type d'entretien avec l'un de nos directeurs associés. La séance dure 30 minutes et a pour but de cadrer vos besoins immédiats." 
+                : "Select the session type with one of our managing partners. The slot lasts 30 minutes and serves to frame your immediate requirements."}
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', textAlign: 'left', marginBottom: '2rem' }}>
               <div 
                 className="interactive"
-                onClick={() => { alert("Session choisie. Redirection simulée vers Calendly..."); setShowRendezVousModal(false); }}
+                onClick={() => { alert(language === 'fr' ? "Session choisie. Redirection simulée vers Calendly..." : "Session selected. Simulated redirection to Calendly..."); setShowRendezVousModal(false); }}
                 style={{
                   border: '1.5px solid rgba(7, 26, 53, 0.1)',
                   borderRadius: '12px',
@@ -2020,15 +1976,15 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                 }}
               >
                 <div>
-                  <h4 style={{ fontSize: '1.05rem', fontWeight: 600 }}>Entretien Diagnostic Initial</h4>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>30 minutes • Visioconférence (Teams/Zoom)</p>
+                  <h4 style={{ fontSize: '1.05rem', fontWeight: 600 }}>{language === 'fr' ? 'Entretien Diagnostic Initial' : 'Initial Diagnostic Meeting'}</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>{language === 'fr' ? '30 minutes • Visioconférence (Teams/Zoom)' : '30 minutes • Video Conference (Teams/Zoom)'}</p>
                 </div>
                 <ArrowRight size={18} style={{ color: 'var(--color-accent)' }} />
               </div>
 
               <div 
                 className="interactive"
-                onClick={() => { alert("Session choisie. Redirection simulée vers Calendly..."); setShowRendezVousModal(false); }}
+                onClick={() => { alert(language === 'fr' ? "Session choisie. Redirection simulée vers Calendly..." : "Session selected. Simulated redirection to Calendly..."); setShowRendezVousModal(false); }}
                 style={{
                   border: '1.5px solid rgba(7, 26, 53, 0.1)',
                   borderRadius: '12px',
@@ -2041,8 +1997,8 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                 }}
               >
                 <div>
-                  <h4 style={{ fontSize: '1.05rem', fontWeight: 600 }}>Consultation Recherche de Financement</h4>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>45 minutes • Visioconférence ou présentiel Akwa</p>
+                  <h4 style={{ fontSize: '1.05rem', fontWeight: 600 }}>{language === 'fr' ? 'Consultation Recherche de Financement' : 'Fundraising Consultation'}</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>{language === 'fr' ? '45 minutes • Visioconférence ou présentiel Akwa' : '45 minutes • Video Conference or On-site at Akwa'}</p>
                 </div>
                 <ArrowRight size={18} style={{ color: 'var(--color-accent)' }} />
               </div>
@@ -2053,7 +2009,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               onClick={() => setShowRendezVousModal(false)}
               style={{ width: '100%' }}
             >
-              Fermer
+              {language === 'fr' ? 'Fermer' : 'Close'}
             </button>
           </div>
         </div>
@@ -2074,7 +2030,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
               <div className="blog-modal-meta">
                 <span className="blog-modal-date">{selectedArticle.date}</span>
                 <span className="blog-modal-separator">•</span>
-                <span className="blog-modal-readtime">Lecture : 5 min</span>
+                <span className="blog-modal-readtime">{language === 'fr' ? 'Lecture : 5 min' : 'Reading time: 5 min'}</span>
               </div>
               <h1 className="blog-modal-title">{selectedArticle.title}</h1>
               
@@ -2084,12 +2040,12 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
 
               {/* SEO Tags metadata display inside article for compliance */}
               <div className="blog-modal-seo-tags">
-                <strong>Mots-clés SEO :</strong> <em>{selectedArticle.keywords}</em>
+                <strong>{language === 'fr' ? 'Mots-clés SEO :' : 'SEO Keywords:'}</strong> <em>{selectedArticle.keywords}</em>
               </div>
 
               <div className="blog-modal-cta">
-                <h3>Besoin d'un accompagnement personnalisé ?</h3>
-                <p>Déterminez la viabilité de votre projet avec un expert lors d'un entretien diagnostic offert de 30 minutes.</p>
+                <h3>{language === 'fr' ? "Besoin d'un accompagnement personnalisé ?" : 'Need personalized guidance?'}</h3>
+                <p>{language === 'fr' ? "Déterminez la viabilité de votre projet avec un expert lors d'un entretien diagnostic offert de 30 minutes." : "Evaluate the viability of your business project with an expert during a free 30-minute diagnostic session."}</p>
                 <button 
                   className="btn btn-primary interactive"
                   onClick={() => {
@@ -2097,7 +2053,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
                     setShowRendezVousModal(true);
                   }}
                 >
-                  Prendre rendez-vous <ArrowRight size={18} />
+                  {language === 'fr' ? 'Prendre rendez-vous' : 'Book a meeting'} <ArrowRight size={18} />
                 </button>
               </div>
             </div>
