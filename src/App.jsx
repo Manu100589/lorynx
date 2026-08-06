@@ -111,7 +111,6 @@ export default function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [processedFounderSrc, setProcessedFounderSrc] = useState(null);
   const [activeValeurIndex, setActiveValeurIndex] = useState(0);
-  const [activeAboutStory, setActiveAboutStory] = useState(0);
   const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'fr');
 
   useEffect(() => {
@@ -450,16 +449,7 @@ export default function App() {
       );
     });
 
-    // About Us split-scroll pinning
-    gsap.utils.toArray('.about-story-block').forEach((block, idx) => {
-      ScrollTrigger.create({
-        trigger: block,
-        start: 'top 50%',
-        end: 'bottom 50%',
-        onEnter: () => setActiveAboutStory(idx),
-        onEnterBack: () => setActiveAboutStory(idx)
-      });
-    });
+
 
     // Reveal 3D Values Carousel on scroll and descroll
     gsap.fromTo('.valeurs-carousel-container', 
@@ -1125,78 +1115,88 @@ export default function App() {
         </div>
       </section>
 
-      {/* Section "Pourquoi Loryns ?" with Story Scroll Pinning */}
-      <section id="about" className="about-story-section">
+      {/* Section "Pourquoi Loryns ?" Redesigned */}
+      <section id="about" className="about-new-section">
         <div className="container">
-          <div className="about-story-header">
-            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('about.tag')}</div>
-            <h2 className="about-section-title mask-reveal-title">
-              <span className="mask-text">{t('about.title')}</span>
-              <span className="mask-overlay"></span>
-            </h2>
-            <p className="about-section-subtitle scroll-fade-p">
-              {t('about.subtitle')}
-            </p>
-          </div>
-
-          <div className="about-story-grid">
-            {/* Left Side: Sticky Visual Pane */}
-            <div className="about-story-left-pin">
-              <div className="about-story-img-container">
-                <div className={`about-story-img-pane ${activeAboutStory === 0 ? 'active' : ''}`}>
-                  <img src="/about_team_collab.png" alt="Collaborateurs Loryns Strategic Consulting" />
+          <div className="about-new-card scroll-fade-p">
+            
+            {/* Left Column: Information */}
+            <div className="about-new-left">
+              <div className="about-new-badge">
+                <Check size={14} className="about-new-badge-icon" />
+                <span>{t('about.badge')}</span>
+              </div>
+              
+              <h2 className="about-new-title">
+                {t('about.titlePre')} <span className="text-highlight">{t('about.titleHighlight')}</span>
+              </h2>
+              
+              <p className="about-new-description">
+                {t('about.description')}
+              </p>
+              
+              <div className="about-new-actions">
+                <a href="#contact" className="btn btn-primary interactive">
+                  {t('about.btnPrimary')}
+                </a>
+                <a href="#services" className="btn btn-outline interactive">
+                  {t('about.btnOutline')}
+                </a>
+              </div>
+              
+              <div className="about-new-stats">
+                <div className="about-new-stat-item">
+                  <div className="stat-value">
+                    <Counter endValue={350} suffix="+" />
+                  </div>
+                  <div className="stat-label">{t('about.stat1Lbl')}</div>
                 </div>
-                <div className={`about-story-img-pane ${activeAboutStory === 1 ? 'active' : ''}`}>
-                  <img src="/about_tech_work.png" alt="Transformation technologique Loryns" />
+                <div className="about-new-stat-item">
+                  <div className="stat-value">
+                    <Counter endValue={100} suffix="%" />
+                  </div>
+                  <div className="stat-label">{t('about.stat2Lbl')}</div>
                 </div>
-                <div className={`about-story-img-pane ${activeAboutStory === 2 ? 'active' : ''}`}>
-                  <img src="/about_team_hands.png" alt="Synergie d'équipe Loryns" />
+                <div className="about-new-stat-item">
+                  <div className="stat-value">
+                    <Counter endValue={15} suffix="+" />
+                  </div>
+                  <div className="stat-label">{t('about.stat3Lbl')}</div>
                 </div>
               </div>
             </div>
-
-            {/* Right Side: Progressive Scrolling Story Texts */}
-            <div className="about-story-right-scroll">
-              <div className="about-story-block scroll-story-block-0" data-story-index="0">
-                <div className="about-story-block-num">{t('about.block0Num')}</div>
-                <h3>{t('about.block0Title')}</h3>
-                <p className="scroll-fade-p">
-                  {t('about.block0Text')}
-                </p>
-                <div className="about-story-stats-inline">
-                  <div className="about-story-stat-item">
-                    <div className="about-story-stat-num">
-                      <Counter endValue={350} prefix="+" />
-                    </div>
-                    <div className="about-story-stat-lbl">{t('about.block0StatLbl')}</div>
-                  </div>
+            
+            {/* Right Column: Visual Image and Testimonial Quote */}
+            <div className="about-new-right">
+              <div className="about-new-image-wrapper">
+                <img src="/about_team_collab.png" alt="Loryns Team Collaboration" className="about-new-img" />
+                
+                {/* Top Right Badge Overlay */}
+                <div className="about-new-img-badge-tr">
+                  <span>{t('about.imgBadgeTr')}</span>
+                </div>
+                
+                {/* Bottom Left Pill Overlay */}
+                <div className="about-new-img-badge-bl">
+                  <Check size={12} className="badge-icon-gold" />
+                  <span>{t('about.imgBadgeBl')}</span>
                 </div>
               </div>
-
-              <div className="about-story-block scroll-story-block-1" data-story-index="1">
-                <div className="about-story-block-num">{t('about.block1Num')}</div>
-                <h3>{t('about.block1Title')}</h3>
-                <p className="scroll-fade-p">
-                  {t('about.block1Text')}
-                </p>
-                <div className="about-story-stats-inline">
-                  <div className="about-story-stat-item">
-                    <div className="about-story-stat-num">
-                      <Counter endValue={100} suffix="%" />
-                    </div>
-                    <div className="about-story-stat-lbl">{t('about.block1StatLbl')}</div>
-                  </div>
+              
+              {/* Testimonial Quote Block */}
+              <div className="about-new-testimonial">
+                <img src="/avatar_jean.png" alt="Jean-Pierre Ngoumou" className="testimonial-avatar" />
+                <div className="testimonial-content">
+                  <p className="testimonial-quote">
+                    {t('about.quote')}
+                  </p>
+                  <h5 className="testimonial-author">
+                    {t('about.author')} <span className="author-role">- {t('about.role')}</span>
+                  </h5>
                 </div>
-              </div>
-
-              <div className="about-story-block scroll-story-block-2" data-story-index="2">
-                <div className="about-story-block-num">{t('about.block2Num')}</div>
-                <h3>{t('about.block2Title')}</h3>
-                <p className="scroll-fade-p">
-                  {t('about.block2Text')}
-                </p>
               </div>
             </div>
+            
           </div>
         </div>
       </section>
