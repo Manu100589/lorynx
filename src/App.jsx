@@ -798,6 +798,20 @@ export default function App() {
     });
   };
 
+  const galleryItems = [
+    { src: "/1740742774600.jpgeee.jpeg", category: language === 'fr' ? "Séminaire" : "Seminar", title: language === 'fr' ? "Conférence Stratégique Akwa" : "Akwa Strategic Keynote" },
+    { src: "/1767904114499.jpg.jpeg", category: language === 'fr' ? "Gouvernance" : "Governance", title: language === 'fr' ? "Comité de Direction Loryns" : "Loryns Board Meeting" },
+    { src: "/1767905080265.jpg.jpeg", category: language === 'fr' ? "Stratégie" : "Strategy", title: language === 'fr' ? "Workshop avec les Associés" : "Partner Workshop Session" },
+    { src: "/1767905084579.jpg.jpeg", category: language === 'fr' ? "Finance" : "Finance", title: language === 'fr' ? "Ingénierie Financière" : "Financial Engineering" },
+    { src: "/1767905091093.jpg.jpeg", category: language === 'fr' ? "Négociation" : "Negotiation", title: language === 'fr' ? "Partenariat Institutionnel Douala" : "Douala Institutional Partnership" },
+    { src: "/1767905095215.jpg.jpeg", category: language === 'fr' ? "Digitalisation" : "Digitalization", title: language === 'fr' ? "Lancement Plateforme PME" : "SME Platform Launch" },
+    { src: "/1767905100381.jpg.jpeg", category: language === 'fr' ? "Cabinet" : "Firm", title: language === 'fr' ? "Réunion Équipe Loryns" : "Loryns Team Alignment" },
+    { src: "/dddd.jpeg", category: language === 'fr' ? "Conseil" : "Advisory", title: language === 'fr' ? "Évaluation de Portefeuille" : "Portfolio Valuation" },
+    { src: "/1740742774600.jpgeee.jpeg", category: language === 'fr' ? "Consulting" : "Consulting", title: language === 'fr' ? "Diagnostic Stratégique PME" : "SME Strategic Diagnosis" },
+    { src: "/1767905095215.jpg.jpeg", category: language === 'fr' ? "Technologie" : "Technology", title: language === 'fr' ? "Audit d'Architecture Cloud" : "Cloud Architecture Audit" },
+    { src: "/dddd.jpeg", category: language === 'fr' ? "Coaching" : "Coaching", title: language === 'fr' ? "Accompagnement de Dirigeant" : "Executive Advisory Support" }
+  ];
+
   const faqs = [
     {
       question: t('faq.list.0.question'),
@@ -1571,20 +1585,19 @@ export default function App() {
           </div>
 
           <div className="gallery-grid">
-            {[...Array(11)].map((_, index) => (
+            {galleryItems.map((item, index) => (
               <div 
                 key={index} 
                 className={`gallery-item item-${index + 1} scroll-fade-p interactive`}
-                onClick={() => alert(language === 'fr' ? "Prêt pour l'insertion de vos photos !" : "Ready for your photo uploads!")}
+                onClick={() => alert(language === 'fr' ? `Aperçu : ${item.title}` : `Preview: ${item.title}`)}
               >
-                <div className="gallery-item-placeholder">
-                  <div className="gallery-item-icon-box">
-                    <Plus size={22} />
-                  </div>
-                  <div>
-                    <span className="gallery-item-title">{t('gallery.tag')} {String(index + 1).padStart(2, '0')}</span>
-                    <p className="gallery-item-desc">{t('gallery.placeholder')}</p>
-                  </div>
+                <img src={item.src} alt={item.alt} loading="lazy" />
+                <div className="gallery-overlay-icon">
+                  <Plus size={24} />
+                </div>
+                <div className="gallery-item-overlay">
+                  <span className="gallery-item-tag">{item.category}</span>
+                  <h4 className="gallery-item-caption">{item.title}</h4>
                 </div>
               </div>
             ))}
