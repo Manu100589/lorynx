@@ -34,7 +34,8 @@ import {
   UserCheck,
   RefreshCw,
   Clock,
-  Layers
+  Layers,
+  Plus
 } from 'lucide-react';
 import './App.css';
 import { translations } from './translations';
@@ -977,6 +978,7 @@ export default function App() {
             <a href="#valeurs" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.valeurs')}</a>
             <a href="#services" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.services')}</a>
             <a href="#methodology" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.methodology')}</a>
+            <a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.gallery')}</a>
             <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.insights')}</a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.contact')}</a>
             
@@ -1554,7 +1556,41 @@ export default function App() {
         </section>
       </div>
 
+      {/* Galerie Section */}
+      <section id="gallery" className="gallery-section">
+        <div className="container">
+          <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('gallery.tag')}</div>
+            <h2 className="section-title mask-reveal-title">
+              <span className="mask-text">{t('gallery.title')}</span>
+              <span className="mask-overlay"></span>
+            </h2>
+            <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
+              {t('gallery.subtitle')}
+            </p>
+          </div>
 
+          <div className="gallery-grid">
+            {[...Array(11)].map((_, index) => (
+              <div 
+                key={index} 
+                className={`gallery-item item-${index + 1} scroll-fade-p interactive`}
+                onClick={() => alert(language === 'fr' ? "Prêt pour l'insertion de vos photos !" : "Ready for your photo uploads!")}
+              >
+                <div className="gallery-item-placeholder">
+                  <div className="gallery-item-icon-box">
+                    <Plus size={22} />
+                  </div>
+                  <div>
+                    <span className="gallery-item-title">{t('gallery.tag')} {String(index + 1).padStart(2, '0')}</span>
+                    <p className="gallery-item-desc">{t('gallery.placeholder')}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Témoignages */}
       <section className="testimonials-section">

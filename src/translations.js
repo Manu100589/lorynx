@@ -6,6 +6,7 @@ export const translations = {
       valeurs: "Valeurs",
       services: "Nos Services",
       methodology: "Méthodologie",
+      gallery: "Galerie",
       insights: "Insights",
       contact: "Contact",
       rdv: "Prise de RDV"
@@ -230,6 +231,12 @@ export const translations = {
         }
       ]
     },
+    gallery: {
+      tag: "Galerie",
+      title: "Médiathèque Loryns",
+      subtitle: "Plongez en images au cœur de nos séminaires, nos moments d'ingénierie et nos collaborations stratégiques.",
+      placeholder: "En attente de votre image..."
+    },
     testimonials: {
       tag: "Témoignages",
       title: "La voix de nos clients",
@@ -426,6 +433,7 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
       valeurs: "Values",
       services: "Services",
       methodology: "Methodology",
+      gallery: "Gallery",
       insights: "Insights",
       contact: "Contact",
       rdv: "Book Consultation"
@@ -649,6 +657,12 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
           desc: "Monthly performance monitoring and strategic adjustments to ensure long-term stability."
         }
       ]
+    },
+    gallery: {
+      tag: "Gallery",
+      title: "Loryns Media Library",
+      subtitle: "Explore our seminars, engineering sessions, and strategic collaborations in images.",
+      placeholder: "Awaiting your image upload..."
     },
     testimonials: {
       tag: "Testimonials",
