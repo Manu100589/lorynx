@@ -3658,4 +3658,99 @@
   }
 }
 
+/* Citations Section Styling */
+.quotes-section {
+  padding: 6rem 0;
+  background-color: #030C18;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quotes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3.5rem;
+}
+
+.quotes-header-left {
+  max-width: 600px;
+}
+
+.quotes-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-top: 0.75rem;
+}
+
+.quotes-carousel-wrapper {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+}
+
+.quotes-carousel-track {
+  display: flex;
+  gap: 2.25rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0 max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  scrollbar-width: none;
+}
+
+.quotes-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.quote-card {
+  min-width: 420px;
+  width: 420px;
+  aspect-ratio: 1 / 1;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.quote-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quote-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-accent);
+  box-shadow: 0 25px 45px rgba(200, 169, 90, 0.15);
+}
+
+.quote-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Citations Responsive Adjustments */
+@media (max-width: 768px) {
+  .quotes-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .quote-card {
+    min-width: 320px;
+    width: 320px;
+  }
+}
+
 

@@ -104,6 +104,7 @@ export default function App() {
   const [loaderVisible, setLoaderVisible] = useState(true);
   const [navScrolled, setNavScrolled] = useState(false);
   const servicesCarouselRef = useRef(null);
+  const quotesCarouselRef = useRef(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -950,6 +951,16 @@ export default function App() {
     }
   };
 
+  const scrollQuotes = (direction) => {
+    if (quotesCarouselRef.current) {
+      const scrollAmount = quotesCarouselRef.current.offsetWidth * 0.75;
+      quotesCarouselRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     alert("Votre demande de consultation a bien été envoyée. Un associé de Loryns Strategic Consulting vous contactera sous 24 heures.");
@@ -996,7 +1007,6 @@ export default function App() {
             <a href="#services" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.services')}</a>
             <a href="#methodology" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.methodology')}</a>
             <a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.gallery')}</a>
-            <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.insights')}</a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="navbar-link interactive">{t('nav.contact')}</a>
             
             {/* Language Selector */}
@@ -1670,46 +1680,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section id="blog" className="blog-section">
-        <div className="container">
-          <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('blog.tag')}</div>
-            <h2 className="section-title mask-reveal-title">
-              <span className="mask-text">{t('blog.title')}</span>
-              <span className="mask-overlay"></span>
-            </h2>
-            <p className="scroll-fade-p" style={{ marginTop: '1.5rem', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-              {t('blog.subtitle')}
-            </p>
-          </div>
 
-          <div className="blog-grid">
-            {blogArticles.map((article) => (
-              <div 
-                key={article.id} 
-                className="blog-card interactive" 
-                onClick={() => setSelectedArticle(article)}
-                style={{ cursor: 'pointer' }}
-              >
-                <div className="blog-card-image reveal-image-container">
-                  <div className="reveal-image-overlay"></div>
-                  <img src={article.image} alt={article.title} className="parallax-img" />
-                  <div className="blog-card-category">{article.category}</div>
-                </div>
-                <div className="blog-card-content">
-                  <div className="blog-card-date">{article.date}</div>
-                  <h3>{article.title}</h3>
-                  <p>{article.excerpt}</p>
-                  <div className="blog-card-link">
-                    {t('blog.readMore')} <ChevronRight size={16} />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Accordion */}
       <section className="faq-section">
@@ -1887,6 +1858,42 @@ export default function App() {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Citations Section */}
+      <section className="quotes-section">
+        <div className="container">
+          <div className="quotes-header">
+            <div className="quotes-header-left">
+              <div className="section-tag">★ {language === 'fr' ? "Inspirations" : "Inspirations"}</div>
+              <h2 className="quotes-title">
+                {language === 'fr' 
+                  ? "Pensées et principes directeurs d'excellence d'affaires." 
+                  : "Key thoughts and principles guiding business excellence."}
+              </h2>
+            </div>
+            <div className="quotes-header-right">
+              <div className="quotes-carousel-nav">
+                <button className="carousel-nav-btn prev interactive" onClick={() => scrollQuotes('left')} aria-label="Previous">
+                  <ChevronLeft size={20} />
+                </button>
+                <button className="carousel-nav-btn next interactive" onClick={() => scrollQuotes('right')} aria-label="Next">
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="quotes-carousel-wrapper">
+            <div className="quotes-carousel-track" ref={quotesCarouselRef}>
+              {[1, 2, 3, 4, 5].map((num) => (
+                <div key={num} className="quote-card interactive">
+                  <img src={`/quote${num}.jpg`} alt={`Loryns Strategic Inspiration ${num}`} loading="lazy" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
