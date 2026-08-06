@@ -968,6 +968,9 @@ export default function App() {
 
   return (
     <div ref={containerRef}>
+      {/* Premium noise grain layer */}
+      <div className="noise-overlay"></div>
+
       {/* Custom Mouse Cursor */}
       <CustomCursor cursorPos={cursorPos} cursorTrail={cursorTrail} cursorHovered={cursorHovered} />
 
@@ -1049,7 +1052,7 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero">
+      <section id="hero" className="hero overlap-section" style={{ '--z-index': 1 }}>
         <div className="hero-frame-container">
           <div className="hero-inner-frame">
             {/* Ambient Background Video */}
@@ -1142,7 +1145,7 @@ export default function App() {
       </section>
 
       {/* Section "Pourquoi Loryns ?" Redesigned */}
-      <section id="about" className="about-new-section">
+      <section id="about" className="about-new-section overlap-section" style={{ '--z-index': 2 }}>
         <div className="container">
           <div className="about-new-card scroll-fade-p">
             
@@ -1228,7 +1231,7 @@ export default function App() {
       </section>
 
       {/* Pinned Vision Section */}
-      <section id="vision" className="vision-pinned-section">
+      <section id="vision" className="vision-pinned-section overlap-section" style={{ '--z-index': 3 }}>
         <div className="vision-sticky-wrapper">
           <div className="vision-bg-pattern"></div>
           <div className="vision-ambient-glow"></div>
@@ -1302,7 +1305,7 @@ export default function App() {
       </section>
 
       {/* Nos Valeurs & Pourquoi collaborer (Fondations & Valeur ajoutée) */}
-      <section id="valeurs" className="valeurs-benefits-section">
+      <section id="valeurs" className="valeurs-benefits-section overlap-section" style={{ '--z-index': 4 }}>
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>{t('valeurs.tag')}</div>
@@ -1444,7 +1447,7 @@ export default function App() {
       </section>
 
       {/* Nos Services Redesigned as a Horizontal Carousel */}
-      <section id="services" className="services-section">
+      <section id="services" className="services-section overlap-section" style={{ '--z-index': 5 }}>
         <div className="container">
           
           <div className="services-new-header">
@@ -1521,7 +1524,7 @@ export default function App() {
       </section>
 
       {/* Pinned Methodology Section */}
-      <div className="methodology-pinned-section" id="methodology">
+      <div className="methodology-pinned-section" id="methodology" style={{ '--z-index': 6 }}>
         <section className="methodology-section" style={{ padding: 0 }}>
           <div className="methodology-viewport-wrapper" style={{ position: 'relative', height: '100vh', minHeight: '560px', display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100vw', overflow: 'hidden' }}>
             
@@ -1591,7 +1594,7 @@ export default function App() {
       </div>
 
       {/* Galerie Section */}
-      <section id="gallery" className="gallery-section">
+      <section id="gallery" className="gallery-section overlap-section" style={{ '--z-index': 7 }}>
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>{t('gallery.tag')}</div>
@@ -1625,7 +1628,7 @@ export default function App() {
       </section>
 
       {/* Témoignages */}
-      <section className="testimonials-section">
+      <section id="testimonials" className="testimonials-section overlap-section" style={{ '--z-index': 8 }}>
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>{t('testimonials.tag')}</div>
