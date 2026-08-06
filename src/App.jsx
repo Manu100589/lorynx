@@ -37,6 +37,7 @@ import {
   Layers
 } from 'lucide-react';
 import './App.css';
+import { translations } from './translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
