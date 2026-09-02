@@ -1906,7 +1906,7 @@
 
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
 }
 
@@ -2178,6 +2178,83 @@
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
+}
+
+/* Blog Article Photo Gallery */
+.blog-modal-gallery {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(200, 169, 90, 0.2);
+}
+
+.blog-modal-gallery .blog-h2 {
+  margin-bottom: 1.5rem;
+}
+
+.blog-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .blog-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blog-gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  border: 1px solid rgba(200, 169, 90, 0.15);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.blog-gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(200, 169, 90, 0.2);
+  border-color: var(--color-accent);
+}
+
+.blog-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.blog-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.blog-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 26, 53, 0.7) 0%, transparent 50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.blog-gallery-item:hover .blog-gallery-overlay {
+  opacity: 1;
+}
+
+.blog-gallery-overlay svg {
+  color: var(--color-accent);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 /* Modal Backdrop & Reader Layout Refinements */

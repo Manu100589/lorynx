@@ -368,6 +368,44 @@ Chez *Loryns Strategic Consulting*, nous combinons le conseil stratégique tradi
 
 *Prêt à accélérer la performance digitale de votre entreprise ? Discutez avec un de nos consultants techniques pour concevoir votre plan de transition.*
           `
+        },
+        {
+          title: "Loryns Youta élevé au grade de Doctor Honoris Causa par Kennedy University (USA)",
+          excerpt: "Le fondateur de Loryns Strategic Consulting, International Senior Executive Coach depuis 2022, a reçu le titre de Doctor Honoris Causa en Strategic Leadership & Corporate Governance lors d'une cérémonie internationale à New Delhi, Inde.",
+          content: `
+# Loryns Youta : Doctor Honoris Causa en Strategic Leadership & Corporate Governance
+
+Le 08 août 2026, à l'hôtel Sarovar Portico de New Delhi (Inde), **Loryns Youta** a été élevé au grade de **Doctor Honoris Causa** dans la spécialisation du **Strategic Leadership & Corporate Governance** par **Kennedy University Campus** des États-Unis, lors de l'International Conferment Award Ceremony 2026.
+
+Cette distinction prestigieuse vient couronner un parcours d'excellence dédié à l'accompagnement des dirigeants et des organisations vers la performance stratégique et opérationnelle.
+
+## Un parcours d'excellence en coaching exécutif
+
+Depuis 2022, Loryns Youta exerce en tant qu'**International Senior Executive Coach**, travaillant dans l'accompagnement des dirigeants et des organisations dans l'excellence stratégique et opérationnelle avec des équipes performantes.
+
+Son expertise a été sollicitée par de grandes organisations, parmi lesquelles :
+* **Orange Business** : accompagnement stratégique des équipes dirigeantes
+* **ONG ONE MISSION** : coaching de leadership et gouvernance organisationnelle
+* **Grâce Assur** : transformation managériale et performance opérationnelle
+
+## Reconnaissance internationale
+
+En 2022, Loryns Youta a été **nominé Meilleur Coach par la Fédération Africaine de Coaching** lors d'une cérémonie prestigieuse à l'hôtel Azalaï, une reconnaissance qui a confirmé sa position parmi les coachs les plus influents du continent africain.
+
+## Des certifications d'excellence
+
+Le parcours académique et professionnel de Loryns Youta est jalonné de certifications prestigieuses :
+* **Certifications ICF** (International Coaching Federation) — la référence mondiale en matière de coaching professionnel
+* **Marketing, Commerce et Vente** — Ascencia Business School, Collège de Paris
+
+## La consécration : Doctor Honoris Causa
+
+La cérémonie du 08 août 2026 à New Delhi a réuni des personnalités internationales de premier plan. Loryns Youta a reçu son diplôme et son trophée des mains des représentants de Kennedy University, entouré de leaders mondiaux en stratégie, gouvernance et leadership.
+
+Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate Governance** témoigne de l'impact concret et mesurable de son travail auprès des organisations africaines et internationales.
+
+*Cette consécration internationale renforce la mission de Loryns Strategic Consulting : accompagner les dirigeants africains vers l'excellence mondiale en matière de leadership stratégique et de gouvernance d'entreprise.*
+          `
         }
       ]
     },
@@ -798,6 +836,44 @@ Rather than buying expensive software that will not be adapted to your teams, we
 At *Loryns Strategic Consulting*, we combine traditional strategic consulting with software engineering. Our engineers design custom automation bridges and deploy business intelligence reporting solutions to streamline your managerial operations. We ensure that every technological investment translates into an immediate increase in your operational profitability.
 
 *Ready to accelerate your company's digital performance? Discuss with one of our technical consultants to design your transition plan.*
+          `
+        },
+        {
+          title: "Loryns Youta Elevated to Doctor Honoris Causa by Kennedy University (USA)",
+          excerpt: "The founder of Loryns Strategic Consulting, International Senior Executive Coach since 2022, received the title of Doctor Honoris Causa in Strategic Leadership & Corporate Governance during an international ceremony in New Delhi, India.",
+          content: `
+# Loryns Youta: Doctor Honoris Causa in Strategic Leadership & Corporate Governance
+
+On August 8, 2026, at the Sarovar Portico Hotel in New Delhi (India), **Loryns Youta** was elevated to the rank of **Doctor Honoris Causa** specializing in **Strategic Leadership & Corporate Governance** by **Kennedy University Campus** of the United States, during the International Conferment Award Ceremony 2026.
+
+This prestigious distinction crowns a career of excellence dedicated to guiding leaders and organizations toward strategic and operational performance.
+
+## A Track Record of Excellence in Executive Coaching
+
+Since 2022, Loryns Youta has served as an **International Senior Executive Coach**, working to support leaders and organizations in achieving strategic and operational excellence with high-performing teams.
+
+His expertise has been sought by major organizations, including:
+* **Orange Business**: strategic coaching for executive teams
+* **NGO ONE MISSION**: leadership coaching and organizational governance
+* **Grâce Assur**: managerial transformation and operational performance
+
+## International Recognition
+
+In 2022, Loryns Youta was **nominated Best Coach by the African Coaching Federation** during a prestigious ceremony at the Azalaï Hotel, a recognition that confirmed his position among the most influential coaches on the African continent.
+
+## Certifications of Excellence
+
+Loryns Youta's academic and professional journey is marked by prestigious certifications:
+* **ICF Certifications** (International Coaching Federation) — the global reference in professional coaching
+* **Marketing, Commerce and Sales** — Ascencia Business School, Collège de Paris
+
+## The Ultimate Consecration: Doctor Honoris Causa
+
+The August 8, 2026 ceremony in New Delhi brought together leading international personalities. Loryns Youta received his diploma and trophy from the representatives of Kennedy University, surrounded by global leaders in strategy, governance and leadership.
+
+This distinction of **Doctor Honoris Causa in Strategic Leadership & Corporate Governance** testifies to the concrete and measurable impact of his work with African and international organizations.
+
+*This international consecration reinforces the mission of Loryns Strategic Consulting: to guide African leaders toward global excellence in strategic leadership and corporate governance.*
           `
         }
       ]

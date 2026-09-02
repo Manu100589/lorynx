@@ -754,6 +754,23 @@ export default function App() {
       image: "/about_team_hands.png",
       keywords: "transformation digitale PME, performance opérationnelle, digitalisation Douala, automatisation processus",
       content: t('blog.articles.2.content')
+    },
+    {
+      id: 4,
+      category: "Coaching & Leadership",
+      date: "08 Août 2026",
+      title: t('blog.articles.3.title'),
+      excerpt: t('blog.articles.3.excerpt'),
+      image: "/blog_honoris_diploma.jpg",
+      keywords: "Doctor Honoris Causa, Kennedy University, Strategic Leadership, Corporate Governance, Loryns Youta, executive coaching, ICF certification",
+      content: t('blog.articles.3.content'),
+      gallery: [
+        "/blog_honoris_diploma.jpg",
+        "/blog_honoris_ceremony.jpg",
+        "/blog_honoris_group.jpg",
+        "/blog_honoris_award.jpg",
+        "/blog_honoris_guests.jpg"
+      ]
     }
   ];
 
@@ -1683,7 +1700,38 @@ export default function App() {
         </div>
       </section>
 
+      {/* Blog Section */}
+      <section id="blog" className="blog-section">
+        <div className="container">
+          <div className="section-header" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>{t('blog.tag')}</div>
+            <h2 className="section-title mask-reveal-title">
+              <span className="mask-text">{t('blog.title')}</span>
+              <span className="mask-overlay"></span>
+            </h2>
+            <p className="section-subtitle">{t('blog.subtitle')}</p>
+          </div>
 
+          <div className="blog-grid">
+            {blogArticles.map((article) => (
+              <div key={article.id} className="blog-card interactive" onClick={() => setSelectedArticle(article)}>
+                <div className="blog-card-image">
+                  <img src={article.image} alt={article.title} loading="lazy" />
+                  <span className="blog-card-category">{article.category}</span>
+                </div>
+                <div className="blog-card-content">
+                  <span className="blog-card-date">{article.date}</span>
+                  <h3>{article.title}</h3>
+                  <p>{article.excerpt}</p>
+                  <span className="blog-card-link">
+                    {t('blog.readMore')} <ArrowRight size={16} />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* FAQ Accordion */}
       <section className="faq-section">
@@ -2106,6 +2154,23 @@ export default function App() {
               <div className="blog-modal-body">
                 {renderArticleContent(selectedArticle.content)}
               </div>
+
+              {/* Photo Gallery for articles with images */}
+              {selectedArticle.gallery && selectedArticle.gallery.length > 0 && (
+                <div className="blog-modal-gallery">
+                  <h2 className="blog-h2">{language === 'fr' ? '📸 Galerie Photos — Cérémonie de remise du diplôme' : '📸 Photo Gallery — Diploma Award Ceremony'}</h2>
+                  <div className="blog-gallery-grid">
+                    {selectedArticle.gallery.map((img, idx) => (
+                      <div key={idx} className="blog-gallery-item interactive" onClick={() => window.open(img, '_blank')}>
+                        <img src={img} alt={`${selectedArticle.title} - Photo ${idx + 1}`} loading="lazy" />
+                        <div className="blog-gallery-overlay">
+                          <ArrowUpRight size={24} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* SEO Tags metadata display inside article for compliance */}
               <div className="blog-modal-seo-tags">
