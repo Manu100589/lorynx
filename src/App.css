@@ -2042,6 +2042,51 @@
   animation: modalScaleUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+.blog-modal-top-actions {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to bottom, var(--color-secondary) 60%, transparent);
+}
+
+.blog-share-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  border: 1.5px solid rgba(200, 169, 90, 0.3);
+  background: rgba(200, 169, 90, 0.08);
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.blog-share-btn:hover {
+  background: rgba(200, 169, 90, 0.18);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(200, 169, 90, 0.15);
+}
+
+.blog-share-btn.copied {
+  background: rgba(46, 204, 113, 0.12);
+  border-color: rgba(46, 204, 113, 0.4);
+  color: #2ecc71;
+}
+
+.blog-modal-top-actions .modal-close-btn {
+  position: static;
+}
+
 .blog-modal-header-image {
   position: relative;
   height: 350px;

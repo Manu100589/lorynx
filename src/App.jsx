@@ -35,7 +35,9 @@ import {
   RefreshCw,
   Clock,
   Layers,
-  Plus
+  Plus,
+  Link2,
+  Share2
 } from 'lucide-react';
 import './App.css';
 import { translations } from './translations';
@@ -110,6 +112,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showRendezVousModal, setShowRendezVousModal] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [linkCopied, setLinkCopied] = useState(false);
   const [processedFounderSrc, setProcessedFounderSrc] = useState(null);
   const [activeValeurIndex, setActiveValeurIndex] = useState(0);
   const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'fr');
@@ -733,7 +736,8 @@ export default function App() {
       excerpt: t('blog.articles.0.excerpt'),
       image: "/boardroom_meeting.png",
       keywords: "restructuration entreprise Cameroun, gouvernance stratégique, gestion de crise PME, Loryns Consulting",
-      content: t('blog.articles.0.content')
+      content: t('blog.articles.0.content'),
+      slug: "restructuration-entreprise-cameroun"
     },
     {
       id: 2,
@@ -743,7 +747,8 @@ export default function App() {
       excerpt: t('blog.articles.1.excerpt'),
       image: "/about_tech_work.png",
       keywords: "levée de fonds Afrique, financement PME Cameroun, ingénierie financière, BDEAC, banque Douala",
-      content: t('blog.articles.1.content')
+      content: t('blog.articles.1.content'),
+      slug: "levee-de-fonds-afrique-centrale"
     },
     {
       id: 3,
@@ -753,7 +758,8 @@ export default function App() {
       excerpt: t('blog.articles.2.excerpt'),
       image: "/about_team_hands.png",
       keywords: "transformation digitale PME, performance opérationnelle, digitalisation Douala, automatisation processus",
-      content: t('blog.articles.2.content')
+      content: t('blog.articles.2.content'),
+      slug: "transformation-digitale-pme"
     },
     {
       id: 4,
@@ -770,9 +776,50 @@ export default function App() {
         "/blog_honoris_group.jpg",
         "/blog_honoris_award.jpg",
         "/blog_honoris_guests.jpg"
-      ]
+      ],
+      slug: "doctor-honoris-causa-kennedy-university"
     }
   ];
+
+  // Helper to open an article and update URL hash
+  const openArticle = (article) => {
+    setSelectedArticle(article);
+    setLinkCopied(false);
+    window.history.pushState(null, '', `#article-${article.slug}`);
+  };
+
+  // Helper to close article and clear hash
+  const closeArticle = () => {
+    setSelectedArticle(null);
+    setLinkCopied(false);
+    window.history.pushState(null, '', window.location.pathname);
+  };
+
+  // Copy article link to clipboard
+  const copyArticleLink = () => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2500);
+    });
+  };
+
+  // Open article from URL hash on load and hash change
+  useEffect(() => {
+    const openFromHash = () => {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#article-')) {
+        const slug = hash.replace('#article-', '');
+        const article = blogArticles.find(a => a.slug === slug);
+        if (article) {
+          setSelectedArticle(article);
+        }
+      }
+    };
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+    return () => window.removeEventListener('hashchange', openFromHash);
+  }, []);
 
   const renderArticleContent = (content) => {
     return content.split('\n\n').map((block, idx) => {
@@ -1714,7 +1761,7 @@ export default function App() {
 
           <div className="blog-grid">
             {blogArticles.map((article) => (
-              <div key={article.id} className="blog-card interactive" onClick={() => setSelectedArticle(article)}>
+              <div key={article.id} className="blog-card interactive" onClick={() => openArticle(article)}>
                 <div className="blog-card-image">
                   <img src={article.image} alt={article.title} loading="lazy" />
                   <span className="blog-card-category">{article.category}</span>
@@ -2134,11 +2181,16 @@ export default function App() {
 
       {/* Blog Article Full View Modal */}
       {selectedArticle && (
-        <div className="modal-backdrop" onClick={() => setSelectedArticle(null)}>
+        <div className="modal-backdrop" onClick={closeArticle}>
           <div className="blog-modal-card" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn interactive" onClick={() => setSelectedArticle(null)}>
-              <X size={24} />
-            </button>
+            <div className="blog-modal-top-actions">
+              <button className={`blog-share-btn interactive ${linkCopied ? 'copied' : ''}`} onClick={copyArticleLink} title={language === 'fr' ? 'Copier le lien' : 'Copy link'}>
+                {linkCopied ? <><Check size={16} /> <span>{language === 'fr' ? 'Lien copié !' : 'Link copied!'}</span></> : <><Link2 size={16} /> <span>{language === 'fr' ? 'Partager' : 'Share'}</span></>}
+              </button>
+              <button className="modal-close-btn interactive" onClick={closeArticle}>
+                <X size={24} />
+              </button>
+            </div>
             <div className="blog-modal-header-image">
               <img src={selectedArticle.image} alt={selectedArticle.title} />
               <div className="blog-modal-category">{selectedArticle.category}</div>
@@ -2183,7 +2235,7 @@ export default function App() {
                 <button 
                   className="btn btn-primary interactive"
                   onClick={() => {
-                    setSelectedArticle(null);
+                    closeArticle();
                     setShowRendezVousModal(true);
                   }}
                 >
