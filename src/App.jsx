@@ -244,20 +244,10 @@ export default function App() {
   // GSAP Animations
   useGSAP(() => {
     if (loading) {
-      // Loader SVG drawing
-      gsap.fromTo('.loader-logo-circle', 
-        { strokeDasharray: 251, strokeDashoffset: 251 }, 
-        { strokeDashoffset: 0, duration: 1.5, ease: 'power2.inOut' }
+      gsap.fromTo('.loader-logo-image',
+        { opacity: 0, scale: 0.96, y: 12 },
+        { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'power2.out' }
       );
-      gsap.fromTo('.loader-logo-bars', 
-        { strokeDasharray: 100, strokeDashoffset: 100 }, 
-        { strokeDashoffset: 0, duration: 1.5, delay: 0.3, ease: 'power2.out' }
-      );
-      gsap.fromTo('.loader-logo-arrow', 
-        { strokeDasharray: 100, strokeDashoffset: 100 }, 
-        { strokeDashoffset: 0, duration: 1.5, delay: 0.6, ease: 'power2.out' }
-      );
-      gsap.to('.loader-text', { opacity: 1, y: 0, duration: 0.8, delay: 1.2 });
       return;
     }
 
@@ -972,12 +962,7 @@ export default function App() {
       {/* Premium Loader */}
       {loaderVisible && (
         <div className="loader-wrapper" style={{ opacity: loading ? 1 : 0, visibility: loading ? 'visible' : 'hidden' }}>
-          <svg className="loader-logo-svg" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="40" stroke="#C8A95A" strokeWidth="2.5" fill="none" className="loader-logo-circle" />
-            <path d="M35 65 L35 55 M45 65 L45 45 M55 65 L55 35 M65 65 L65 25" stroke="#C8A95A" strokeWidth="3.5" strokeLinecap="round" fill="none" className="loader-logo-bars" />
-            <path d="M30 65 L45 45 L55 35 L68 22 M60 22 L68 22 L68 30" stroke="#C8A95A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" className="loader-logo-arrow" />
-          </svg>
-          <div className="loader-text">LORYNS CONSULTING</div>
+          <img src="/LOGO.png" alt="Loryns Strategic Consulting" className="loader-logo-image" />
         </div>
       )}
 
@@ -985,12 +970,7 @@ export default function App() {
       <header className={`navbar ${navScrolled ? 'scrolled' : ''}`}>
         <div className="container">
           <a href="#" className="navbar-brand interactive">
-            <svg className="navbar-logo-icon" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="40" stroke="#C8A95A" strokeWidth="3" />
-              <path d="M35 65 L35 55 M45 65 L45 45 M55 65 L55 35 M65 65 L65 25" stroke="#C8A95A" strokeWidth="4.5" strokeLinecap="round" />
-              <path d="M30 65 L45 45 L55 35 L68 22 M60 22 L68 22 L68 30" stroke="#C8A95A" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span>LORYNS</span>
+            <img src="/LOGO.png" alt="Loryns Strategic Consulting — Excellence is our average" className="site-brand-logo site-brand-logo--navbar" />
           </a>
 
           <nav className={`navbar-menu ${mobileMenuOpen ? 'open' : ''}`}>
@@ -1916,12 +1896,7 @@ export default function App() {
           <div className="footer-top">
             <div className="footer-brand">
               <a href="#" className="footer-brand-logo interactive">
-                <svg className="navbar-logo-icon" viewBox="0 0 100 100" style={{ width: '40px', height: '40px' }}>
-                  <circle cx="50" cy="50" r="40" stroke="#C8A95A" strokeWidth="3" />
-                  <path d="M35 65 L35 55 M45 65 L45 45 M55 65 L55 35 M65 65 L65 25" stroke="#C8A95A" strokeWidth="4.5" strokeLinecap="round" />
-                  <path d="M30 65 L45 45 L55 35 L68 22 M60 22 L68 22 L68 30" stroke="#C8A95A" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span style={{ fontSize: '1.4rem' }}>LORYNS</span>
+                <img src="/LOGO.png" alt="Loryns Strategic Consulting — Excellence is our average" className="site-brand-logo site-brand-logo--footer" />
               </a>
               <p>{language === 'fr' ? 'Cabinet conseil stratégique international de haut niveau. Nous accompagnons les dirigeants et propulsons la création de valeur durable en Afrique.' : 'High-level international strategic consulting firm. We guide business leaders and drive sustainable value creation in Africa.'}</p>
             </div>
