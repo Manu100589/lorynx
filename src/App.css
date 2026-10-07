@@ -1298,6 +1298,11 @@
   color: var(--color-text-muted);
 }
 
+.testimonial-rating {
+  color: #A47D20;
+  letter-spacing: 0.08em;
+}
+
 .testimonial-controls {
   display: flex;
   justify-content: center;
