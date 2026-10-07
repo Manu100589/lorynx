@@ -35,10 +35,7 @@ export const translations = {
       stat3Val: "15+",
       stat3Lbl: "Années d'Advisory",
       imgBadgeTr: "Afrique",
-      imgBadgeBl: "Présence Douala & Yaoundé",
-      quote: "« L'accompagnement de Loryns a transformé notre gouvernance et sécurisé nos financements d'expansion. »",
-      author: "Jean-Pierre Ngoumou",
-      role: "CEO, SITRACEL S.A."
+      imgBadgeBl: "Présence Douala & Yaoundé"
     },
     vision: {
       tag: "Perspectives",
@@ -246,22 +243,40 @@ export const translations = {
       title: "La voix de nos clients",
       list: [
         {
-          quote: "Loryns Consulting a transformé notre gouvernance. Grâce à leur diagnostic rigoureux et leur plan d'action, notre chiffre d'affaires a augmenté de 40% en deux ans.",
-          author: "Jean-Pierre Ngoumou",
-          role: "Directeur Général",
-          company: "SITRACEL S.A."
+          quote: "Loryns, il y’a Dix ans, nous a accompagné dans la dimension spirituelle du management de l’entreprise. Aujourd’hui la Diva Academy est leader comme centre de formation professionnelle agréé par l’Etat dans la sous-région Afrique centrale. Je souhaite le meilleur à ses activités professionnelles.",
+          author: "Paul Yann",
+          source: "Avis Google",
+          rating: 5
         },
         {
-          quote: "Leur expertise en ingénierie financière a été la clé du succès de notre levée de fonds pour notre expansion industrielle en Afrique centrale. Un accompagnement exceptionnel.",
-          author: "Sonia Mokoko",
-          role: "Co-fondatrice",
-          company: "EcoEnergy Group"
+          quote: "Je remercie le cabinet Loryns Strategic pour son accompagnement. Je recommande",
+          author: "Marylise N.JONGA",
+          source: "Avis Google",
+          rating: 5
         },
         {
-          quote: "Un cabinet qui allie rigueur opérationnelle et intégrité absolue. Ils nous ont aidés à digitaliser nos processus internes avec une transition fluide.",
-          author: "Alain Nguéma",
-          role: "Directeur des Opérations",
-          company: "CamExpress Logistics"
+          quote: "Loryns est un collaborateur dévoué,et accompagnant efficace, à l'écoute et professionnel.",
+          author: "charles Jagodic",
+          source: "Avis Google",
+          rating: 5
+        },
+        {
+          quote: "Je vous le recommande vivement, vous reviendrez avec vos témoignages",
+          author: "Samuel Mambo",
+          source: "Avis Google",
+          rating: 5
+        },
+        {
+          quote: "Loryns est un excellent coach passionné qui a pour vocation l'atteinte des résultats dans son accompagnement avec les clients qu'ils montent en compétence. Ça été un grand plaisir de collaborer avec lui.",
+          author: "Olive NDJABI",
+          source: "Recommandation LinkedIn",
+          rating: 0
+        },
+        {
+          quote: "J’ai co-animé une masterclass avec Loryns Youta devant des grandes entreprises et des entrepreneurs : son impact a été immédiat et transformateur…",
+          author: "Arnaud Boris NGOSSO",
+          source: "Recommandation LinkedIn · extrait",
+          rating: 0
         }
       ]
     },
@@ -504,10 +519,7 @@ Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate 
       stat3Val: "15+",
       stat3Lbl: "Years in Advisory",
       imgBadgeTr: "Africa",
-      imgBadgeBl: "Douala & Yaounde Offices",
-      quote: "“Loryns' advisory transformed our governance and secured our expansion funding rounds.”",
-      author: "Jean-Pierre Ngoumou",
-      role: "CEO, SITRACEL S.A."
+      imgBadgeBl: "Douala & Yaounde Offices"
     },
     vision: {
       tag: "Perspectives",
@@ -715,22 +727,40 @@ Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate 
       title: "What Our Clients Say",
       list: [
         {
-          quote: "Loryns Consulting has transformed our governance. Thanks to their rigorous diagnosis and action plan, our revenue increased by 40% in just two years.",
-          author: "Jean-Pierre Ngoumou",
-          role: "CEO",
-          company: "SITRACEL S.A."
+          quote: "For ten years, Loryns has supported us in the spiritual dimension of business management. Today, Diva Academy is a leading vocational training center accredited by the State in Central Africa. I wish him every success in his professional activities.",
+          author: "Paul Yann",
+          source: "Google review · translated from French",
+          rating: 5
         },
         {
-          quote: "Their financial engineering expertise was critical to securing our funding round for industrial expansion in Central Africa. Exceptional strategic support.",
-          author: "Sonia Mokoko",
-          role: "Co-founder",
-          company: "EcoEnergy Group"
+          quote: "I thank Loryns Strategic for their support. I recommend them.",
+          author: "Marylise N.JONGA",
+          source: "Google review · translated from French",
+          rating: 5
         },
         {
-          quote: "A firm combining operational rigor with absolute integrity. They helped us digitalize our internal workflows with a very smooth transition.",
-          author: "Alain Nguéma",
-          role: "Chief Operating Officer",
-          company: "CamExpress Logistics"
+          quote: "Loryns is a dedicated colleague and an effective, attentive, and professional advisor.",
+          author: "charles Jagodic",
+          source: "Google review · translated from French",
+          rating: 5
+        },
+        {
+          quote: "I highly recommend him; you will come back with your testimonials.",
+          author: "Samuel Mambo",
+          source: "Google review · translated from French",
+          rating: 5
+        },
+        {
+          quote: "Loryns is a passionate coach focused on achieving results and helping clients build their skills. It was a great pleasure to work with him.",
+          author: "Olive NDJABI",
+          source: "LinkedIn recommendation · translated from French",
+          rating: 0
+        },
+        {
+          quote: "I co-led a masterclass with Loryns Youta for large companies and entrepreneurs; his impact was immediate and transformative…",
+          author: "Arnaud Boris NGOSSO",
+          source: "LinkedIn recommendation · excerpt translated from French",
+          rating: 0
         }
       ]
     },

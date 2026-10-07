@@ -643,32 +643,15 @@ export default function App() {
     card.style.boxShadow = '';
   };
 
-  const testimonials = [
-    {
-      quote: t('testimonials.list.0.quote'),
-      author: t('testimonials.list.0.author'),
-      role: t('testimonials.list.0.role'),
-      company: t('testimonials.list.0.company'),
-      avatar: "/avatar_jean.png",
-      initials: "JM"
-    },
-    {
-      quote: t('testimonials.list.1.quote'),
-      author: t('testimonials.list.1.author'),
-      role: t('testimonials.list.1.role'),
-      company: t('testimonials.list.1.company'),
-      avatar: "/avatar_sonia.png",
-      initials: "SK"
-    },
-    {
-      quote: t('testimonials.list.2.quote'),
-      author: t('testimonials.list.2.author'),
-      role: t('testimonials.list.2.role'),
-      company: t('testimonials.list.2.company'),
-      avatar: "/avatar_alain.png",
-      initials: "AN"
-    }
-  ];
+  const testimonials = t('testimonials.list').map((testimonial) => ({
+    ...testimonial,
+    initials: testimonial.author
+      .split(/\s+/)
+      .map((name) => name[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase()
+  }));
 
   const blogArticles = [
     {
@@ -1219,18 +1202,6 @@ export default function App() {
                 </div>
               </div>
               
-              {/* Testimonial Quote Block */}
-              <div className="about-new-testimonial">
-                <img src="/avatar_jean.png" alt="Jean-Pierre Ngoumou" className="testimonial-avatar" />
-                <div className="testimonial-content">
-                  <p className="testimonial-quote">
-                    {t('about.quote')}
-                  </p>
-                  <h5 className="testimonial-author">
-                    {t('about.author')} <span className="author-role">- {t('about.role')}</span>
-                  </h5>
-                </div>
-              </div>
             </div>
             
           </div>
@@ -1653,20 +1624,19 @@ export default function App() {
                   {testimonials[activeTestimonial].quote}
                 </p>
                 <div className="testimonial-author">
-                  <div className="testimonial-avatar" style={{ overflow: 'hidden' }}>
-                    {testimonials[activeTestimonial].avatar ? (
-                      <img 
-                        src={testimonials[activeTestimonial].avatar} 
-                        alt={testimonials[activeTestimonial].author} 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                      />
-                    ) : (
-                      testimonials[activeTestimonial].initials
-                    )}
+                  <div className="testimonial-avatar">
+                    {testimonials[activeTestimonial].initials}
                   </div>
                   <div className="testimonial-info">
                     <h4>{testimonials[activeTestimonial].author}</h4>
-                    <p>{testimonials[activeTestimonial].role} — {testimonials[activeTestimonial].company}</p>
+                    <p>
+                      {testimonials[activeTestimonial].source}
+                      {testimonials[activeTestimonial].rating > 0 && (
+                        <span className="testimonial-rating" aria-label={language === 'fr' ? `${testimonials[activeTestimonial].rating} sur 5 étoiles` : `${testimonials[activeTestimonial].rating} out of 5 stars`}>
+                          {' · '}{'★'.repeat(testimonials[activeTestimonial].rating)}
+                        </span>
+                      )}
+                    </p>
                   </div>
                 </div>
               </div>
