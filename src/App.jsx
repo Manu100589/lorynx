@@ -44,63 +44,6 @@ import { translations } from './translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// High-fidelity smooth counting stats component
-const Counter = ({ endValue, suffix = '', prefix = '', decimals = 0, duration = 2000 }) => {
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const elementRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          let start = 0;
-          const end = parseFloat(endValue);
-          const startTime = performance.now();
-
-          const animate = (currentTime) => {
-            const elapsedTime = currentTime - startTime;
-            const progress = Math.min(elapsedTime / duration, 1);
-            
-            // Easing: easeOutQuad
-            const easeProgress = progress * (2 - progress);
-            const currentValue = start + easeProgress * (end - start);
-            
-            setCount(currentValue);
-
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            } else {
-              setCount(end);
-            }
-          };
-
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [endValue, hasAnimated, duration]);
-
-  return (
-    <span ref={elementRef} className="counter-val">
-      {prefix}
-      {count.toLocaleString('fr-FR', {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      })}
-      {suffix}
-    </span>
-  );
-};
-
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [loaderVisible, setLoaderVisible] = useState(true);
@@ -1240,19 +1183,19 @@ export default function App() {
               <div className="about-new-stats">
                 <div className="about-new-stat-item">
                   <div className="stat-value">
-                    <Counter endValue={350} suffix="+" />
+                    {t('about.stat1Val')}
                   </div>
                   <div className="stat-label">{t('about.stat1Lbl')}</div>
                 </div>
                 <div className="about-new-stat-item">
                   <div className="stat-value">
-                    <Counter endValue={100} suffix="%" />
+                    {t('about.stat2Val')}
                   </div>
                   <div className="stat-label">{t('about.stat2Lbl')}</div>
                 </div>
                 <div className="about-new-stat-item">
                   <div className="stat-value">
-                    <Counter endValue={15} suffix="+" />
+                    {t('about.stat3Val')}
                   </div>
                   <div className="stat-label">{t('about.stat3Lbl')}</div>
                 </div>

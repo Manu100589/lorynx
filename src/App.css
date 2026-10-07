@@ -2936,9 +2936,9 @@
 
 .vision-pillar-content p {
   font-family: var(--font-body);
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
   margin: 0;
 }
 
@@ -3006,7 +3006,7 @@
   font-size: clamp(1.2rem, 2.5vw, 1.7rem);
   font-weight: 600;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.18); /* unhighlighted text */
+  color: rgba(255, 255, 255, 0.92);
   letter-spacing: -0.01em;
 }
 
@@ -3237,7 +3237,7 @@
 .about-new-stat-item .stat-label {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: rgba(7, 26, 53, 0.5);
+  color: rgba(7, 26, 53, 0.72);
   font-weight: 500;
 }
 
@@ -3385,8 +3385,16 @@
     text-align: center;
   }
   .about-new-stats {
-    flex-wrap: wrap;
-    gap: 1.5rem 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .about-new-stat-item .stat-value {
+    font-size: 1.55rem;
+  }
+  .about-new-stat-item .stat-label {
+    font-size: 0.72rem;
+    line-height: 1.35;
   }
   .about-new-testimonial {
     flex-direction: column;
