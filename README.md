@@ -1,5 +1,21 @@
 # React + Vite
 
+## Loryns virtual assistant
+
+The site chat widget uses a Vercel serverless function at `/api/chat` and the OpenAI Responses API. The OpenAI key is read only by the server and must never be added to frontend code or committed to this repository.
+
+To enable live replies, add `OPENAI_API_KEY` to the Vercel project’s Environment Variables for Production and Preview, then redeploy. The key is created in the [OpenAI API dashboard](https://platform.openai.com/api-keys). Optionally set `OPENAI_MODEL`; the default is `gpt-5.6-luna`.
+
+The widget can appear without the key, but its endpoint will ask visitors to use the contact form until the environment variable is configured. Avoid sharing confidential information in chat.
+
+For local Vercel Function development, use the Vercel development environment rather than Vite’s static-only development server.
+
+The assistant is grounded in the public service and location information on the website. It must not invent prices, guarantees, contact details, or personalized legal or financial advice.
+
+## OpenAI API setup
+
+See the official [OpenAI API quickstart](https://platform.openai.com/docs/quickstart/make-your-first-api-request) for API key setup and the Responses API.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:
