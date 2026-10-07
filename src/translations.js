@@ -16,7 +16,7 @@ export const translations = {
       badge2: "Gouvernance",
       badge3: "Transformation",
       brush: "Consulting",
-      subtitle: "Réingénierie d'affaires, restructuration financière et croissance stratégique en Afrique.",
+      subtitle: "Conseil stratégique, gouvernance et restructuration financière pour les entreprises au Cameroun et en Afrique centrale.",
       cta: "Planifier un diagnostic gratuit",
       logoLabel: "LORYNS"
     },
@@ -25,7 +25,7 @@ export const translations = {
       badge: "Cabinet Stratégique Agréé",
       titlePre: "Réinventez votre",
       titleHighlight: "Vision Stratégique",
-      description: "Loryns Strategic Consulting accompagne les dirigeants, grandes entreprises et PME en Afrique dans leur réingénierie financière, leur gouvernance d'affaires et leur transformation technologique pour bâtir une croissance durable.",
+      description: "Basé à Douala, Loryns Strategic Consulting accompagne les dirigeants et les PME au Cameroun et en Afrique centrale. Nos missions couvrent la stratégie d’entreprise, la gouvernance, la restructuration financière et la transformation digitale.",
       btnPrimary: "Planifier un diagnostic",
       btnOutline: "Nos Expertises",
       stat1Val: "350+",
@@ -78,7 +78,7 @@ export const translations = {
     benefits: {
       tag: "Valeur ajoutée",
       title: "Pourquoi collaborer avec nous ?",
-      subtitle: "Ce que vous gagnerez à structurer votre croissance stratégique avec Loryns.",
+      subtitle: "Un accompagnement adapté à vos enjeux de stratégie, de gestion financière et de développement de votre entreprise.",
       cards: [
         {
           title: "Augmentation du chiffre d'affaires",
@@ -109,7 +109,7 @@ export const translations = {
     services: {
       tag: "Offre de service",
       title: "Domaines d'Expertise",
-      subtitle: "Une gamme complète de solutions stratégiques, financières et technologiques à 360° pour les dirigeants d'Afrique et d'Europe.",
+      subtitle: "Conseil en stratégie d’entreprise, gouvernance, financement et transformation digitale pour les dirigeants et organisations en Afrique.",
       tabConseil: "Stratégie & Conseil",
       tabFinance: "Finances & Affaires",
       tabDigital: "Digital & Créativité",
@@ -283,12 +283,12 @@ export const translations = {
     blog: {
       tag: "Actualités & Insights",
       title: "Nos Analyses & Conseils",
-      subtitle: "Décryptages stratégiques et ingénierie d'affaires pour guider les PME et dirigeants d'Afrique centrale face aux enjeux de croissance.",
+      subtitle: "Conseils pratiques sur la stratégie, la gouvernance, le financement et la transformation des entreprises au Cameroun et en Afrique centrale.",
       readMore: "Lire l'article",
       articles: [
         {
-          title: "Restructuration d'Entreprise au Cameroun : Comment éviter la faillite dans les 3 premières années",
-          excerpt: "Découvrez les facteurs clés de la mortalité précoce des PME à Douala et Yaoundé, et comment un audit de gouvernance rigoureux peut sauver votre structure.",
+          title: "Restructuration d’entreprise au Cameroun : étapes et leviers d’action",
+          excerpt: "Comprendre les enjeux d’une restructuration financière et organisationnelle, préparer un diagnostic et définir des priorités pour votre PME à Douala ou Yaoundé.",
           content: `
 # Restructuration d'Entreprise au Cameroun : Comment éviter la faillite précoce
 
@@ -320,8 +320,8 @@ La restructuration réussie repose sur une transition de la gestion purement fam
           `
         },
         {
-          title: "Levée de Fonds en Afrique Centrale : Stratégies clés pour séduire les bailleurs de fonds",
-          excerpt: "Comment structurer son dossier de financement et calibrer sa modélisation financière pour convaincre les banques et les fonds d'investissement régionaux.",
+          title: "Financement d’entreprise en Afrique centrale : préparer son dossier",
+          excerpt: "Les points à clarifier dans un plan d’affaires et des prévisions financières avant de présenter un projet aux banques et investisseurs de la région.",
           content: `
 # Levée de Fonds en Afrique Centrale : Comment convaincre les investisseurs ?
 
@@ -452,8 +452,8 @@ Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate 
     },
     contact: {
       tag: "Contactez-nous",
-      title: "Prêt à accélérer votre croissance ?",
-      subtitle: "Rencontrons-nous pour analyser vos défis opérationnels et structurer une feuille de route adaptée.",
+      title: "Parlons de vos enjeux stratégiques",
+      subtitle: "Contactez notre cabinet de conseil à Douala pour échanger sur votre stratégie, votre organisation ou vos besoins de restructuration financière.",
       locTitle: "Localisation",
       locDesc: "Rue de la Joie, Akwa, Douala — Cameroun",
       hoursTitle: "Heures d'ouverture",
@@ -500,7 +500,7 @@ Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate 
       badge2: "Governance",
       badge3: "Transformation",
       brush: "Consulting",
-      subtitle: "Business re-engineering, financial restructuring, and strategic growth in Africa.",
+      subtitle: "Strategic consulting, corporate governance and financial restructuring for businesses in Cameroon and Central Africa.",
       cta: "Schedule a Free Diagnostic",
       logoLabel: "LORYNS"
     },
@@ -509,7 +509,7 @@ Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate 
       badge: "Certified Advisory Firm",
       titlePre: "Reimagine your",
       titleHighlight: "Strategic Vision",
-      description: "Loryns Strategic Consulting supports executives, corporations, and SMEs in Africa in their financial reengineering, corporate governance, and technological transformation to build sustainable growth.",
+      description: "Based in Douala, Loryns Strategic Consulting supports business leaders and SMEs in Cameroon and Central Africa. Our work covers business strategy, corporate governance, financial restructuring, and digital transformation.",
       btnPrimary: "Schedule a Diagnosis",
       btnOutline: "Our Expertises",
       stat1Val: "350+",
@@ -562,7 +562,7 @@ Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate 
     benefits: {
       tag: "Value Added",
       title: "Why Collaborate With Us?",
-      subtitle: "What you stand to gain by structuring your strategic growth with Loryns.",
+      subtitle: "Practical support tailored to your business strategy, financial management, and growth priorities.",
       cards: [
         {
           title: "Revenue Growth",
@@ -593,7 +593,7 @@ Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate 
     services: {
       tag: "Service Offerings",
       title: "Fields of Expertise",
-      subtitle: "A comprehensive 360° suite of strategic, financial, and technological solutions for leaders in Africa and Europe.",
+      subtitle: "Business strategy, corporate governance, financing, and digital transformation advisory for leaders and organizations in Africa.",
       tabConseil: "Strategy & Advisory",
       tabFinance: "Finance & Corporate",
       tabDigital: "Digital & Creativity",
@@ -767,12 +767,12 @@ Cette distinction de **Doctor Honoris Causa en Strategic Leadership & Corporate 
     blog: {
       tag: "News & Insights",
       title: "Our Strategic Analyses",
-      subtitle: "Strategic deep dives and corporate engineering guides to help SME owners and executives in Central Africa navigate growth.",
+      subtitle: "Practical guidance on business strategy, governance, financing, and transformation for companies in Cameroon and Central Africa.",
       readMore: "Read article",
       articles: [
         {
-          title: "Corporate Restructuring in Cameroon: How to Avoid Bankruptcy in the First 3 Years",
-          excerpt: "Discover the critical factors behind early business mortality in Douala and Yaoundé, and how a rigorous audit can safeguard your firm.",
+          title: "Business Restructuring in Cameroon: Key Steps and Priorities",
+          excerpt: "Explore financial and organizational restructuring, how to prepare a business assessment, and how to set priorities for an SME in Douala or Yaoundé.",
           content: `
 # Corporate Restructuring in Cameroon: How to Avoid Early Failure
 
@@ -804,8 +804,8 @@ Successful restructuring relies on a transition from purely family management to
           `
         },
         {
-          title: "Fundraising in Central Africa: Key Strategies to Attract Financial Backers",
-          excerpt: "How to structure investment files and refine financial models to convince regional banking groups and private equity funds.",
+          title: "Business Financing in Central Africa: Preparing Your Funding Proposal",
+          excerpt: "Key points to clarify in a business plan and financial projections before presenting a project to banks and investors in the region.",
           content: `
 # Fundraising in Central Africa: How to Convince Investors?
 
@@ -936,8 +936,8 @@ This distinction of **Doctor Honoris Causa in Strategic Leadership & Corporate G
     },
     contact: {
       tag: "Get in Touch",
-      title: "Ready to Accelerate Your Growth?",
-      subtitle: "Let's connect to review your operational challenges and design a custom road map for your business.",
+      title: "Discuss Your Strategic Priorities",
+      subtitle: "Contact our Douala consulting firm to discuss your strategy, organization, or financial restructuring needs.",
       locTitle: "Location",
       locDesc: "Rue de la Joie, Akwa, Douala — Cameroon",
       hoursTitle: "Business Hours",

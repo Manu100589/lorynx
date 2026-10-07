@@ -1082,7 +1082,7 @@ export default function App() {
             {/* Right Side Slogan/Description */}
             <div className="hero-right-desc">
               <div className="hero-desc-tag">{language === 'fr' ? "Cabinet Conseil Agréé" : "Certified Advisory Firm"}</div>
-              <div className="hero-desc-title">{language === 'fr' ? "Nous faisons avancer votre entreprise" : "We move your business forward"}</div>
+              <h1 className="hero-desc-title">{language === 'fr' ? "Cabinet de conseil stratégique à Douala" : "Strategic Consulting Firm in Douala"}</h1>
               <div className="hero-desc-text">
                 {(language === 'fr' 
                   ? "Nous calibrons des solutions pragmatiques conçues pour propulser l'efficacité opérationnelle et la rentabilité." 
