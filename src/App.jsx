@@ -37,7 +37,8 @@ import {
   Layers,
   Plus,
   Link2,
-  Share2
+  Share2,
+  Send
 } from 'lucide-react';
 import './App.css';
 import { translations } from './translations';
@@ -1947,6 +1948,8 @@ export default function App() {
         </div>
       </footer>
 
+      <ChatWidget language={language} />
+
       {/* Calendly Booking Modal Mock */}
       {showRendezVousModal && (
         <div 
@@ -2135,6 +2138,122 @@ export default function App() {
         </div>
       )}
 
+    </div>
+  );
+}
+
+function ChatWidget({ language }) {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [draft, setDraft] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const endRef = useRef(null);
+  const isFrench = language === 'fr';
+
+  useEffect(() => {
+    if (open) endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [messages, open, loading]);
+
+  const sendMessage = async (event) => {
+    event.preventDefault();
+    const content = draft.trim();
+    if (!content || loading) return;
+
+    const updatedMessages = [...messages, { role: 'user', content }];
+    setMessages(updatedMessages);
+    setDraft('');
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: updatedMessages.slice(-10), language }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Une erreur est survenue.');
+      setMessages((current) => [...current, { role: 'assistant', content: data.reply }]);
+    } catch (requestError) {
+      setError(requestError.message || (isFrench ? 'Impossible de joindre l’assistant.' : 'Unable to reach the assistant.'));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resetConversation = () => {
+    setMessages([]);
+    setError('');
+  };
+
+  return (
+    <div className="ai-chat-widget">
+      {open && (
+        <section className="ai-chat-panel" aria-label={isFrench ? 'Assistant virtuel Loryns' : 'Loryns virtual assistant'}>
+          <header className="ai-chat-header">
+            <div>
+              <strong>{isFrench ? 'Assistant Loryns' : 'Loryns Assistant'}</strong>
+              <span>{isFrench ? 'Assistant virtuel · Réponse en français ou en anglais' : 'Virtual assistant · English or French'}</span>
+            </div>
+            <button type="button" className="ai-chat-close" onClick={() => setOpen(false)} aria-label={isFrench ? 'Fermer' : 'Close'}>
+              <X size={19} />
+            </button>
+          </header>
+
+          <div className="ai-chat-messages" aria-live="polite">
+            {messages.length === 0 && (
+              <div className="ai-chat-message assistant">
+                {isFrench
+                  ? 'Bonjour ! Je suis l’assistant virtuel de Loryns. Que souhaitez-vous savoir sur nos services ?'
+                  : 'Hello! I’m Loryns’ virtual assistant. What would you like to know about our services?'}
+              </div>
+            )}
+            {messages.map((message, index) => (
+              <div key={`${message.role}-${index}`} className={`ai-chat-message ${message.role}`}>
+                {message.content}
+              </div>
+            ))}
+            {loading && <div className="ai-chat-message assistant typing">{isFrench ? 'Je prépare une réponse…' : 'Preparing a reply…'}</div>}
+            {error && (
+              <div className="ai-chat-error" role="alert">
+                {error}{' '}
+                {/formulaire|contact form/i.test(error) && <a href="#contact" onClick={() => setOpen(false)}>{isFrench ? 'Ouvrir le formulaire' : 'Open the contact form'}</a>}
+              </div>
+            )}
+            <div ref={endRef} />
+          </div>
+
+          <form className="ai-chat-form" onSubmit={sendMessage}>
+            <input
+              value={draft}
+              onChange={(event) => setDraft(event.target.value)}
+              maxLength={1200}
+              placeholder={isFrench ? 'Écrivez votre question…' : 'Ask a question…'}
+              aria-label={isFrench ? 'Votre question' : 'Your question'}
+              disabled={loading}
+            />
+            <button type="submit" aria-label={isFrench ? 'Envoyer' : 'Send'} disabled={!draft.trim() || loading}>
+              <Send size={18} />
+            </button>
+          </form>
+          <div className="ai-chat-footer">
+            <span>{isFrench ? 'Assistant IA propulsé par OpenAI · Évitez les données confidentielles' : 'AI assistant powered by OpenAI · Avoid sharing confidential information'}</span>
+            {messages.length > 0 && <button type="button" onClick={resetConversation} disabled={loading}>{isFrench ? 'Effacer' : 'Clear'}</button>}
+          </div>
+        </section>
+      )}
+
+      <button
+        type="button"
+        className="ai-chat-launcher"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+        aria-label={open ? (isFrench ? 'Fermer l’assistant' : 'Close assistant') : (isFrench ? 'Poser une question à l’assistant Loryns' : 'Ask the Loryns assistant a question')}
+      >
+        {open ? <X size={24} /> : <MessageCircle size={25} />}
+        {!open && <span>{isFrench ? 'Une question ?' : 'Need help?'}</span>}
+      </button>
     </div>
   );
 }
